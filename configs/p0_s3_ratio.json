@@ -1,0 +1,10 @@
+{
+  "name": "p0_s3_ratio",
+  "note": "OPTIONAL sensitivity: wider hardness ratio, D=(2,8) instead of (2,5)",
+  "master_seed": 20261108,
+  "n": 5, "D": [2, 8], "value_set": [1, 2, 3], "u_low": 0.35,
+  "n_instances": 300,
+  "rho_grid": [0.8, 1.1, 1.5, 2.0],
+  "s_grid": [0, 2, 4],
+  "a_grid": [0.5, 0.8, 1.0]
+}

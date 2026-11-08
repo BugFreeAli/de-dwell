@@ -1,0 +1,10 @@
+{
+  "name": "p0_s2_n6",
+  "note": "OPTIONAL sensitivity: n=6 (slack cell rho=0.5 omitted for compute: about 5 s per instance there)",
+  "master_seed": 20261108,
+  "n": 6, "D": [2, 5], "value_set": [1, 2, 3], "u_low": 0.35,
+  "n_instances": 200,
+  "rho_grid": [0.8, 1.1, 1.5, 2.0],
+  "s_grid": [0, 2],
+  "a_grid": [0.5, 0.8, 1.0]
+}

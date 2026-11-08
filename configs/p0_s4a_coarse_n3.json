@@ -1,0 +1,10 @@
+{
+  "name": "p0_s4a_coarse_n3",
+  "note": "OPTIONAL time-resolution check, coarse half: n=3, D=(2,5). Compare cell by cell with p0_s4b_fine_n3 (s doubled).",
+  "master_seed": 20261108,
+  "n": 3, "D": [2, 5], "value_set": [1, 2, 3], "u_low": 0.35,
+  "n_instances": 500,
+  "rho_grid": [0.5, 0.8, 1.1, 1.5, 2.0],
+  "s_grid": [0, 1, 2],
+  "a_grid": [0.5, 0.8, 1.0]
+}

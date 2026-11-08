@@ -1,0 +1,12 @@
+{
+  "name": "p0_smoke",
+  "master_seed": 1,
+  "n": 5,
+  "D": [2, 5],
+  "value_set": [1, 2, 3],
+  "u_low": 0.35,
+  "n_instances": 20,
+  "rho_grid": [0.5, 1.1, 2.0],
+  "s_grid": [0, 2],
+  "a_grid": [0.5, 1.0]
+}

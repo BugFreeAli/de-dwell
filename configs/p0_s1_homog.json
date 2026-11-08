@@ -1,0 +1,10 @@
+{
+  "name": "p0_s1_homog",
+  "note": "CONTROL (required for interpretation): all values equal to 1, isolates hardness uncertainty from value packing",
+  "master_seed": 20261108,
+  "n": 5, "D": [2, 5], "value_set": [1], "u_low": 0.35,
+  "n_instances": 500,
+  "rho_grid": [0.5, 0.8, 1.1, 1.5, 2.0],
+  "s_grid": [0, 1, 2, 4],
+  "a_grid": [0.5, 0.7, 0.8, 0.9, 1.0]
+}
