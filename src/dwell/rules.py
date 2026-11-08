@@ -63,10 +63,41 @@ def _score(rule: str, model: Model, state: State, j: int) -> float:
 
 
 SIMPLE_RULES = ("FAIR", "EDF", "LLF", "SE", "GMR", "BI")
+ALL_RULES = SIMPLE_RULES + ("CEP",)
+
+
+def _cep_policy(model: Model) -> Policy:
+    fallback = make_rule(model, "GMR")
+
+    def policy(state: State) -> Optional[int]:
+        acts = model.actions(state)
+        if not acts:
+            return None
+        t, cur, prog = state
+        dur = {j: sum(p * r for p, r in model.post[j][prog[j]]) for j in acts}
+        best = [0.0, 0.0, None]
+
+        def extend(time, last, used, value, first):
+            if first is not None and (value > best[0] + EPS or (abs(value - best[0]) <= EPS and time < best[1] - EPS)):
+                best[0], best[1], best[2] = value, time, first
+            for j in acts:
+                if j in used:
+                    continue
+                end = time + model.slew(last, j) + dur[j]
+                if end <= model.d[j] + 1e-9:
+                    extend(end, j, used | {j}, value + model.v[j], j if first is None else first)
+
+        extend(float(t), cur, frozenset(), 0.0, None)
+        return best[2] if best[2] is not None else fallback(state)
+
+    return policy
 
 
 def make_rule(model: Model, rule: str) -> Policy:
     """Return the policy function of a rule for this model."""
+    if rule == "CEP":
+        return _cep_policy(model)
+
     def policy(state: State) -> Optional[int]:
         best_j, best_s = None, -float("inf")
         for j in model.actions(state):           # current target first

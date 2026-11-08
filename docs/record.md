@@ -12,3 +12,8 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [OPEN] The BI rule is an adaptation of a Gittins-type index; it is not the published Glazebrook et al. index.
 - [OPEN] The 2-point threshold of the companion test is a judgment.
 - [OPEN] Timings on the author's laptops.
+
+## Amendment A1 checks (2026-11-09, sandbox, Python 3.12.3)
+- [CODE] 48 tests pass; CEP equals the DP optimum when classes are known (random one-hot priors, n = 3 to 5), and stays within [0, V_dp] with random priors.
+- [CODE] Augmenting an existing cell file with CEP gives the same V_CEP and V_dp as a full re-run on the same seed (exploratory seed 1, 12 cells, 240 instances); augmentation of 240 instances took 0.4 s.
+- [CODE] On exploratory seed 1 (N = 20 per cell, 12 cells) the mean CEP regret was 2.1% against 9.5% for GMR (disclosed in the plan, amendment A1). Not a result.

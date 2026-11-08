@@ -35,6 +35,7 @@ def cell_name(rho, s, a):
 def run_cell(job):
     """Compute all instances of one cell and write its CSV atomically."""
     cfg, out_dir, rho, s, a = job
+    rules = tuple(SIMPLE_RULES) + tuple(cfg.get("extra_rules", []))
     path = os.path.join(out_dir, cell_name(rho, s, a))
     if os.path.exists(path):                              # resumable: skip finished cells
         return path, 0.0, "skipped"
@@ -52,13 +53,13 @@ def run_cell(job):
                    V_dp=res.value, V_orc=oracle_value(model),
                    V_dpsim=evaluate_policy(model, res.policy()),
                    n_states=res.n_states, t_dp=t_dp, **real)
-        for r in SIMPLE_RULES:
+        for r in rules:
             row["V_" + r] = evaluate_policy(model, make_rule(model, r))
         # ---- invariants: fail loudly --------------------------------------------------------
         ctx = f"cell rho={rho} s={s} a={a} idx={idx}"
         assert abs(row["V_dpsim"] - row["V_dp"]) < TOL, f"DP policy value != DP value ({ctx})"
         assert row["V_orc"] >= row["V_dp"] - TOL, f"oracle < DP ({ctx})"
-        for r in SIMPLE_RULES:
+        for r in rules:
             assert -TOL <= row["V_" + r] <= row["V_dp"] + TOL, f"rule {r} outside [0, V_dp] ({ctx}): {row['V_'+r]} vs {row['V_dp']}"
         rows.append(row)
     pd.DataFrame(rows).to_csv(path + ".tmp", index=False)

@@ -159,6 +159,8 @@ def main():
     ap.add_argument("--allow-partial", action="store_true")
     args = ap.parse_args()
     cfg = json.load(open(args.config))
+    global RULES
+    RULES = RULES[:6] + list(cfg.get("extra_rules", []))
     df = load(cfg, args.dir, args.allow_partial)
     summ = analyse(df)
     csv_path = os.path.join(args.dir, "summary_cells.csv")
