@@ -1,0 +1,1021 @@
+Literature Review 2: Directed-Energy
+Defense Scheduling
+Extension of Literature Review 1. Prepared 6 November 2026 for Research Project 2.
+Updated 7 November 2026.
+1. Scope, method and limits
+This document records the literature extension agreed after Literature Review 1:
+snowballing from the related-work sections of Zhang 2026 and Li 2026, targeted searches
+on classical weapon-target assignment (WTA), partial observability, stochastic scheduling
+and the evaluation of learning against heuristics, and a check of the cluster-based WTA
+paper by Sung et al.
+Provenance tags. [DOC]: stated in a document I read for this review (extent in Section 2).
+[REF]: known only from a search snippet, an abstract or another paper's reference list;
+the cited work itself was not read. [MEM]: from my memory, unverified. [OPEN]:
+unverified, or my own inference. Where a number was recomputed, the inputs are named.
+Limits. Across the steps of 6 and 7 November I ran 25 web searches and 7 successful page
+fetches. One fetch (ResearchGate, for Sung et al.) was blocked; Sung et al. was later read
+from the project file. The publisher full text of Kracman 2025 is restricted and no open
+copy was found. No bibliographic database (Scopus, Web of Science, IEEE Xplore search,
+Google Scholar) was queried, so this is not a systematic search. Chinese-language work
+was seen only through English abstracts.
+2. Read status (updated 7 November 2026)
+Source Read Status
+Zhang 2026, Aerospace
+13(8):692
+Web page from the
+abstract to Section 4.2;
+experiments and reference
+list not reached
+Partly re-read. Review 1
+reports the full text
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 1 of 25
+
+Source Read Status
+Li 2026, Aerospace 13(10):863 Web page from the
+abstract to Section 5.4.2;
+Section 5.5 onward and
+references not reached
+Partly re-read. Review 1
+reports the full text
+Edwards 2021, NPS master's
+thesis (DTIC AD1164253)
+Full text, 73 pages Full text read. Review 1 had
+the abstract only
+Taylor 2021, NPS master's
+thesis (DTIC AD1165019)
+Full text, 95 pages; body
+and most of the reference
+list (the fetched text ends
+inside the references)
+Full text read (Section 4.2)
+Sung et al., IEEE Access
+(project file, to be removed
+from the project)
+Full text, 21 pages, with
+appendix and references
+Full text read (Section 4.3);
+content kept in this
+document
+Glazebrook et al., NPS-OR-06-
+004 (technical report, January
+2006)
+Full text, 27 pages Full text read (Section 4.5).
+The journal version, Oper.
+Res. 55(4):769-781 (2007),
+was not read
+Chen et al., arXiv:2607.13648v2 Main text, reference list,
+first appendix proofs
+Main text read. Later
+proofs not read
+Kracman 2025, J. Defense
+Model. Simul. 22(2):187-195
+Publisher and RePEc
+abstracts
+Abstract only. Full text
+restricted at the publisher
+and not found elsewhere
+Wei et al. 2026, Trans. Beijing
+Inst. Technol. 46(5):527-533
+English abstract and
+catalogue record
+Record only. Review 1
+reports the full Chinese
+text
+Carr 2021 and Blickley et al.
+2021 (NPS)
+Not located in two
+searches; popular
+descriptions only
+Unread
+Bertsimas and Paskov;
+Atkinson and Kress; Ahner and
+Parson; Gaudet et al.; Wu et al.;
+Nath and Kuhnle; Moseley et al.
+Abstract or catalogue
+pages (publisher, RePEc,
+arXiv, repository, dblp)
+Abstract only. Bibliographic
+data verified
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 2 of 25
+
+3. Checks on Literature Review 1
+3.1 Statements confirmed against the pages read
+Zhang: thermal saturation time 20 s; line of sight drawn as Bernoulli with p = 0.8;
+nominal atmospheric transmittance about 0.57 (visibility 20 km, range 8 km, elevation
+10 degrees); threat type (recon, decoy, strike) given in the UAV state; domain
+randomization named as future work; CPLEX mentioned only in the related-work
+section. [DOC]
+Li: two weapons against four UAVs; energy budget 15, firing cost 3, recharge 0.5; laser
+damage linear in range and time (Eq. 13) in normalized units; reactive dodge with
+probability 0.15; 8 seeds with 1000 deterministic evaluation episodes each, Wilcoxon
+and Mann-Whitney tests; the abstract states that rule-based scheduling with exact
+geometric pointing yields more raw interceptions than the learned methods. [DOC]
+Li also treats UAV behavior type and maneuver phase as directly observable, calls this
+an idealized upper bound, and leaves a belief over behavior type to future work. This
+supports gap G2. [DOC, Li Section 2.2]
+3.2 Corrections and additions
+Edwards 2021 (now read in full). It is a supervised classification study, not a
+scheduling policy. It uses the NPS Swarm Commander Tactics simulator with one ship,
+a 10 kW laser with 300 energy units, engagements under 5 km, and laser performance
+from the NPS ANCHOR scaling code. A decision tree predicts win or loss of the ship
+under two fixed strategies, proximity-first and threat-first. Baseline battles (273 runs,
+Table 4): the ship won 106 of 161 under proximity-first (65.8%) and 100 of 112 under
+threat-first (89.3%). Final model (Table 7): 229 of 244 proximity cases and 175 of 176
+threat cases correct, which gives 404 of 420 = 96.2%, matching the reported 96%.
+[DOC; percentages recomputed from the table counts]
+Taylor 2021. Now read in full (95 pages; details in Section 4.2). Master's thesis,
+December 2021, Systems Engineering, NPS; advisor B. W. Johnson, co-advisor J. M.
+Green. Title: Counter-Unmanned Aerial Vehicles Study: Shipboard Laser Weapon
+Source Read Status
+All other items in Section 4 Snippets or reference-list
+entries
+Unread
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 3 of 25
+
+System Engagement Strategies for Countering Drone Swarm Threats in the Maritime
+Environment. The abstract's claim about decoys and engagement strategy is
+supported by its Table 13. [DOC]
+Palmas, arXiv:2508.00641. Version 1 reports average damage of 50.34% (heuristic) and
+41.30% (RL), a reduction of 17.96% relative to the heuristic. Review 1 uses version 2
+values (52.14% and 40.70%). The Review 1 phrase 'heuristic is 22% worse than RL'
+should read 'RL reduces average damage by about 22% relative to the heuristic' (11.44
+/ 52.14 = 21.9%). Name the version when citing. [REF for v1 values; DOC for the v2
+values in Review 1]
+Hanak 2025 (cross-entropy laser defense), DOI 10.2514/1.I011357 [REF]. Its
+introduction says that, to the authors' knowledge, WTA for laser-based defense had
+not been addressed. Zhang (Section 2.2) cites laser-specific assignment work [18-21]
+and the NPS laser studies of 2015-2021 in Section 4 predate it, so treat novelty claims
+in this niche with caution.
+Wei 2026. Authors Wei, Wang, Wang, Hong (Beijing Institute of Technology), DOI
+10.15918/j.tbit1001-0645.2026.003. The abstract names PPO with self-attention and
+hierarchical masking and claims good generalization and robustness, with no
+numbers. The figures in Review 1 (92.1%, 90.0%, 50.0%) were not re-checked. [REF]
+4. New literature
+4.1 Chen, Xu, Szechtman, Yan and Vanterpool, arXiv:2607.13648v2 (16 July
+2026)[DOC]
+The closest theoretical neighbor found. The model: n threats; C effector shots per round;
+each shot neutralizes threat i independently with probability 1 - q_i; the defender sees
+which threats survive only at the end of each round. Three objectives: expected time to
+clear all threats, probability of clearing all threats by a deadline, and effective (nonwasted) assignments by a deadline.
+Main results as stated by the authors: spreading shots evenly across live threats (fair
+allocation) is optimal when threats are homogeneous or C is at most 2 (Theorem 2); when
+C grows at least in proportion to n, its expected clearance time exceeds the optimum by
+at most an additive constant independent of n (Theorem 5); difficulty-aware greedy
+policies are computed by steepest ascent, with a 1 - 1/e guarantee for the effectiveassignment objective (Theorem 9) and no constant-factor guarantee for the survivalprobability greedy policy (Remark 2). Bellman optima were computed only for small cases
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 4 of 25
+
+(n up to 7, deadline of 2 rounds). The conclusion reports greedy policies within 1% of the
+optimum under their aligned objectives; the larger cases (n up to 30) compare heuristics
+with each other.
+Differences from our setting: kills are memoryless shots, so there is no dwell
+accumulation; difficulties q_i are known to the greedy policies; there are no slewing,
+energy or thermal limits; no learned policies are compared.
+Implications [OPEN, my reading]:
+The rule set must include fair allocation and difficulty-aware greedy (marginal-return)
+rules, not only nearest-target and time-to-breach rules.
+Resource tightness C/n is a ready-made regime variable. A dwell-based analogue
+(required dwell time against available time before breach) is a candidate axis for the
+regime map.
+If simple policies stay near-optimal over most of the stylized space, H2 is harder to
+confirm. Review 1 already flags H2 as the main risk.
+The operations research community is active on this problem (first version July 2026).
+The related-work section must cover it, and the choice between OR journals and
+aerospace orAI journals needs a decision.
+4.2 Taylor 2021, NPS master's thesis (read in full)[DOC]
+A simulation study in the NPS Swarm Commander Tactics (SCT) simulator of a shipboard
+laser against bomber swarms. The laser: 100 kW, 0.3 m beam director, yaw 90 degrees/s
+and pitch 45 degrees/s, 300 energy units used at 1 unit/s, propagation from the ANCHOR
+scaling code. One ship defends; the SCT build used cannot change the atmosphere, aim
+points or target materials.
+Two experiments. First, formation and size: dot (an impossible best case), line, wedge and
+waved wedge, for 50, 100 and 200 bombers, one row per scenario (Table 11). Excluding the
+dot case, the ship was destroyed in 0 of 3, 1 of 3 and 3 of 3 scenarios at 50, 100 and 200
+bombers (Table 12: 0%, 33%, 100%). The author attributes the line formation's success to
+longer slew times between angularly separated targets. Second, armored decoys (fighters
+with three times the health, modeled as three co-located units) replace a quarter of a
+waved-wedge swarm, under proximity-first and take-out-the-shooter targeting. At 200
+units the ship was destroyed in all three settings, but the share of bombers defeated was
+62.5% (no decoys, proximity), 2.7% (decoys, proximity) and 85.3% (decoys, shooter only).
+Recomputed from Table 13: 75 of 200 bombers left, 146 of 150 left, 22 of 150 left.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 5 of 25
+
+Five engagement strategies are proposed: proximity; shortest engagement (expected
+slew time plus expected dwell time, choose the minimum); take out the shooter; focus on
+information nodes; maximize soft kill. Only proximity and take-out-the-shooter were
+simulated. The shooter strategy needs correct identification of the payload carriers, and
+the thesis notes that radar cross-section or imagery cues can become unreliable if the
+adversary modifies the platforms. The simulator assumes perfect sensing, perfect battle
+damage assessment and no tracking time. The tables show one row per scenario and I
+found no mention of replication or variance (the absence is my reading).
+Implications [OPEN, my reading]:
+The armored decoy is a hardness-heterogeneity case in which the better strategy
+wins only if the class is known. It is a concrete, citable motivation for G2.
+Add the shortest-engagement rule (slew plus expected dwell) to the rule set. It is the
+closest published rule to a time-based index.
+Use the thesis as qualitative support only: single runs and perfect information.
+Parameter pointer: Taylor cites Michnewich (2018, NPS thesis) for about 44.4 kJ to
+destroy a UAV with a 2 mm aluminum skin and about 4 MJ of stored energy per
+engagement at 6 km [REF, second-hand]. Useful for sanity checks on energy
+parameters.
+Leads, unread: Carr 2021 (NPS thesis on integrated laser and kinetic weapon selection
+and scheduling, listed as forthcoming by Taylor) and Blickley et al. 2021 (NPS capstone
+on a cognitive laser decision aid). Two articles by B. Johnson describe them as
+covering laser-plus-kinetic engagement logic and machine learning for the required
+dwell time from target material [REF]. Both touch G1 and G2.
+4.3 Sung et al., IEEE Access (read in full from the project file)[DOC]
+Cluster-Based Weapon-Target Assignment for Large-Scale Drone Swarms; Sung, Lee,
+Song, Kim, Kwon, Cho; received 29 May 2026; DOI 10.1109/ACCESS.2026.3712831; pages
+105236-105256. It solves a static assignment of combat drones (single-shot, dual-shot,
+one-way attack) to targets as a mixed-integer nonlinear program (WTA-D), and
+decomposes large instances by clustering targets (k-means, a value-balanced integer
+program, or a p-median) and matching drone groups to clusters.
+Relevance: none to directed energy. The drones are the weapons, kill probabilities are
+assumed known with complete reliability, battery use is linear in distance, and there is no
+dwell, slewing or thermal model. This settles the open question in the first version of this
+document: it is not a competitor for G1. Three points are useful:
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 6 of 25
+
+Scale limits of exact static solution: the exact formulation took a mean of 292.05 s on
+30-by-30 instances against a 300 s limit, and at 99-by-99 only 1 of 30 instances
+reached a solution without slack activation within 3600 s. The clustered variants run
+in about 6 s (PVBC: mean penalized objective 24.57 in 5.78 s), which the authors
+describe as a trade against solution quality. Relevant to receding-horizon baselines at
+N = 100 to 300 [OPEN]. The limit applies to Sung's MINLP with range and dual-shot
+constraints; Bertsimas and Paskov (Section 4.4) report exact solution of classical
+static WTA at 10,000 weapons and targets on a laptop. Their hardware was an Intel i5-
+8250U laptop with 8 GB RAM, BARON with 6 threads, GAMS 45.2 and MATLAB
+R2022b, comparable to our compute.
+Reporting practice: 30 paired instances per group, a Friedman test, then Holmcorrected two-sided Wilcoxon tests. Weaknesses to avoid: GA and PSO were run once
+per instance, and the objective mixes residual value with slack penalties.
+Reference-list leads [REF]: Nan et al. (2022), Electronics 11(11):1796, RL-IGWO for
+dynamic WTA in frigate defense against UAV swarms; Xin et al. (2011), IEEE Trans.
+SMC-A 41(3):598-606, rule-based constructive heuristic for dynamic WTA; Lu and
+Chen (2021), Omega 98:102138, and Andersen, Pavlikov, Toffolo (2022), Ann. Oper. Res.
+312(2):581-606, exact WTA algorithms; Kim, Lee, Yi (2022), IEEE Access 10:43738-
+43750, clustering-based WTA with heading error.
+4.5 Glazebrook, Kirkbride, Mitchell, Gaver and Jacobs: Index policies for
+shooting problems (NPS technical report NPS-OR-06-004, January 2006; read in
+full)[DOC]
+A single shooter (Red) faces N targets (Blue) in a discounted Markov decision problem. At
+each step Red shoots one target or disengages for a fixed return Rd. Theorem 1: a Gittinstype index policy is optimal, and Red disengages when every target's index is below Rd.
+Each index is the maximum, over stopping times, of expected reward divided by a risk
+term (Eq. 8).
+Three models are analysed. In Model 1, targets have B types, each with its own kill
+probability, retaliation probability and withdrawal probability; Red holds a prior over each
+target's type and updates it by Bayes' rule after every inconclusive shot (Eq. 11), so
+repeated failure shifts belief toward harder types. In Model 2, targets accumulate damage
+over D observable states under a known Markov law, with a closed-form index. In Model 3,
+an imperfect inspection follows each shot (shoot-look-shoot). Section 4 values
+disengagement under raids and Poisson arrivals: the more future gain available, the more
+selective the optimal shooter.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 7 of 25
+
+Numerical study: 10^6 runs per policy and problem set, with N = 10 targets, B = 5 types
+and a survival discount of 0.95. The index policy has the highest mean return, as the
+theory requires. It nearly coincides with the exhaustive policy (shoot each target until one
+side is dead) when priors are informative: problem set 2 means are 1126.04 and 1125.96
+(Table 2). Optimal disengagement raised the simulated mean return in problem set 1 from
+307.51 to 340.65 at m = 0.95 (Table 3).
+Differences from our setting: one shooter with unlimited shots; discounted reward until
+the shooter's own demise; targets stay put while not engaged (withdrawal while
+unengaged makes the problem a restless bandit, which the authors call likely intractable
+and handle with Whittle-type heuristics); no breach deadlines; switching penalties appear
+only through other work, where strict optimality is lost; no learned policies.
+Implications [OPEN, my reading]:
+Learning a hardness class from failed attempts and then persisting or disengaging is
+classical here. A novelty claim for our problem must rest on what breaks the bandit
+structure in directed-energy engagements: deadlines and approaching targets, slew
+or switching time, continuous dwell progress with an unknown threshold, several
+effectors, and thermal or energy limits.
+The belief index of Model 1 is the right information-matched baseline for any learned
+policy.
+The finding that the index and a simple exhaustive rule nearly coincide under
+informative priors is a ready hypothesis for H2: learning should matter only when
+priors are weak or the structure breaks the index.
+The journal version (Oper. Res. 55(4):769-781, 2007) was not read; check for
+differences before citing equations.
+4.6 Other checks in this round
+Further directed-energy RL schedulers: two more searches (laser and microwave
+scheduling with reinforcement learning, 2026) returned only Zhang, Li and items
+already listed. Not exhaustive [OPEN]. A snippet of Li reports that the laser and
+microwave target the same UAV in 34% of firing frames [REF].
+Safety physics [REF]: Azarian et al. (Fraunhofer IOSB) measured reflections of a highenergy laser from melting steel targets and report a worst-case nominal ocular hazard
+distance of 560 m for a 100 kW laser (Fraunhofer record of a 2026 conference paper;
+an Optica abstract gives the same figure, journal and authors not captured). Daigle et
+al., Optical Engineering 56:026106 (2017), argue for hazard zones based on measured
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 8 of 25
+
+divergence instead of the flat-mirror worst case. Schwenger, Azarian, Henrichsen,
+Applied Optics 63(14):3825-3841 (2024), simulate beam reflection at the sea surface.
+None is a scheduling paper. Kumru 2023 (Review 1) was not located.
+Khalil et al. (RMIT), arXiv:2510.16495: the introduction snippet says laser and kinetic
+systems are inherently sequential and that high-power microwave systems have an
+effectively unlimited magazine subject to power and cooling [REF].
+Heuristics for the stochastic dynamic task-resource allocation problem with retry
+opportunities, European Journal of Operational Research (CORE record; authors and
+year not captured): two-stage allocation where first-stage outcomes are observed
+before the second stage [REF].
+Naval Engineers Journal, Winter 2025, NPS paper on coordinating kinetic and
+directed-energy effects: an ASNE blog describes engagements as time-driven, with
+dwell time, power and cooling, and deconfliction as constraints [REF; paper not read].
+Fiedler et al. (2015), NPS capstone (Calhoun hdl 10945/45247): a kill-assessment
+concept with near real-time damage assessment and dwell-time determination that
+gives a decision point to re-engage the same threat or move to the next target [REF:
+abstract snippet]. Relevant to feedback after dwell.
+Carr 2021 and Blickley et al. 2021 (NPS): not located; only popular descriptions by B.
+Johnson were found.
+4.7 Deadline-scheduling leads and parameter sources (snippets only)[REF]
+Restless-bandit deadline scheduling: Large-scale Charging of Electric Vehicles: A
+Multi-Armed Bandit Approach (arXiv:1605.07578; authors not captured). The snippet
+says earliest-deadline-first and least-laxity-first are optimal when completing all tasks
+is feasible, and that its Whittle index policy is improved by a less-laxity-and-longerprocessing-time (LLLP) principle. A second paper on an asymptotically optimal
+Lagrangian priority policy for stochastic deadline scheduling (NSF PAR 10250769;
+authors not captured) reports gains of 1.9-5.9% over a Whittle-type index policy.
+Analogy: charging demand with deadlines resembles dwell demand with breach
+times, but unknown hardness is absent. Use: earliest-deadline, least-laxity and
+Whittle-type baselines.
+Michnewich (2018), NPS thesis (DTIC AD1060007): ANCHOR plus a discrete-event
+model for laser dwell times and energy storage; the snippet says the dwell data
+assume a stationary target and that the maximum engagement time of ten seconds
+depends on the cooling system. Parameter pointer; thesis not read.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 9 of 25
+
+A laser fire-control patent, US 4,647,759 (snippet): states that dwell time, slew time
+and fuel limits must be considered in laser fire control. It shows the scheduling
+problem was recognised outside the academic literature long ago. Claims not verified;
+patents are not used as evidence of novelty.
+A Defence Science Review item on laser directed-energy weapons (2025 per snippet;
+title and authors not captured): says classical WTA frameworks do not fully reflect
+laser characteristics.
+One more search on laser engagement scheduling with dwell, deadlines and slew
+found no directed-energy paper with stochastic dwell, unknown hardness and
+learned-policy comparison [OPEN; not exhaustive].
+4.4 Other items found
+Classical and OR weapon-target assignment [REF unless stated]
+Kline, Ahner, Hill (2019), The Weapon-Target Assignment Problem, Computers and
+Operations Research 105:226-236. Authors, venue and pages confirmed from the
+reference list of Sung et al. [DOC]. Survey with static, two-stage and shoot-look-shoot
+variants (ScienceDirect snippet).
+Bertsimas and Paskov (2025), Naval Research Logistics 72(5):735-749. DOI
+10.1002/nav.22249. Branch-price-and-cut for large-scale WTA; the abstract states that
+it scales to 10,000 targets and weapons on a laptop and solves in seconds problems
+that previously took hours (MIT DSpace record; abstract only).
+Ahuja, Kumar, Jha, Orlin (2007), Operations Research 55(6):1136-1146. Exact and
+heuristic WTA algorithms (listed in Chen et al.).
+Ahner and Parson (2015), Optimization Letters 9(8):1689-1701, DOI 10.1007/s11590-014-
+0823-x. Two-stage dynamic WTA solved with adaptive dynamic programming (dblp
+and MaRDI records; abstract level). An earlier version of this entry gave a different
+venue, which was wrong.
+Glazebrook and Washburn (2004), Operations Research 52(3):454-463. Shoot-lookshoot review; a snippet states that it combines linear programming and POMDPs for
+partially observable outcomes.
+Glazebrook, Kirkbride, Mitchell, Gaver, Jacobs (2007), Operations Research 55(4):769-
+781. Index policies for shooting problems. Bibliographic data verified against RePEc
+(DOI 10.1287/opre.1070.0444); the NPS technical report version was read in full
+(Section 4.5).
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 10 of 25
+
+Atkinson and Kress (2025), Operations Research 73(4):1767-1784, DOI
+10.1287/opre.2024.1025. A defender with hard interceptors and soft measures
+(directed-energy weapons, jamming) faces a sequence of homogeneous threats,
+scored by leakers and interceptors expended (publisher and RePEc abstracts;
+unread).
+Merkulov et al. (2024), Journal ofAerospace Information Systems. Virtual-targetbased stochastic shoot-shoot-look assignment (listed in Chen et al.; volume not given;
+not independently verified).
+Xin, Wang, Chen (2019), IEEE Trans. Systems, Man, and Cybernetics: Systems
+49(12):2536-2547. Marginal-return-based constructive heuristic for sensor-weapontarget assignment (listed in a survey's reference list).
+Manne (1958); Lloyd and Witsenhausen (1986), weapon allocation is NP-complete.
+Foundational (listed in Chen et al.).
+Learning for WTA compared with optimization [REF]
+RL4WTA, multi-head deep RL for WTA (cited as Li et al. [17] in Li 2026). A
+ResearchGate snippet says it was compared with a MILP exact solution and heuristics
+and runs quickly across problem scales. Venue per an aggregator record: IEEE Access,
+October 2023.
+Gaudet, Drozd, Furfaro, arXiv:2310.18509. Deep RL for weapons-to-targets
+assignment; the arXiv abstract (multi-vehicle hypersonic strike) reports near-optimal
+performance against nonlinear integer programming with about a 1000-fold speedup.
+The documented RL advantage here is computation time, not solution quality.
+Directed-energy and NPS line [REF]
+Laird (2016), NPS thesis on heterogeneous defensive naval weapon assignment to
+swarming threats in real time; Fiedler et al. (2015), NPS capstone on increasing the kill
+effectiveness of a high-energy-laser combat system (an abstract snippet links kill
+assessment to weapon scheduling); Mann et al. (2006), Journal of Defense Modeling
+and Simulation 3(3):189-201, engagement algorithms for real-time weapons effects. All
+listed in Edwards's bibliography or found in snippets.
+Yun, Song, Pei (2020), IEEE Access 8:32246-32257. Impact of a high-energy laser on
+UCAV mission effectiveness (cited by Zhang as [6] and in a Chinese survey).
+Application and key technologies of laser weapons in anti-UAV swarm operations,
+Acta Aeronautica et Astronautica Sinica (2023), DOI 10.7527/S1000-6893.2023.29457,
+79 references. Snippet of the reference list only. Useful for snowballing; authors not
+captured.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 11 of 25
+
+Sung et al., IEEE Access, cluster-based WTA: read in full; see Section 4.3. Not a
+directed-energy paper.
+Queueing and stochastic models of directed-energy defense [REF]
+Kracman (2025), J. Defense Model. Simul. 22(2):187-195, DOI
+10.1177/15485129231161092, first published online 2 May 2023; the publisher page lists it
+as restricted access. Full text was not obtainable and a further search found no open
+copy, so it is used at abstract level only (publisher and RePEc abstracts). The abstract
+describes a queueing and stochastic jump model of networked high-energy-laser
+defense that predicts survival probability for several effectors against any number of
+threats and compares three collaboration methods; it suggests that superimposing
+lasers on one threat may be less effective than one-to-one allocation. The author is at
+Australia's Defence Science and Technology Group. Decision: cite for the focused-fire
+versus one-to-one question and for queueing-style predictors, flagged as abstractlevel, and do not rely on its details.
+Weinberg and Kracman (2021), arXiv:2106.14381. Jump-process survivability model for
+armoured vehicle teams under multiple missile threats with directed-energy defense;
+Weinberg (2021) MODSIM paper on a queueing approach to collaborative active
+protection. Possible sources of analytical predictors for the load axis.
+Stochastic scheduling and index policies [REF]
+Scully and Terenin, The Gittins Index: A Design Principle for Decision-Making Under
+Uncertainty, arXiv:2506.10872 (June 2025). Unknown job sizes with a known size
+distribution, preemption allowed. An unknown dwell requirement with a classdependent distribution is the analogue.
+Robust Gittins for Stochastic Scheduling (Moseley, Newman, Pruhs, Zhou; April 2025),
+arXiv:2504.10743. The abstract states that the standard Gittins policy is not robust:
+arbitrarily small perturbations of the true distributions suffice to break it, and the
+authors propose a robust modification. The setting is a single machine, preemption
+allowed, minimizing expected mean completion time (abstract and introduction
+verified on arXiv).
+Tabular and Deep Reinforcement Learning for Gittins Index, arXiv:2405.01157.
+Caveat: the classical optimality results concern mean completion time or holding cost,
+not kills before a deadline. Whether an index rule is near-optimal for our objective is
+[OPEN].
+Evaluation of learning against heuristics [REF]
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 12 of 25
+
+Wu, Zhao, Arora, Unrealized Expectations: Comparing AI Methods vs Classical
+Algorithms for Maximum Independent Set, arXiv:2502.03669v2. Empirical comparison:
+leading AI methods are outperformed by the classical KaMIS solver on one CPU, and
+some fail to beat a simple degree-based greedy heuristic (abstract verified).
+Nath and Kuhnle, arXiv:2406.11897 (MaxCut benchmark): several learned heuristics
+fail to beat a naive greedy algorithm, and Tabu Search beats all but one of them
+(abstract and introduction verified). Another item listed earlier, arXiv:2310.19990, was
+not re-verified and is not relied on.
+Caveat: both studies address static graph optimization, not sequential scheduling.
+Use them for framing the baseline argument only.
+Infrastructure [REF]
+Gymnasium, arXiv:2407.17032 (authors from [MEM]: Towers et al.).
+Palmas code for the kinetic counter-UAV environment: github.com/alexpalms/deeprlcounter-uav-swarm (URL given in the paper's appendix).
+5. Updated gap table
+# Gap Status after this step Evidence
+G1 Physics-grounded
+scheduling across laser,
+microwave, kinetic
+Open, with a nuance A laser-only physics-based
+wargame (SCT with
+ANCHOR) exists in the NPS
+line, with decision-tree
+outcome prediction and no
+RL [DOC: Edwards, Taylor].
+A laser-plus-kinetic
+selection and scheduling
+thesis (Carr 2021) exists
+but was not located [REF].
+Multi-effector RL alone is
+not novel (Review 1)
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 13 of 25
+
+# Gap Status after this step Evidence
+G2 Uncertain hardness or
+class under dwelldependent damage
+Open, narrowed Li treats class labels as
+observable and defers
+beliefs [DOC]. Chen et al.
+assume known difficulty
+and suggest fair allocation
+when unknown [DOC].
+Taylor names target
+identification as a
+requirement for the takeout-the-shooter strategy
+but simulates perfect
+identification [DOC].
+Gittins-type work covers
+unknown job size under
+other objectives [REF].
+Bayesian learning of target
+type from failed shots, with
+disengagement, is classical
+in bandit-based shooting
+models with memoryless
+shots [DOC: Glazebrook et
+al.]. No DE-specific work
+with accumulating dwell
+found [OPEN]
+G3 When learning beats
+rules
+Open; strongest; the bar
+is higher
+Near-optimal simple
+policies in a stylized OR
+model [DOC: Chen]. Weakbaseline critique in
+combinatorial optimization
+[REF]. Documented RL
+advantage in generic WTA
+is speed [REF: Gaudet]
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 14 of 25
+
+# Gap Status after this step Evidence
+G4 Out-of-distribution
+robustness
+Open Zhang defers domain
+randomization [DOC].
+Robust Gittins suggests
+index policies are brittle to
+distribution error [REF], a
+concrete reason to test
+prior misspecification
+G5 Optimization baselines Narrowed Holds only for the DEspecific RL papers read in
+Review 1 [DOC]. Generic
+RL-WTA papers report MILP
+and heuristic comparisons,
+and strong exact and ADP
+solvers exist [REF]. Exact
+static assignment becomes
+impractical beyond about
+30 assets within seconds,
+and clustering
+decomposition is one
+remedy [DOC: Sung]. A
+branch-price-and-cut
+solver is reported to solve
+static WTA exactly at up to
+10,000 weapons and targets
+on a laptop [REF: Bertsimas
+and Paskov, abstract]
+G6 Safety constraints Open, lower priority Hazard distances are
+studied physically (about
+560 m worst case for 100
+kW on melting steel,
+Azarian et al.) [REF]. No
+scheduling paper with
+hazard zones found
+[OPEN]. Kumru 2023 not
+located
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 15 of 25
+
+6. Go or no-go
+6.1 G5: go, narrowed
+Safe wording for the paper: none of the DE-specific RL schedulers we reviewed compares
+against a dynamic optimization baseline. Do not write that no RLWTA paper compares
+with optimization. Baselines to implement: fair allocation; difficulty-aware greedy
+(marginal return); a receding-horizon optimizer over sampled scenarios; MILP or crossentropy at small scale.
+6.2 G8 (Option D): conditional go for a bounded pilot, not yet the anchor of the
+paper
+For: no DE-specific work on probing and abandonment with accumulating dwell found;
+Chen's results do not transfer directly because shots are memoryless; the robustness
+result for Gittins policies gives a reason to expect prior misspecification to matter.
+Against: the search was not systematic; kills-by-deadline objectives are generally
+outside Gittins optimality [MEM, unverified]; the theory may be intractable beyond
+toy cases; the bandit-shooting lineage (Glazebrook et al.) already covers learning
+target type from failed shots and optimal disengagement for memoryless shots, so a
+novelty claim must rest on deadlines, slew and dwell accumulation.
+Test: pilot P0 in Section 8.
+# Gap Status after this step Evidence
+G7 Open directed-energy
+benchmark
+Open for DE Palmas released code for
+kinetic effectors only
+[DOC: Palmas appendix]
+G8 New candidate:
+accumulating damage
+with an unknown
+threshold; when to probe,
+persist or abandon
+Narrowed: learning from
+failures and disengaging
+is classical (Glazebrook
+et al.); the open part is
+dwell accumulation with
+deadlines, slew and
+thermal limits [OPEN]
+Chen's model is
+memoryless; Gittins theory
+targets other objectives;
+the shooting-bandit model
+has no deadlines or slew
+[DOC]
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 16 of 25
+
+6.3 Proposed changes to the plan in Review 1 [OPEN]
+Add rule families: fair allocation, difficulty-aware greedy, a belief-aware index rule, and
+the shortest-engagement rule (slew time plus expected dwell time, from Taylor 2021).
+Add regime axes: a dwell-based load ratio, prior misspecification, and decision latency
+(compute-matched comparison).
+Cite the weak-baseline literature in the argument for C3.
+Demote G6 and the constrained-optimization method (C2, H4) until the safety
+literature is read.
+Decide the venue family (OR journals or aerospace and AI journals) before fixing the
+contribution type.
+7. Still unread or unverified
+Kracman 2025 full text: restricted at the publisher and not found elsewhere; used at
+abstract level only. Carr 2021 and Blickley et al. 2021 (NPS) were not located.
+Zhang from Section 4.3 and Li from Section 5.5 (re-read only in part this step).
+RL4WTA venue; authors of the Gittins survey and the Gymnasium paper.
+A systematic database search (Scopus or Web of Science, IEEE Xplore, Google
+Scholar) is not done. Merkulov et al. (2024) was not independently verified. The Naval
+Engineers Journal paper (Winter 2025) and Fiedler et al. (2015) were seen only as
+snippets.
+8. Next steps
+1. You: choose the scope (benchmark plus regime analysis with explanatory variables, or
+the method-heavy paper) and the venue family. Nothing else is blocking.
+2. Me, if you agree: try again to locate Carr 2021 and Blickley et al. 2021 (two searches
+this round did not find them), and finish Zhang from Section 4.3 and Li from Section
+5.5, because they touch G1 and G2 directly. Expected result: Section 2 shows them as
+read.
+3. Pilot P0 (draft; the full specification is frozen before running). A single effector, n = 4
+to 6 threats, two hardness classes with different required dwell times unknown to the
+policy, a prior over classes, a breach deadline per threat and a fixed retargeting time.
+Objective: threats neutralized before breach. Solve the sequential problem exactly by
+dynamic programming on a discretized time grid, and compare fair allocation, shortest
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 17 of 25
+
+engagement, greedy, the belief index of Glazebrook et al. (Model 1) and the optimum
+over a grid of prior accuracy and load. Go rule, to be fixed by you before running: the
+best simple rule loses at least X% of the optimal value in at least one regime (I suggest
+X = 5 [OPEN]). Compute: expected to be light for a single laptop at this size; not
+measured.
+9. Candidate contributions
+Recommendation [OPEN, my judgment]: build one paper around a single question, when
+does learning beat strong index and optimization rules for dwell-based directed-energy
+scheduling, and why (candidate A). It covers G2, G3, G4 and G5 and releases the
+environment (G7). G1 and G6 enter as environment features, not as claimed contributions.
+Candidate Gaps What is new Pros Cons Verdict
+A. Regime theory
+for DE
+scheduling: a DPsolvable stylized
+model plus a
+physics-informed
+simulator,
+informationmatched index
+and optimizer
+baselines, a
+regime predictor,
+out-ofdistribution tests
+G2,
+G3,
+G4,
+G5, G7
+Controlled learningversus-rules
+evidence with an
+explanatory
+variable, on dwell,
+slew and deadline
+structure that the
+OR shooting models
+lack
+Couples four
+gaps through
+one question;
+exact DP gives
+ground truth;
+the stylized
+part is cheap;
+readable by
+OR and DE-RL
+reviewers
+Needs theorylite and empirical
+work; rules may
+prove nearoptimal
+everywhere;
+simulator
+dependence
+Recommended
+spine
+B. Benchmark
+and regime map
+only (plan of
+Review 1)
+G3, G7 Open DE
+benchmark and
+sweeps
+Feasible; a
+reusable
+artifact
+No explanatory
+variable, so
+conclusions stay
+simulatorspecific; sweeps
+are costly on two
+laptops
+Subsumed byA
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 18 of 25
+
+Why not cover every gap: a paper needs one claim that every experiment bears on. G2,
+G3, G4 and G5 share that claim (information, baselines, shift). G1 and G6 add parameters
+and modules but no new question, so they would dilute the paper and add attack surface
+for reviewers.
+What would change the recommendation:
+Candidate Gaps What is new Pros Cons Verdict
+C. Index theory
+for dwell-based
+engagement:
+extend
+Glazebrook-type
+indices to
+accumulating
+damage with an
+unknown
+threshold,
+deadlines and
+slew
+G2, G8 Optimality or
+bounds where the
+bandit structure
+survives; a
+characterization of
+where it breaks
+Highest idea
+novelty; appeal
+to OR venues;
+cheap to test
+by DP
+Proof risk; may
+reduce to known
+results; weaker
+for aerospace
+and AI readers
+Pilot P0 inside A;
+promote only if
+tractable
+D. Learningaugmented
+index: RL learns a
+correction to the
+belief index
+G3, G4 A safeimprovement story:
+not worse than the
+index where it is
+optimal
+Addresses the
+learningversus-rules
+tension;
+plausible
+practical gain
+Combination of
+known parts
+(novelty risk);
+extra training
+compute
+Conditional addon ifA finds a
+regime where the
+index fails and RL
+helps
+E. Hardness
+probing with killassessment
+feedback as an
+axis
+G2 Value of information
+from dwell under
+delayed or noisy kill
+assessment
+(Fiedler concept)
+Distinctive
+physical story
+The observation
+model is
+assumed;
+realism may be
+questioned
+A controlled axis in
+A, not a separate
+paper
+F. Hazard-zone
+scheduling
+(ocular hazard,
+no-fire arcs)
+G6 Constraints from
+published hazard
+distances
+Realism; public
+physics data
+Modest novelty;
+few sources;
+Kumru 2023 not
+located
+Environment
+feature only
+G. Mixedeffector focusedfire studyG1 Laser plus
+microwave synergy
+under hardness
+Links to the
+Kracman
+question
+The microwave
+cone model is
+our own
+extension; Li's
+34% sametarget figure is a
+snippet
+Environment
+option, not a claim
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 19 of 25
+
+If, in pilot P0, the best simple rule stays within the pre-set threshold of the DP
+optimum across the whole stylized grid including deadlines and slew, switch to a
+'when rules suffice' framing (candidate C) aimed at OR venues, or add structure until
+a gap appears.
+If the belief index degrades sharply under prior misspecification in P0, candidate D
+becomes the second contribution.
+If the full simulator shows no regime where RL beats the best information-matched
+rule, report that as the main result and keep the regime predictor.
+Compute [OPEN, not measured]: the stylized DP is expected to be light on one laptop at n
+up to 5 and a coarse dwell grid. The simulator should be vectorized and its steps per
+second measured before any training plan is fixed. RL training would use one randomized
+policy per architecture instead of one policy per cell, with training sizes below the largest
+evaluation sizes.
+Venue note: a strong paper can be written without choosing a venue first, but the
+contribution type decides what reviewers expect: OR journals expect optimality or
+bounds and exact benchmarks, aerospace journals expect physics validation and
+sensitivity, and AI journals expect seeds, ablations and statistics. Candidate A is built to
+meet all three, at a higher workload. Scope limits, formatting and page limits can wait.
+Journal scopes and rankings are not verified.
+10. Final research idea and initial plan (decided 7 November 2026)
+10.1 Decisions
+Scope: candidate A of Section 9 is approved by the author.
+Venue: the supervisor leaves the venue family open. We target the family that fits
+best, provided the contribution is real in that field. Venue choice is therefore a design
+decision for us (Section 10.8).
+Pilot P0 go threshold: 5% regret of the best simple rule against the DP optimum, as
+suggested.
+Working rules added: code always comes with comments and explanation; git history
+instructions are given whenever a repository step is needed; one new chat per phase
+or step; project memory kept current.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 20 of 25
+
+10.2 Working title and central question
+Working title [OPEN]: Learning versus index policies for dwell-based directed-energy
+scheduling under uncertain target hardness: a regime analysis.
+Central question: when does a learned scheduling policy beat strong, informationmatched index and optimization rules for dwell-based directed-energy engagements, and
+which measurable conditions predict it?
+RQ1. In a small stylized model solved exactly by dynamic programming (DP), how large
+is the regret of strong simple rules, and which conditions drive it?
+RQ2. Do a few measurable regime variables (load ratio, information about hardness,
+slew ratio) predict that regret?
+RQ3. In a physics-informed simulator, do the stylized regimes predict where a learned
+policy beats the best information-matched rule or optimizer?
+RQ4. How do the methods degrade under prior misspecification and shifts in swarm
+size and threat mix?
+10.3 Contributions and non-claims
+C1: a stylized dwell-based model with accumulating damage, an unknown hardness
+class, slew time and breach deadlines, solved exactly for small n, with a regret map of
+rules.
+C2: a regime predictor, validated on C1 and then on the simulator.
+C3: a physics-informed simulator (laser and high-power microwave in the core, kinetic
+as a stretch goal), information-matched baselines (fair allocation, earliest deadline,
+least laxity, shortest engagement, greedy marginal return, belief index, recedinghorizon sampled-scenario optimizer, class-aware oracle), one RL method (setattention PPO with a single central agent), and out-of-distribution tests.
+C4: released code, configurations, seeds and checkpoints.
+Non-claims: fielded-system accuracy, a new RL architecture, safety-hazard modeling,
+kinetic-effector novelty. G1 and G6 enter only as environment features.
+10.4 Hypotheses and statistical plan (frozen before the confirmatory runs)
+H1: with slack deadlines, small slew and informative priors, the best simple rule has
+regret below 5% in the stylized model.
+H2: regret grows with load ratio, slew ratio and prior uncertainty, and exceeds 5% in at
+least one region. This is the go criterion of P0.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 21 of 25
+
+H3: in the simulator, the learned policy beats the best information-matched rule
+where stylized regret is at least 5% and does not where it is below.
+H4: under prior misspecification, the belief index loses more than a domainrandomized learned policy (motivated by Robust Gittins) [OPEN].
+Descriptive only: decision latency of each method.
+Statistics:
+Seed is the unit for RL (10 training seeds). Rules are compared on identical evaluation
+episodes, and episodes are paired.
+At most 8 primary confirmatory contrasts, with Holm correction. Everything else is
+reported as effect sizes with confidence intervals and labelled secondary or
+exploratory.
+With 10 seeds the smallest one-sided exact Wilcoxon p-value is 1/1024 = 0.00098,
+which is below the smallest Holm threshold for 8 contrasts (0.05/8 = 0.00625), so 8
+contrasts are testable.
+Thresholds other than the 5% go rule are set on exploratory seeds and then frozen in
+a dated analysis plan before the confirmatory run. Post-hoc analyses will be labelled
+as such.
+10.5 Stylized model M0 (draft; frozen in step 1)
+Objects: one effector; n threats (n = 3 to 5); each threat has a value, a breach deadline
+and a hidden hardness class (2 to 3 classes) with a known prior; the required dwell per
+class is fixed; the effector accumulates progress while dwelling on one threat;
+switching costs a slew time.
+Observation: the policy sees whether each threat is dead and how much dwell it has
+received; a variant adds a noisy progress signal of quality q (the kill-assessment axis).
+The belief is a deterministic function of dwell received and the prior.
+Objective: maximize the expected value of threats killed before breach.
+Solution: DP over per-threat progress levels, time and current target. Expected to be
+light for n up to 5 on a coarse dwell grid [OPEN, not measured].
+Rules compared: fair allocation, earliest deadline first, least laxity first, shortest
+engagement (slew plus expected dwell; Taylor 2021), greedy marginal return, belief
+index (Glazebrook et al., Model 1), DP optimum, class-aware oracle.
+Regime variables (candidate definitions, fixed in step 1): load ratio = expected total
+required dwell over the time available before the last deadline; information = accuracy
+or entropy of the class prior; slew ratio = slew time over mean dwell.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 22 of 25
+
+Output: regret of each rule against the DP optimum over a grid of the three variables.
+Go rule: the best simple rule loses at least 5% in at least one region.
+10.6 Simulator M1 (outline; specification in step 2)
+Laser: melt-through time from Liu et al. (Eqs. 1 to 20) with retargeting time (Eq. 21);
+atmosphere from Liu and Zhang; energy and thermal state from Zhang and Li.
+High-power microwave: logistic kill probability against a hardness threshold from
+Khalil et al., with dwell accumulation. The multi-target cone is our own extension and
+will be labelled so.
+Sensing: noisy tracking and class confusion in the style of Palmas; random line of sight
+in the style of Zhang.
+Classes: hardness by material and thickness; roles and maneuvers only as stress
+tests.
+Interface: Gymnasium; a single central scheduler (no multi-agent training); a setattention policy. Every formula is re-verified against its source in step 2, which
+requires the original papers to be re-supplied then.
+Parameter ranges are documented with a sensitivity analysis. No claim of calibration.
+10.7 Experiments (outline)
+Factors: swarm size, arrival pattern, load ratio, slew ratio, pointing and tracking error,
+class-observation accuracy, weather, effector mix (laser only versus laser plus
+microwave), fraction of hardened targets, prior misspecification.
+Design: Latin-hypercube sampling plus a few anchor regimes for the confirmatory
+contrasts; one randomized training distribution per RL architecture instead of one
+policy per cell.
+Out-of-distribution tests: unseen weather, threat mix, swarm size and prior shift.
+Ablations: belief input, attention versus masked MLP, masking, domain randomization.
+Scale: train at small to moderate sizes; evaluate rules and the optimizer up to 300
+where cheap [OPEN].
+10.8 Venue strategy
+Because the supervisor leaves the venue open, we fix the contribution framing now and
+the journal later. C1 and C2 give the theory-light layer for OR readers; C3 gives the
+benchmark and sensitivity layer for aerospace and AI readers. Decide the primary venue
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 23 of 25
+
+family at the end of step 4 (RL pilot), when we know whether the result is 'rules suffice',
+'learning helps in region R' or 'a hybrid is needed'. Journal scopes and rankings are not
+verified [OPEN].
+10.9 Phases, checkpoints and hedged durations
+Durations are my unverified estimates, not measurements.
+Step 1: freeze the P0 specification and the analysis plan, set up the repository, code
+the stylized model and DP, run P0. About 1 to 2 weeks. Checkpoint: the go rule is
+applied.
+Step 2: simulator specification and unit tests against the published formulas. About 3
+to 4 weeks. Checkpoint: formulas reproduced.
+Step 3: baselines and oracle, plus a baseline audit. About 2 weeks. Checkpoint: rule
+results reproduce the Li and Zhang patterns where applicable.
+Step 4: RL pilot and go or no-go. About 2 to 3 weeks. Checkpoint: any region where
+learning wins; venue decision.
+Step 5: confirmatory runs and out-of-distribution tests. About 4 to 6 weeks.
+Step 6: statistics and figures, with scripts that assert plotted values equal table
+values. About 2 weeks.
+Step 7: writing in the chosen venue's format. About 4 to 6 weeks.
+Total, hedged: roughly 18 to 25 weeks.
+Pivot rules: if P0 fails the go rule across the grid, switch to the 'when rules suffice' framing
+or add structure. If step 4 finds no region where learning wins, the paper reports that,
+together with the regime predictor.
+10.10 Risks
+Rules may be near-optimal everywhere; the paper then reports where and why.
+The simulator is ours; mitigated by a randomized simulator family and a sensitivity
+analysis.
+Overlap with the OR bandit lineage (Glazebrook et al.) and recent OR theory (Chen et
+al.); our positioning rests on deadlines, slew, dwell accumulation and the learning
+comparison.
+Kill-assessment feedback is an assumed observation model; handled as an axis.
+Dual use: defender-side only; open-literature parameters; scripted threat behaviors
+as stress tests only; no attacker optimization.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 24 of 25
+
+Literature still open: Carr 2021, Blickley et al. 2021, parts of Zhang and Li, Kracman full
+text. Re-check the literature before submission.
+10.11 Records and repository
+All results carry provenance tags and are logged with seeds, software versions and
+hardware. A private GitHub repository holds the code, configuration, the dated analysis
+plan and exports of this document. Commit and tag instructions are given in step 1
+together with the code.
+11. Changelog
+7 November 2026, third update. Section 10 (final research idea and initial plan) and
+subsection 4.7 added. 7 November 2026, second update. Glazebrook et al. technical
+report read in full (Section 4.5). Citations checked against publisher, RePEc, arXiv or
+repository pages (Section 4.6). Corrections: Ahner and Parson venue, Wu et al. title
+and type, Robust Gittins wording, Gittins survey authors. Gap table rows G2, G5, G6
+and G8 revised. Section 9 added. 7 November 2026, first update. Taylor 2021 and Sung
+et al. read in full (new Sections 4.2 and 4.3). Kracman 2025 not obtainable, kept at
+abstract level. Carr 2021 and Blickley et al. 2021 added as unread leads. Kline et al.
+citation confirmed from Sung's reference list. Gap table cells G1, G2 and G5 extended.
+Shortest-engagement rule added to the proposed rule set. Read-status table, limits
+and next steps rewritten.
+6 November 2026. First issue.
+Literature Review 2: Directed-Energy Defense Scheduling
+Page 25 of 25

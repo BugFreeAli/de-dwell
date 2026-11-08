@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+# Raw results are large and reproducible from config + seed + commit: keep them out of git,
+# but keep the small, decision-relevant files (summary, decision, run metadata, figure).
+results/**/cell_*.csv
+results/**/*.tmp
+!results/**/summary_cells.csv
+!results/**/decision.json
+!results/**/run_meta_*.json
+!results/**/fig_*.png
+!results/**/report.txt
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Large exports and backups go to backups/ (never committed)
+backups/
+
+# Third-party source papers (copyright): keep local, never commit
+docs/sources/
