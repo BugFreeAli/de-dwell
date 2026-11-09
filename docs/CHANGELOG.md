@@ -16,3 +16,7 @@
 ## 2026-11-09, amendment A3 (code v0.4)
 - Added: rollout rules ROLL_CEP, ROLL_GMR, ROLL_EDF, scripts/run_a3.py, scripts/summarize_a3.py, configs a3_main, a3_wide, a3_k3, tests/test_rollout.py (120 tests in total).
 - Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A3.
+
+## 2026-11-09, amendment A4 (code v0.5)
+- Added: scripts/run_a4.py, scripts/analyze_a4.py, configs a4_k3 and a4_wide, tests/test_misspec.py (123 tests in total).
+- Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A4.

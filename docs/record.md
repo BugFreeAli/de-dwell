@@ -38,3 +38,12 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 ## Amendment A3 checks (2026-11-09, sandbox, Python 3.12.3)
 - [CODE] 120 tests pass: rollout >= base rule and <= DP for CEP, GMR, EDF, BI on M0, K = 3 and decay models; rollout of CEP is optimal when classes are known.
 - [CODE] Exploratory seed 1 (40 instances, K = 3): mean evaluation time per instance 8.6 ms (CEP), 39 ms (ROLL_CEP), 30 ms (ROLL_GMR), 19 ms (ROLL_EDF); mean regret 6.0% (CEP), 2.2% (ROLL_CEP). Disclosed in the plan; not a result.
+
+## Amendment A3 results (2026-11-09, from the author's runs; same environment as A2)
+- [DOC] Best of eleven rules on the A2 grid: a3_main mean 0.83% (max 2.95%), a3_wide 1.12% (2.95%), a3_k3 1.57% (3.79%); no flagged cell; NO-GO in all three. ROLL_CEP mean 1.11, 1.54, 2.29%; ROLL_GMR 1.79, 2.87, 2.75%; ROLL_EDF 7.76, 6.57, 7.92%.
+- [DOC] Evaluation time per instance (all worlds): CEP 3.95, 4.88, 25.07 ms; ROLL_CEP 19.86, 33.08, 79.03 ms.
+
+## Amendment A4 checks (2026-11-09, sandbox, Python 3.12.3)
+- [CODE] 123 tests pass: every method built from a wrong belief has a true-model value in [0, V_dp]; the DP built from the correct belief reproduces V_dp; believed instances keep labels, values and deadlines.
+- [CODE] Timing on a throwaway seed (K = 3): about 2.7 s per DP at load 0.8, slew 0; one instance needs one DP for the truth and one per wrong belief. Slew 0 was removed from the A4 grid for cost.
+- [CODE] Exploratory seed 1, 12 instances per cell, 8 cells: best-method regret 0.2 to 4.6% depending on the belief (disclosed in the plan; not a result).

@@ -215,3 +215,29 @@ Additions:
 
 No new thresholds. Limits: post-hoc; n = 5; at most three classes; deterministic dwell within a class; the rollouts need the exact model.
 
+### A4 (2026-11-09): prior misspecification in M0 (post-hoc)
+
+Written before any A4 run. Everything under A4 is post-hoc and is reported as such.
+
+A3 outcome (from the run logs and decision files). Exact rollouts removed the gap: best of eleven rules, mean regret 0.83% (reference), 1.12% (D = (1, 8)), 1.57% (three classes), maxima 2.95%, 2.95%, 3.79%, no flagged cell, NO-GO in all three. The CEP rollout alone: 1.11%, 1.54%, 2.29%, at about 3 to 7 times the evaluation time of CEP. By the A3 table, step 2 is not started as planned.
+
+Reason. The rollouts and the DP use the exact model, including the label accuracy. Learning could still matter if the model is wrong. A4 measures, with the exact tools, how much a planner built on a wrong label accuracy loses against the optimum that knows the true accuracy.
+
+Exploratory disclosure. After writing the code I ran A4 on exploratory seed 1 for the three-class variant (12 instances in each of 8 cells: load 1.1 and 1.5, slew 2 and 4, true accuracy 0.7 and 0.9). Mean regret of the best method was about 0.2% when the believed accuracy was 0.9 or 0.99 and the true one 0.7, 1.8% for belief 0.5 at true 0.7, and 4.6% for belief 0.5 at true 0.9. This is N = 12 and is not a result. It suggests that losses are small except when the labels are ignored.
+
+Design:
+
+1. True model: K classes, label accuracy a_true in {0.7, 0.9}, instances as in A2 (`make_instance_k`), n = 5, values {1, 2, 3}, full retention, master seed 20261108, 300 instances per cell, load in {0.8, 1.1, 1.5, 2.0}, slew in {2, 4}. Slew 0 is left out: it is the corner by definition and the most expensive cell.
+2. Believed model: the same instance with a believed accuracy a_b in {0.5, 0.7, 0.9, 0.99} (labels and deadlines unchanged). Every method is built from the believed model and then run in the true model: the value is the exact expected value under the true prior. a_b = a_true is the correct-belief reference. a_b = 0.5 is a planner that ignores the labels.
+3. Methods: DPMIS (the optimal policy for the believed model), CEP, ROLL_CEP, ROLL_GMR, GMR, EDF. Regret is measured against the DP optimum of the true model (ratio of sums over the instances of a cell).
+4. A cell with a_b different from a_true is flagged if the one-sided 95% lower bound (instance bootstrap, 2000 resamples, seed 20261111, best method recomputed inside every resample) of the best method's regret is at least 5%. The correct-belief cells are reported but never flagged.
+5. Criterion, fixed before the run. A variant shows a non-corner misspecification gap if two cells with the same a_true are face-adjacent on the (load, slew, believed accuracy) grid, both flagged, both with load at most 1.5. Slew is at least 2 everywhere. `scripts/analyze_a4.py` applies it.
+6. Runs: `a4_k3` (D = (1, 3, 9)) and `a4_wide` (D = (1, 8)).
+
+| Result | Action |
+|---|---|
+| Gap in a4_k3 or a4_wide | A wrong prior costs the best planner at least 5%. Learning has an exact motivation. Next amendment A5: a Bayes-adaptive baseline (unknown accuracy, learned from the outcomes inside an episode), then step 2 |
+| No gap in either | Planners are robust to a wrong label accuracy in M0-type structure. No case for learning here. Recommend the "planning suffices" paper (candidate C); step 2 is not started as planned |
+
+No new thresholds. Limits: post-hoc; only the label accuracy is misspecified, not the physics; the believed accuracy is fixed during an episode (a planner that adapts is not tested here); n = 5; at most three classes.
+
