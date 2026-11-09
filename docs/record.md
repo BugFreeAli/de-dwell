@@ -28,3 +28,13 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] 103 tests pass: Model2 with kappa = 1 equals M0; Model2 DP equals an independent brute force with explicit evidence for kappa in {1, 0.5, 0}, K in {2, 3}, n in {2, 3}, slew 0 to 2; CEP and LA1 are exact when classes are known; oracle >= DP >= every rule.
 - [CODE] After the decay-aware change, CEP values on M0 exploratory data are bit-identical to those before.
 - [CODE] Timing on a throwaway seed (sandbox core, 3 instances per setting): hardest cells 0.56 s per instance (wide), 1.04 s (k3), 0.11 s (decay05), 0.09 s (decay0) including all eight rules.
+
+## Amendment A2 results (2026-11-09, from the author's runs; Windows 11, conda env de-dwell, Python 3.12.16, numpy 2.5.4, pandas 3.0.6, 4 workers; run_meta of a2_wide confirms the environment, commit c77420f)
+- [DOC] On the 36-cell A2 grid, best of eight rules: reference mean 3.46% (max 8.98%, 3 flagged, 0 non-corner); a2_wide 4.70% (9.15%, 13, 9); a2_k3 5.12% (8.41%, 18, 11); a2_decay05 3.65% (9.47%, 4, 0); a2_decay0 3.76% (9.50%, 6, 0).
+- [DOC] Mean CEP regret 3.70, 6.06, 6.72, 3.96, 4.13%; mean LA1 regret 8.10, 7.55, 8.87, 8.45, 8.50%.
+- [DOC] Information gap (oracle vs DP) in a2_wide: 8.0, 6.1, 2.2% at label accuracy 0.5, 0.7, 0.9; in a2_k3: 10.3, 6.9, 2.3%.
+- [DOC] By the A2 table: non-corner gap in a2_wide and a2_k3; none in the decay variants.
+
+## Amendment A3 checks (2026-11-09, sandbox, Python 3.12.3)
+- [CODE] 120 tests pass: rollout >= base rule and <= DP for CEP, GMR, EDF, BI on M0, K = 3 and decay models; rollout of CEP is optimal when classes are known.
+- [CODE] Exploratory seed 1 (40 instances, K = 3): mean evaluation time per instance 8.6 ms (CEP), 39 ms (ROLL_CEP), 30 ms (ROLL_GMR), 19 ms (ROLL_EDF); mean regret 6.0% (CEP), 2.2% (ROLL_CEP). Disclosed in the plan; not a result.

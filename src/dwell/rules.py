@@ -153,8 +153,40 @@ def _la1_policy(model: Model) -> Policy:
     return policy
 
 
+def _rollout_policy(model: Model, base_name: str) -> Policy:
+    base = make_rule(model, base_name)
+    base_cache: dict = {}
+    value_cache: dict = {}
+
+    def base_action(state: State):
+        if state not in base_cache:
+            base_cache[state] = base(state)
+        return base_cache[state]
+
+    def value(state: State) -> float:
+        hit = value_cache.get(state)
+        if hit is not None:
+            return hit
+        j = base_action(state)
+        v = 0.0 if j is None else sum(p * (r + value(nxt)) for p, r, nxt in model.outcomes(state, j))
+        value_cache[state] = v
+        return v
+
+    def policy(state: State) -> Optional[int]:
+        best_j, best_v = None, -1.0
+        for j in model.actions(state):
+            q = sum(p * (r + value(nxt)) for p, r, nxt in model.outcomes(state, j))
+            if q > best_v + EPS:
+                best_j, best_v = j, q
+        return best_j
+
+    return policy
+
+
 def make_rule(model: Model, rule: str) -> Policy:
     """Return the policy function of a rule for this model."""
+    if rule.startswith("ROLL_"):
+        return _rollout_policy(model, rule[5:])
     if rule == "CEP":
         return _cep_policy(model)
     if rule == "LA1":

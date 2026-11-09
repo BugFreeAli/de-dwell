@@ -191,3 +191,27 @@ Criterion, fixed before the run. A variant shows a non-corner gap if two face-ad
 
 No new thresholds. Limits: post-hoc; n = 5 and two or three classes only; deterministic dwell within a class; CEP and LA1 are cheap planners, not the strong optimiser of step 3.
 
+### A3 (2026-11-09): exact rollout baselines (post-hoc)
+
+Written before any A3 run. Everything under A3 is post-hoc and is reported as such.
+
+A2 outcome (from the run logs and decision files; best of eight rules, 36-cell grid, n = 5). Reference (D = (2, 5), full retention): mean best-rule regret 3.46%, maximum 8.98%, 3 flagged cells, none outside the corner. a2_wide (D = (1, 8)): 4.70%, 9.15%, 13 flagged, 9 non-corner. a2_k3 (D = (1, 3, 9)): 5.12%, 8.41%, 18 flagged, 11 non-corner. Decay with kappa = 0.5 and kappa = 0: 3.65% and 3.76%, maxima 9.47% and 9.50%, 4 and 6 flagged cells, none non-corner. Mean CEP regret: 3.70% (reference), 6.06% (wide), 6.72% (k3), 3.96% and 4.13% (decay). Mean LA1 regret: 8.10%, 7.55%, 8.87%, 8.45%, 8.50%. By the A2 table, a2_wide and a2_k3 show a non-corner gap. In these two variants the loss is concentrated at label accuracy 0.5 and 0.7 and is below 5% at 0.9.
+
+Reason. CEP and LA1 are cheap planners. A planner with access to the model and more computation could close the remaining gap. A3 tests this before any simulator work.
+
+Exploratory disclosure. After writing the code I ran the K = 3 variant on exploratory seed 1 (10 instances in each of 8 cells, grid reduced). Mean regrets were 6.0% for CEP and 2.2% for the CEP rollout defined below, 4.2% for the GMR rollout and 5.3% for the EDF rollout. This is N = 40 and is not a result. It suggests that a rollout may close much of the gap.
+
+Additions:
+
+1. Rules ROLL_CEP, ROLL_GMR, ROLL_EDF (`src/dwell/rules.py`): exact one-step policy improvement of a base rule. For every useful action take the expectation over the chance outcomes of the reward plus the exact expected value of following the base rule from the next state (memoised evaluation of the base rule over the reachable states); choose the best action, ties keep the current target. By the policy-improvement theorem the rollout never has a lower value than its base rule; this is checked on every instance. It is optimal when the base rule is optimal (tested for CEP with known classes).
+2. The rollouts use the exact model (transitions and belief), so they are strong references, not deployable baselines at scale. The time to evaluate each policy on an instance is stored (`t_*` columns) and reported as a descriptive indication of decision cost.
+3. Same-instance augmentation (`scripts/run_a3.py`) of the stored A2 data of the reference (`a3_main`, restricted to the 36 A2 cells, 500 instances), `a3_wide` and `a3_k3`. The script rebuilds each instance, stops if it differs from the stored one, recomputes CEP and stops if it differs from the stored value, and stops if a rollout is below its base rule or above the DP value.
+4. Criterion, unchanged from A2: a non-corner gap is two face-adjacent flagged cells (one-sided 95% lower bound of the best-rule regret at least 5%), both with s >= 2 and rho <= 1.5; the best rule is now the best of eleven rules (six old, CEP, LA1, three rollouts). `scripts/summarize_a3.py` applies it.
+
+| Result on a3_wide and a3_k3 | Action |
+|---|---|
+| At least one still shows a non-corner gap | The gap survives a strong planner. Step 2 starts with that structure as a core regime axis |
+| Neither shows a non-corner gap | Planning with model access closes the gap in M0-type structure. No step 2 as planned. Decide with the author between a paper on learning versus planning at equal decision time and at sizes where planning is infeasible, and the "when planning suffices" framing (candidate C) |
+
+No new thresholds. Limits: post-hoc; n = 5; at most three classes; deterministic dwell within a class; the rollouts need the exact model.
+
