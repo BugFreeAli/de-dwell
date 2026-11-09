@@ -157,3 +157,37 @@ No new thresholds are introduced. The results of the value-spread and hardness-r
 
 Limits: post-hoc; CEP is one planner; dwell is deterministic within a class; the findings hold for M0 only.
 
+### A2 (2026-11-09): structures that may break certainty-equivalent planning (post-hoc)
+
+Written before any A2 run. Everything under A2 is post-hoc and is reported as such.
+
+A1 outcome (from the run logs and decision files). Main with CEP: GO by the Section 6 rule, but only 4 of 100 cells flagged, all with load 1.5 or 2.0 and slew 0; maximum best-rule regret 9.0%; on the 27 common cells the mean best-of-six regret was 7.8% and the mean best-of-seven regret 2.1%. S1 with CEP: GO, 11 flagged cells, maximum 10.0%. Value sets {1, 2} and {1, 3, 9}: NO-GO (0 and 1 flagged cells, maxima 4.9% and 5.7%). D = (2, 8): GO, 5 of 27 flagged, maximum 7.5%. The "information-sensitive" label of the companion test is not informative for runs with CEP, because CEP is exactly optimal when the classes are known (tested), so the excess regret equals the CEP regret. That test is not used in A2.
+
+Reason. In M0 a cheap planner leaves little room for a learned policy outside a corner (load of at least 1.5, no slew). A2 asks whether any structure that the DP can still solve exactly makes the planner lose clearly in a region that is not a corner.
+
+Exploratory disclosure. After writing the code I ran the K = 3 variant on exploratory seed 1 (10 instances in each of 8 cells, grid reduced). Mean regrets were 6.5% for CEP and 7.7% for LA1. This is N = 10 and is not a result.
+
+Additions:
+
+1. Model generalisation (`src/dwell/m2.py`): K classes (K = 2 reproduces M0 exactly when kappa = 1; tested) and a progress-retention factor kappa: when the effector leaves an alive threat, its dwell becomes floor(kappa x); the evidence that classes are ruled out is kept. kappa = 1 is M0. Exactness is checked against an independent brute force that tracks the evidence explicitly.
+2. K-class instances (`make_instance_k`): the label picks one of K classes with probability a, the others share 1 - a equally. For K = 2 the instances equal those of M0.
+3. Rule changes: CEP and the plan value are made decay-aware (when kappa < 1 and the plan leaves the current threat first, the current threat's duration is computed from its decayed dwell). For M0 (kappa = 1) CEP results are unchanged; verified on the exploratory smoke data. New rule LA1: one-step lookahead; for every useful action take the expectation over the outcomes of the reward plus the value of the best CEP plan from the next state, and choose the best. LA1 equals the DP optimum when classes are known (tested). It is not guaranteed to beat CEP.
+4. Variants, all with n = 5, values {1, 2, 3}, master seed 20261108, 300 instances per cell, grid rho in {0.8, 1.1, 1.5, 2.0}, s in {0, 2, 4}, a in {0.5, 0.7, 0.9} (36 cells; a = 1 is omitted because CEP and LA1 are exact there):
+   - `a2_wide`: K = 2, D = (1, 8), kappa = 1.
+   - `a2_k3`: K = 3, D = (1, 3, 9), kappa = 1.
+   - `a2_decay05`: K = 2, D = (2, 5), kappa = 0.5.
+   - `a2_decay0`: K = 2, D = (2, 5), kappa = 0.
+   - Reference: `a2_main_la1`, the A1 main run (n = 5, D = (2, 5), kappa = 1) with LA1 added on the identical instances; only its 36 cells on the A2 grid are used in the comparison.
+   The decay variants are robustness checks of the assumption that progress is retained; they are expected to shrink the gap, not to widen it.
+5. All eight rules (six old, CEP, LA1) enter the best-rule selection. Section 6 procedure (bootstrap, flagged cell) applies unchanged per variant.
+
+Criterion, fixed before the run. A variant shows a non-corner gap if two face-adjacent cells are both flagged (one-sided 95% lower bound of the best-rule regret at least 5%) and both have s >= 2 and rho <= 1.5. `scripts/summarize_a2.py` applies it.
+
+| Result | Action |
+|---|---|
+| a2_wide or a2_k3 shows a non-corner gap | That structure (hardness spread or number of classes) becomes a core axis of the simulator specification; the novelty claim is limited to it; strong planners (step 3) are still required |
+| No variant shows a non-corner gap | M0-type structure is exhausted: no step 2 as planned; decide with the author between a "when planning suffices" paper (candidate C) and a different source of structure (for example noisy kill assessment, several effectors) |
+| a2_decay05 or a2_decay0 removes the corner gap of the reference | Report that the corner gap of M0 depends on full retention of progress |
+
+No new thresholds. Limits: post-hoc; n = 5 and two or three classes only; deterministic dwell within a class; CEP and LA1 are cheap planners, not the strong optimiser of step 3.
+

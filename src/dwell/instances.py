@@ -52,3 +52,36 @@ def make_instance(master_seed: int, idx: int, n: int, rho: float, s: int, a: flo
         "d_max": d_max,
     }
     return inst, realised
+
+
+def info_bits_k(a: float, K: int) -> float:
+    if a >= 1.0:
+        return math.log2(K)
+    h = -a * math.log2(a) - (1 - a) * math.log2((1 - a) / (K - 1))
+    return math.log2(K) - h
+
+
+def make_instance_k(master_seed: int, idx: int, n: int, rho: float, s: int, a: float,
+                    D: Tuple[int, ...] = (2, 5), value_set: Tuple[int, ...] = (1, 2, 3),
+                    u_low: float = 0.35) -> Tuple[Instance, Dict[str, float]]:
+    K = len(D)
+    rng = np.random.default_rng([master_seed, idx])
+    values = tuple(float(v) for v in rng.choice(value_set, size=n))
+    labels = rng.integers(0, K, size=n)
+    u = rng.uniform(u_low, 1.0, size=n)
+    last = int(rng.integers(n))
+    prior = tuple(tuple(a if k == int(l) else (1.0 - a) / (K - 1) for k in range(K)) for l in labels)
+    exp_dwell = [sum(p * d for p, d in zip(pr, D)) for pr in prior]
+    d_max = max(D[0], int(round(sum(exp_dwell) / rho)))
+    deadlines = [max(D[0], int(round(ui * d_max))) for ui in u]
+    deadlines[last] = d_max
+    inst = Instance(D=tuple(D), s=s, values=values, deadlines=tuple(deadlines), prior=prior)
+    rho_dbf = max(sum(e for e, dl in zip(exp_dwell, deadlines) if dl <= t) / t for t in set(deadlines))
+    realised = {
+        "rho_dbf": rho_dbf,
+        "rho_hat": sum(exp_dwell) / d_max,
+        "sigma_hat": s / (sum(exp_dwell) / n),
+        "info_bits": info_bits_k(a, K),
+        "d_max": d_max,
+    }
+    return inst, realised

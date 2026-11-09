@@ -17,3 +17,14 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] 48 tests pass; CEP equals the DP optimum when classes are known (random one-hot priors, n = 3 to 5), and stays within [0, V_dp] with random priors.
 - [CODE] Augmenting an existing cell file with CEP gives the same V_CEP and V_dp as a full re-run on the same seed (exploratory seed 1, 12 cells, 240 instances); augmentation of 240 instances took 0.4 s.
 - [CODE] On exploratory seed 1 (N = 20 per cell, 12 cells) the mean CEP regret was 2.1% against 9.5% for GMR (disclosed in the plan, amendment A1). Not a result.
+
+## Amendment A1 results (2026-11-09, from the author's runs; Windows 11, 4 workers)
+- [DOC] a1_main: GO, 4 of 100 cells flagged (load 1.5 and 2.0, slew 0), max best-rule regret 8.98%. a1_s1: GO, 11 flagged, max 9.97%. a1_v2: NO-GO, 0 flagged, max 4.94%. a1_v4: NO-GO, 1 flagged, max 5.68%. a1_ratio: GO, 5 of 27 flagged, max 7.49%.
+- [DOC] a1_summary (27 common cells): mean best-of-six regret 7.78% (main) against 2.11% best-of-seven; CEP alone 2.30%.
+- [DOC] Wall times from the author's logs: a1_main 57.6 s, a1_s1 53.8 s, a1_v2 298.6 s, a1_v4 300.0 s, a1_ratio 1476.4 s (4 workers).
+- [OPEN] The A1 runs may have used a Python outside the conda env (the first analysis call lacked matplotlib); run_meta of a1_v2 requested.
+
+## Amendment A2 checks (2026-11-09, sandbox, Python 3.12.3)
+- [CODE] 103 tests pass: Model2 with kappa = 1 equals M0; Model2 DP equals an independent brute force with explicit evidence for kappa in {1, 0.5, 0}, K in {2, 3}, n in {2, 3}, slew 0 to 2; CEP and LA1 are exact when classes are known; oracle >= DP >= every rule.
+- [CODE] After the decay-aware change, CEP values on M0 exploratory data are bit-identical to those before.
+- [CODE] Timing on a throwaway seed (sandbox core, 3 instances per setting): hardest cells 0.56 s per instance (wide), 1.04 s (k3), 0.11 s (decay05), 0.09 s (decay0) including all eight rules.

@@ -8,3 +8,7 @@
 ## 2026-11-09, amendment A1 (code v0.2)
 - Added: rule CEP (certainty-equivalent planner), scripts/run_a1.py (same-instance augmentation), scripts/summarize_a1.py, configs a1_main, a1_s1, a1_v2, a1_v4, a1_ratio, tests/test_cep.py (8 new tests, 48 in total); `extra_rules` option in run_p0.py and analyze_p0.py.
 - Plan: Section 12 of docs/analysis_plan_P0.md now holds amendment A1; Sections 1 to 11 are unchanged.
+
+## 2026-11-09, amendment A2 (code v0.3)
+- Added: src/dwell/m2.py (K classes, retention factor kappa), make_instance_k, rule LA1, decay-aware CEP, scripts/run_a2.py, scripts/summarize_a2.py, configs a2_wide, a2_k3, a2_decay05, a2_decay0, a2_main_la1, tests/brute2.py and tests/test_m2.py (103 tests in total).
+- Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A2.

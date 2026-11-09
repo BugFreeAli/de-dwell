@@ -16,6 +16,7 @@ BI    | max over persistence limit tau of the same ratio  | Gittins-type belief 
 """
 from __future__ import annotations
 
+import math
 from typing import Callable, Dict, Optional
 
 from .m0 import EPS, Model, State
@@ -63,7 +64,21 @@ def _score(rule: str, model: Model, state: State, j: int) -> float:
 
 
 SIMPLE_RULES = ("FAIR", "EDF", "LLF", "SE", "GMR", "BI")
-ALL_RULES = SIMPLE_RULES + ("CEP",)
+ALL_RULES = SIMPLE_RULES + ("CEP", "LA1")
+
+
+def _durations(model: Model, state: State, acts):
+    t, cur, prog = state
+    dur = {j: sum(p * r for p, r in model.post[j][prog[j]]) for j in acts}
+    dur_left = None
+    kappa = getattr(model, "kappa", 1.0)
+    if kappa < 1.0 and cur in dur:
+        xc, mc = divmod(prog[cur], model.K)
+        code = int(math.floor(kappa * xc + 1e-9)) * model.K + mc
+        post = model.post[cur][code]
+        if post:
+            dur_left = sum(p * r for p, r in post)
+    return dur, dur_left
 
 
 def _cep_policy(model: Model) -> Policy:
@@ -74,7 +89,7 @@ def _cep_policy(model: Model) -> Policy:
         if not acts:
             return None
         t, cur, prog = state
-        dur = {j: sum(p * r for p, r in model.post[j][prog[j]]) for j in acts}
+        dur, dur_left = _durations(model, state, acts)
         best = [0.0, 0.0, None]
 
         def extend(time, last, used, value, first):
@@ -83,7 +98,8 @@ def _cep_policy(model: Model) -> Policy:
             for j in acts:
                 if j in used:
                     continue
-                end = time + model.slew(last, j) + dur[j]
+                dj = dur_left if (dur_left is not None and j == cur and first is not None and first != cur) else dur[j]
+                end = time + model.slew(last, j) + dj
                 if end <= model.d[j] + 1e-9:
                     extend(end, j, used | {j}, value + model.v[j], j if first is None else first)
 
@@ -93,10 +109,56 @@ def _cep_policy(model: Model) -> Policy:
     return policy
 
 
+def _plan_value(model: Model, state: State, cache: dict) -> float:
+    hit = cache.get(state)
+    if hit is not None:
+        return hit
+    acts = model.actions(state)
+    if not acts:
+        cache[state] = 0.0
+        return 0.0
+    t, cur, prog = state
+    dur, dur_left = _durations(model, state, acts)
+    best = [0.0]
+
+    def extend(time, last, used, value, first):
+        if value > best[0]:
+            best[0] = value
+        for j in acts:
+            if j in used:
+                continue
+            dj = dur_left if (dur_left is not None and j == cur and first is not None and first != cur) else dur[j]
+            end = time + model.slew(last, j) + dj
+            if end <= model.d[j] + 1e-9:
+                extend(end, j, used | {j}, value + model.v[j], j if first is None else first)
+
+    extend(float(t), cur, frozenset(), 0.0, None)
+    cache[state] = best[0]
+    return best[0]
+
+
+def _la1_policy(model: Model) -> Policy:
+    cache: dict = {}
+
+    def policy(state: State) -> Optional[int]:
+        best_j, best_v = None, -1.0
+        for j in model.actions(state):
+            val = 0.0
+            for p, r, nxt in model.outcomes(state, j):
+                val += p * (r + _plan_value(model, nxt, cache))
+            if val > best_v + EPS:
+                best_j, best_v = j, val
+        return best_j
+
+    return policy
+
+
 def make_rule(model: Model, rule: str) -> Policy:
     """Return the policy function of a rule for this model."""
     if rule == "CEP":
         return _cep_policy(model)
+    if rule == "LA1":
+        return _la1_policy(model)
 
     def policy(state: State) -> Optional[int]:
         best_j, best_s = None, -float("inf")
