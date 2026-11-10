@@ -20,3 +20,7 @@
 ## 2026-11-09, amendment A4 (code v0.5)
 - Added: scripts/run_a4.py, scripts/analyze_a4.py, configs a4_k3 and a4_wide, tests/test_misspec.py (123 tests in total).
 - Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A4.
+
+## 2026-11-10, amendments A5 and B0 (code v0.6)
+- Added: src/dwell/m3.py (noisy in-dwell signal model), src/dwell/learned.py (numpy scorer), scripts/run_a5.py, scripts/analyze_a5.py, scripts/run_b0.py, configs a5_long, a5_sense, b0_learn, tests/brute3.py, tests/test_m3.py, tests/test_learned.py.
+- Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendments A5 and B0.

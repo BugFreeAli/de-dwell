@@ -241,3 +241,50 @@ Design:
 
 No new thresholds. Limits: post-hoc; only the label accuracy is misspecified, not the physics; the believed accuracy is fixed during an episode (a planner that adapts is not tested here); n = 5; at most three classes.
 
+### A5 and B0 (2026-11-10): in-dwell sensing and a learned policy against planners (post-hoc)
+
+Written before any A5 or B0 run. Everything under A5 and B0 is post-hoc and is reported as such.
+
+A4 outcome (from the run reports). Three classes (1, 3, 9): no non-corner gap, mean best-method regret under a wrong label accuracy 1.0%, maximum 6.6% (one flagged cell, load 2.0). Hardness (1, 8): the criterion is met (5 flagged cells, 3 outside the corner, maximum 14.6%), but every cell with a regret of at least 5% has the believed accuracy 0.5, a planner that ignores the labels; beliefs 0.7, 0.9 and 0.99 cost at most 0.84% on average. The criterion was too permissive; the substantive reading is that plausible errors in the label accuracy give no strong case for learning.
+
+Decision of the author on 2026-11-10: pursue both a sensing direction (A5) and a first stage of learning versus planning (B0).
+
+**A5: noisy in-dwell feedback.**
+
+Reason. The gap between the DP optimum and the class-aware oracle (6 to 10% at label accuracy 0.5 to 0.7) cannot be closed by scheduling. It can only be reduced by information. A5 asks how much a noisy signal during dwell is worth and whether belief-based planners can use it.
+
+Exploratory disclosure. I ran the model on exploratory seed 1 before fixing the design. With D = (3, 8), n = 5, load 1.1, slew 2, label accuracy 0.5 (10 instances), the exact optimum gained 0.34%, 0.83% and 1.08% over q = 0.5 for signal quality q = 0.7, 0.9 and 0.99 (oracle gap 7.8%). With D = (5, 12), n = 4 (6 instances, load 1.1 and 1.5) the gains were 4.3 to 4.5% (q = 0.9) and 4.8 to 5.7% (q = 0.99), with oracle gaps of 7.3 and 14.0%. A smoke run (15 instances, 4 informative cells, D = (3, 8)) showed gains of about 0.7 to 0.9%. These samples are small and are not results. The long informative window (D1 = 5) was chosen as the primary variant because of them.
+
+Model (`src/dwell/m3.py`, `Model3`): two classes. After every dwell step that does not kill, the sensor reports one binary signal that is correct with probability q (hard-looking with probability q for a hard threat and 1 - q for a soft one). q = 0.5 is no information and reproduces M0 exactly (tested). The belief is a function of the dwell and the number of hard-looking signals; once the soft class is ruled out the class is known. The DP is exact; it equals an independent brute force with explicit signal likelihoods on tiny cases (tested). Policy values are computed by exact recursion over the observable state.
+
+Runs: `a5_long` (primary): D = (5, 12), n = 4, values {1, 2, 3}, 200 instances, load in {1.1, 1.5}, slew in {2, 4}, label accuracy in {0.5, 0.7, 0.9}, q in {0.5, 0.9, 0.99}. `a5_sense` (secondary): D = (3, 8), n = 5, 300 instances, load in {0.8, 1.1, 1.5}, slew in {2, 4}, label accuracy in {0.5, 0.7, 0.9}, q in {0.5, 0.7, 0.9}. Master seed 20261108. Methods: CEP, ROLL_CEP, ROLL_GMR, GMR, EDF, with the belief updated by the signals.
+
+Quantities (ratio of sums over the instances of a cell, instance bootstrap, 2000 resamples, seed 20261112, one-sided 95% lower bound):
+
+- Sensing gain of a cell with q > 0.5: DP value at q divided by the DP value at q = 0.5 on the same instances, minus 1. This is the exact value of using the signal.
+- Planner regret: 1 minus the value of the best method divided by the DP value at the same q; the best method is recomputed inside every resample.
+- A cell is sensing-flagged if the lower bound of the gain is at least 5%, and planner-flagged if the lower bound of the best-method regret is at least 5%.
+- A region is two face-adjacent flagged cells on the (load, slew, label accuracy, q) grid with load at most 1.5; slew is at least 2 everywhere.
+
+| Result (applied per variant by `scripts/analyze_a5.py`) | Action |
+|---|---|
+| Sensing region and planner region | Strong case for sensing-aware learning: step 2 builds a simulator with kill assessment and tracking noise |
+| Sensing region only | Sensing value is the contribution (a value-of-information analysis), not learning; path (a) with this extension |
+| No sensing region | No new direction from sensing; path (a) |
+
+**B0: learned policy against planners.**
+
+Reason. First, cheap stage of the path in which learning is compared with planning under decision time, size and regime shift. The physics mismatch of that path needs the simulator and is not tested here.
+
+Disclosure. The training procedure was checked on the training seed only (agreement with the teacher about 90% on 6000 samples). A pipeline smoke test with a tiny training set evaluated 6 instances of one cell and 3 instances of a larger-size cell with the old test seed 20261108; the test seed was then changed to 20261120, which has not been evaluated.
+
+Method (`src/dwell/learned.py`, `scripts/run_b0.py`): a shared scorer (one hidden layer of 32 units) maps per-threat features (value, time to deadline, expected and extreme remaining dwell, kill probability, slack, slew, current-target flag, greedy index, time left, number of useful threats) to a score; the policy takes the best score, so it applies at every n. Training: imitation of the exact DP at n = 5 (D = (1, 8), load in {1.1, 1.5, 2.0}, slew in {2, 4}, label accuracy in {0.5, 0.7, 0.9}) with three DAgger rounds of 300 instances and 4 sampled worlds each, training seed 777001. The gradient is checked against finite differences (tested). Tests (seed 20261120): T1 n = 5 in distribution (12 cells, 100 instances, regret against the DP), T2 n = 5 with slews 1 and 6 outside the training range (8 cells, 60 instances), T3 n = 7, T4 n = 9 (8 cells, 60 and 40 instances), T5 n = 11 (4 cells, 20 instances). For n >= 7 there is no DP; the reference is ROLL_CEP and the quantity is the relative difference of values. Time per decision is measured on the most likely world.
+
+| Result (fixed before the run) | Meaning |
+|---|---|
+| T2 regret of LEARNED minus regret of ROLL_CEP at most -1 point with the upper confidence limit below 0, or in T3 to T5 the relative value of LEARNED above ROLL_CEP by at least 1% with the lower limit above 0 | Learning beats planning in a region: strong; continue to the simulator for physics mismatch |
+| Not the above, and in T1 regret(LEARNED) - regret(ROLL_CEP) at most 1 point, in T3 and T4 relative value at least -1%, and time per decision of LEARNED at most 0.2 of ROLL_CEP at n = 9 | Learning matches planning at far lower decision cost: a speed result of moderate novelty |
+| Otherwise, in particular if regret(LEARNED) in T1 exceeds regret(CEP) | The learned policy is not competitive: path (a) |
+
+No new thresholds beyond those written here. Limits: post-hoc; K = 2 and D = (1, 8) only; the learner is a small imitation scorer, not a reinforcement learning method; ROLL_CEP is a strong reference but not the optimum for n >= 7; timings are Python timings.
+

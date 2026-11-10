@@ -47,3 +47,12 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] 123 tests pass: every method built from a wrong belief has a true-model value in [0, V_dp]; the DP built from the correct belief reproduces V_dp; believed instances keep labels, values and deadlines.
 - [CODE] Timing on a throwaway seed (K = 3): about 2.7 s per DP at load 0.8, slew 0; one instance needs one DP for the truth and one per wrong belief. Slew 0 was removed from the A4 grid for cost.
 - [CODE] Exploratory seed 1, 12 instances per cell, 8 cells: best-method regret 0.2 to 4.6% depending on the belief (disclosed in the plan; not a result).
+
+## Amendment A4 results (2026-11-10, from the author's runs; same environment)
+- [DOC] a4_k3: no non-corner gap; 1 flagged cell (load 2.0); max regret 6.57%; mean regret over wrong-belief cells 1.03%. a4_wide: criterion met (5 flagged, 3 non-corner; max 14.64%), but every cell with a point estimate of at least 5% has believed accuracy 0.5; beliefs 0.7, 0.9, 0.99 cost at most 0.84% on average.
+
+## Amendments A5 and B0 checks (2026-11-10, sandbox, Python 3.12.3)
+- [CODE] Model3 DP equals an independent brute force with explicit signal likelihoods (q in {0.5, 0.7, 0.95}, D in {(2,4), (3,5), (1,3)}, n = 2 and 3, slew 0 and 1); q = 0.5 reproduces M0; policy recursion equals world enumeration; sensing never lowers the optimum.
+- [CODE] Learned scorer: gradient equals finite differences; training loss falls; policy returns useful actions.
+- [CODE] Exploratory (seed 1, small samples): in-dwell signal gains of 0.3 to 1.1% for D = (3, 8) and 4.3 to 5.7% for D = (5, 12); disclosed in the plan; not results.
+- [CODE] DAgger training check on the training seed: agreement with the DP teacher about 90%.
