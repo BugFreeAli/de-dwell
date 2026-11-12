@@ -24,3 +24,7 @@
 ## 2026-11-10, amendments A5 and B0 (code v0.6)
 - Added: src/dwell/m3.py (noisy in-dwell signal model), src/dwell/learned.py (numpy scorer), scripts/run_a5.py, scripts/analyze_a5.py, scripts/run_b0.py, configs a5_long, a5_sense, b0_learn, tests/brute3.py, tests/test_m3.py, tests/test_learned.py.
 - Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendments A5 and B0.
+
+## 2026-11-11, amendment A6 (code v0.7)
+- Added: src/dwell/mismatch.py (observation-based evaluator, exact Bayes-adaptive model with a hidden dwell scale), scripts/run_a6.py, scripts/analyze_a6.py, configs a6_main and a6_det, tests/brute_ba.py, tests/test_mismatch.py.
+- Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A6.

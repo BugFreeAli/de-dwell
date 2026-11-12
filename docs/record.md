@@ -56,3 +56,12 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] Learned scorer: gradient equals finite differences; training loss falls; policy returns useful actions.
 - [CODE] Exploratory (seed 1, small samples): in-dwell signal gains of 0.3 to 1.1% for D = (3, 8) and 4.3 to 5.7% for D = (5, 12); disclosed in the plan; not results.
 - [CODE] DAgger training check on the training seed: agreement with the DP teacher about 90%.
+
+## Amendments A5 and B0 results (2026-11-11, from the author's runs; same environment)
+- [DOC] a5_long: mean sensing gain 2.1% (non-corner), 18 to 36% of the oracle gap closed, 2 flagged cells (one cell at two q), best planner regret at most 2.4%; a5_sense: gain 0.1 to 0.4%, no flagged cell.
+- [DOC] b0_learn: regret against the DP at n = 5: CEP 6.68%, ROLL_CEP 1.96%, ROLL_GMR 2.70%, learned 2.83%; slews outside the training range: ROLL_CEP 0.90%, learned 4.00%; value relative to ROLL_CEP: learned -1.36% (n = 7), -1.73% (n = 9), -3.23% (n = 11); time per decision at n = 9: learned 0.12 ms, ROLL_CEP 33 ms.
+
+## Amendment A6 checks (2026-11-11, sandbox, Python 3.12.3)
+- [CODE] Tests: the observation-based evaluator reproduces the exact value of DPMIS, CEP and ROLL_CEP when the believed model is the true one; a wrong belief never beats the calibrated optimum; the Bayes-adaptive DP equals an independent brute force (with and without dwell noise) and with a single scale equals the M2 DP; the value of the Bayes-adaptive policy averaged over the scales equals its DP value; calibrated >= Bayes-adaptive >= nominal planner on average.
+- [CODE] Timing (sandbox core): noisy-dwell smoke about 3.6 s per instance and cell; extrapolated a6_main about 8000 s single-core [OPEN].
+- [CODE] Exploratory smoke results disclosed in the plan; not results.
