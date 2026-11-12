@@ -318,3 +318,11 @@ Runs: `a6_main` (noise, K = 6 classes, 200 instances in each of 8 cells: load 1.
 
 No new thresholds. Limits: post-hoc; one dwell scale shared by all threats and a discrete scale grid; the Bayes-adaptive prior contains the truth and the noise law is known to it; dwell noise is symmetric and small; planners do not adapt in the tolerance part; n = 4; the realistic error range is not verified; a learned adaptive policy is not tested here.
 
+#### A6 outcome (recorded 2026-11-12, from the author's run reports; this note changes no earlier text)
+
+a6_main (noise, 8 cells, 200 instances each, master seed 20261115, commit 8c8dce8, conda-forge Python 3.12.16, numpy 2.5.4, pandas 3.0.6, Windows 11, 4 workers): mean regret of the best method by dwell error -40%, -20%, +20%, +40%: 14.0%, 5.5%, 4.8%, 14.8% (maxima 21.7%, 7.3%, 7.5%, 21.6%; flagged cells 8, 4, 2, 8 of 8). Regions at 20%: four pairs at -20% (all label accuracy 0.9) and one pair at +20% (load 1.5, slew 4); regions at 40% in all cells. Adaptation (pooled over cells): truth 0.8 (nominal error +25%): best nominal planner 4.76% (below the 5% bar), Bayes-adaptive 1.48%, recovery 0.69 (5th percentile 0.65); truth 1.2 (nominal error -17%): 6.25% and 2.09%, recovery 0.67 (0.63). By the pre-written table: FRAGILE_20 and adaptation recovers (the recovery criterion is met only through the scenario with truth 1.2, because the nominal regret is below 5% for truth 0.8). The mean regret at +-20% is close to the 5% bar.
+
+a6_det (no noise): mean regret by error 20.7%, 16.9%, 9.2%, 20.3%; recovery 0.85 and 0.90 (nominal 9.1% and 22.7%, Bayes-adaptive 1.3% and 2.3%). Within-class dwell noise lowers both the fragility at 20% (from 9 to 17% down to about 5%) and the recovery (from 0.85 to 0.90 down to 0.67 to 0.69).
+
+Reading [OPEN]: the strong case holds under the assumptions listed under Limits; in particular the Bayes-adaptive policy is an upper bound for adaptation, the realistic dwell error is unverified, and one scale is shared by all threats.
+

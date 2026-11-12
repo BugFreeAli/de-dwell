@@ -28,3 +28,6 @@
 ## 2026-11-11, amendment A6 (code v0.7)
 - Added: src/dwell/mismatch.py (observation-based evaluator, exact Bayes-adaptive model with a hidden dwell scale), scripts/run_a6.py, scripts/analyze_a6.py, configs a6_main and a6_det, tests/brute_ba.py, tests/test_mismatch.py.
 - Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A6.
+
+## 2026-11-12, A6 results recorded
+- docs/analysis_plan_P0.md: A6 outcome note appended at the end of Section 12 (no earlier text changed). docs/record.md: A6 results.

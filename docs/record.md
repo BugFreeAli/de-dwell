@@ -65,3 +65,10 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] Tests: the observation-based evaluator reproduces the exact value of DPMIS, CEP and ROLL_CEP when the believed model is the true one; a wrong belief never beats the calibrated optimum; the Bayes-adaptive DP equals an independent brute force (with and without dwell noise) and with a single scale equals the M2 DP; the value of the Bayes-adaptive policy averaged over the scales equals its DP value; calibrated >= Bayes-adaptive >= nominal planner on average.
 - [CODE] Timing (sandbox core): noisy-dwell smoke about 3.6 s per instance and cell; extrapolated a6_main about 8000 s single-core [OPEN].
 - [CODE] Exploratory smoke results disclosed in the plan; not results.
+
+## Amendment A6 results (2026-11-12, from the author's runs; Windows 11, conda env de-dwell, Python 3.12.16, numpy 2.5.4, pandas 3.0.6, 4 workers; run_meta of a6_main: commit 8c8dce8, started 2026-11-12 16:11)
+- [DOC] a6_main (noise, n = 4, D0 = (5, 10), 8 cells, 200 instances each): mean regret of the best method at dwell error -40, -20, +20, +40%: 13.99, 5.48, 4.81, 14.82%; max 21.70, 7.33, 7.49, 21.61%; flagged cells 8, 4, 2, 8. By method at -20%: DPMIS 6.36, CEP 10.13, ROLL_CEP 5.67%; at +20%: 4.81, 8.27, 6.58%. By label accuracy at -20%: 4.10% (0.5) and 6.85% (0.9).
+- [DOC] Adaptation, pooled: truth 0.8: nominal best (DPMIS) 4.76%, Bayes-adaptive 1.48%, recovery 0.689 (0.655 to 0.722); truth 1.2: nominal best (ROLL_CEP) 6.25%, Bayes-adaptive 2.09%, recovery 0.666 (0.627 to 0.702).
+- [DOC] a6_det (no noise): mean regret 20.65, 16.92, 9.21, 20.32%; recovery 0.854 (nominal 9.07% to 1.32%) and 0.900 (22.69% to 2.27%).
+- [DOC] Table outcome: FRAGILE_20 and adaptation recovers (recovery criterion met through truth 1.2 only).
+- [OPEN] Mean regret at 20% is close to the 5% bar; realistic dwell error range not verified (Burley tables unread); one scale shared by all threats; Bayes-adaptive policy is an upper bound.

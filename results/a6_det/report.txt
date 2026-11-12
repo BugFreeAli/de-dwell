@@ -1,0 +1,54 @@
+﻿=== A6 outcome: FRAGILE at 20% and adaptation recovers: strong case for adaptive scheduling under dwell uncertainty ===
+{
+  "variant": "a6_det",
+  "fragile_20": true,
+  "fragile_40": true,
+  "adaptation_recovers": true,
+  "outcome": "FRAGILE at 20% and adaptation recovers: strong case for adaptive scheduling under dwell uncertainty",
+  "n_instances_total": 1600
+}
+
+--- tolerance curve: mean regret (%) over cells of the best method and of each method, by dwell error ---
+       regret_best  regret_DPMIS  regret_CEP  regret_ROLL_CEP  max_best  cells_flagged
+error                                                                                 
+-0.4         20.65         21.95       23.33            21.55     30.98              8
+-0.2         16.92         18.52       19.15            17.81     21.24              8
+ 0.0         -0.00         -0.00        2.12             0.51      0.00              0
+ 0.2          9.21          9.22       10.82             9.94     18.28              5
+ 0.4         20.32         20.83       21.23            21.19     29.21              8
+
+--- mean regret (%) of the best method by dwell error and label accuracy ---
+error   -0.4   -0.2   0.0   0.2    0.4
+a                                     
+0.5    16.01  13.73   0.0  8.77  22.05
+0.9    25.30  20.12  -0.0  9.65  18.60
+
+--- by dwell error and load ---
+error   -0.4   -0.2   0.0    0.2    0.4
+rho                                    
+1.1    19.74  14.99  -0.0   6.60  15.48
+1.5    21.57  18.86  -0.0  11.83  25.17
+
+--- adaptation: planners built for the nominal scale against the Bayes-adaptive optimum (pooled over cells) ---
+ true_scale  nominal_error best_nominal_method  regret_nominal_best  regret_BA  recovery  recovery_lo5  recovery_hi95  regret_nominal_DPMIS  regret_nominal_CEP  regret_nominal_ROLL_CEP
+        0.8         0.2500               DPMIS               0.0907     0.0132    0.8542        0.8299         0.8774                0.0907              0.1051                   0.0945
+        1.2        -0.1667                 CEP               0.2269     0.0227    0.9001        0.8855         0.9117                0.2430              0.2269                   0.2302
+
+flagged cells (|error| = 20%):
+ rho  s   a  error best_method  regret_best   lo5
+ 1.1  2 0.5   -0.2       DPMIS        13.30 12.10
+ 1.1  2 0.9   -0.2    ROLL_CEP        20.95 18.37
+ 1.1  2 0.9    0.2       DPMIS        10.27  9.05
+ 1.1  4 0.5   -0.2       DPMIS         7.86  6.76
+ 1.1  4 0.9   -0.2       DPMIS        17.86 15.23
+ 1.5  2 0.5   -0.2         CEP        15.96 14.00
+ 1.5  2 0.5    0.2       DPMIS         6.21  5.20
+ 1.5  2 0.9   -0.2         CEP        21.24 18.13
+ 1.5  2 0.9    0.2         CEP         8.51  6.98
+ 1.5  4 0.5   -0.2    ROLL_CEP        17.81 16.73
+ 1.5  4 0.5    0.2       DPMIS        18.28 17.08
+ 1.5  4 0.9   -0.2    ROLL_CEP        20.42 17.44
+ 1.5  4 0.9    0.2       DPMIS        14.33 12.47
+
+region pairs at 20%: [(-0.2, (1.5, 2, 0.5), (1.5, 4, 0.5)), (-0.2, (1.5, 2, 0.5), (1.5, 2, 0.9)), (-0.2, (1.5, 4, 0.5), (1.5, 4, 0.9)), (-0.2, (1.1, 4, 0.9), (1.5, 4, 0.9)), (-0.2, (1.1, 2, 0.9), (1.5, 2, 0.9)), (-0.2, (1.1, 2, 0.9), (1.1, 4, 0.9))] 
+region pairs at 40%: [(-0.4, (1.5, 2, 0.5), (1.5, 4, 0.5)), (-0.4, (1.5, 2, 0.5), (1.5, 2, 0.9)), (-0.4, (1.5, 4, 0.5), (1.5, 4, 0.9)), (-0.4, (1.1, 4, 0.9), (1.5, 4, 0.9)), (-0.4, (1.1, 2, 0.9), (1.5, 2, 0.9)), (-0.4, (1.1, 2, 0.9), (1.1, 4, 0.9))]
