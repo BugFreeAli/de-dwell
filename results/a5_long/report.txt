@@ -1,0 +1,51 @@
+﻿=== A5 outcome: sensing is valuable but belief-based planners handle it: sensing value is the contribution, not learning ===
+{
+  "variant": "a5_long",
+  "sensing_value_region": true,
+  "planner_gap_region": false,
+  "outcome": "sensing is valuable but belief-based planners handle it: sensing value is the contribution, not learning",
+  "n_cells": 36,
+  "n_informative_cells": 24,
+  "n_sense_flagged": 2,
+  "n_planner_flagged": 0,
+  "mean_sense_gain_noncorner": 0.02062477391444828,
+  "max_regret_best": 0.024090814274228767,
+  "mean_regret_best": 0.011762701948288845,
+  "n_instances_total": 7200
+}
+
+--- sensing gain of the exact optimum over q = 0.5 (%, mean over non-corner cells) by label accuracy a and signal quality q ---
+q    0.90  0.99
+a              
+0.5  2.79  3.51
+0.7  1.98  2.65
+0.9  0.54  0.90
+
+--- share of the oracle gap closed by the signal (mean over non-corner cells) ---
+q     0.90   0.99
+a                
+0.5  0.289  0.361
+0.7  0.242  0.323
+0.9  0.180  0.291
+
+--- regret (%) of the best planner against the exact optimum, by a and q (mean over non-corner cells) ---
+q    0.90  0.99
+a              
+0.5  0.94  1.20
+0.7  1.34  1.45
+0.9  1.07  1.07
+
+--- mean regret (%) by method, informative cells ---
+regret_CEP          4.45
+regret_ROLL_CEP     1.31
+regret_ROLL_GMR     2.04
+regret_GMR          9.38
+regret_EDF         22.35
+
+--- flagged cells (sensing value or planner gap) ---
+ rho  s   a    q  sense_gain  sense_flagged  regret_best best_method  planner_flagged
+ 1.5  2 0.5 0.90        6.45           True         1.11    ROLL_GMR            False
+ 1.5  2 0.5 0.99        7.99           True         1.64    ROLL_GMR            False
+
+sensing pairs: [((1.5, 2, 0.5, 0.9), (1.5, 2, 0.5, 0.99))] 
+planner pairs: []

@@ -1,0 +1,7 @@
+﻿    variant  K         D  kappa  n  n_instances  cells  mean_best_pct  max_best_pct  cells_ge5  cells_flagged  noncorner_flagged  mean_CEP_pct  mean_LA1_pct  mean_GMR_pct  noncorner_gap
+a2_main_la1  2    [2, 5]    1.0  5          500     36           3.46          8.98          5              3                  0          3.70          8.10          8.75          False
+    a2_wide  2    [1, 8]    1.0  5          300     36           4.70          9.15         17             13                  9          6.06          7.55          8.51           True
+      a2_k3  3 [1, 3, 9]    1.0  5          300     36           5.12          8.41         20             18                 11          6.72          8.87          8.11           True
+ a2_decay05  2    [2, 5]    0.5  5          300     36           3.65          9.47          7              4                  0          3.96          8.45          9.12          False
+  a2_decay0  2    [2, 5]    0.0  5          300     36           3.76          9.50          7              6                  0          4.13          8.50          9.16          False
+non-corner gap = a pair of adjacent flagged cells, both with s >= 2 and rho <= 1.5

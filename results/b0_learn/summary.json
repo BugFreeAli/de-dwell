@@ -1,0 +1,132 @@
+{
+  "T1_in_dist_n5": {
+    "n_instances": 1200,
+    "regret_CEP": 0.06676893427454078,
+    "regret_CEP_ci": [
+      0.0625729448297545,
+      0.07099147021477671
+    ],
+    "regret_ROLL_CEP": 0.019630375484353424,
+    "regret_ROLL_CEP_ci": [
+      0.017447836003174927,
+      0.021758780967687023
+    ],
+    "regret_ROLL_GMR": 0.02697918234636465,
+    "regret_ROLL_GMR_ci": [
+      0.023910191291362553,
+      0.030224072603542356
+    ],
+    "regret_LEARNED": 0.02834239529983995,
+    "regret_LEARNED_ci": [
+      0.025601411342235474,
+      0.03119939408498884
+    ],
+    "regret_LEARNED_minus_ROLL_CEP": 0.008712019815486633,
+    "regret_LEARNED_minus_ROLL_CEP_ci": [
+      0.005093007028909917,
+      0.0123419034890917
+    ],
+    "ms_per_decision_CEP": 0.044578728921269274,
+    "ms_per_decision_ROLL_CEP": 0.8174653832914605,
+    "ms_per_decision_ROLL_GMR": 0.8536103247719162,
+    "ms_per_decision_LEARNED": 0.08256098734493633
+  },
+  "T2_ood_slew_n5": {
+    "n_instances": 480,
+    "regret_CEP": 0.03694782862001966,
+    "regret_CEP_ci": [
+      0.032515628169196335,
+      0.04170955743339255
+    ],
+    "regret_ROLL_CEP": 0.009037962072122374,
+    "regret_ROLL_CEP_ci": [
+      0.0074731819800579035,
+      0.010793497115691077
+    ],
+    "regret_ROLL_GMR": 0.03325622584931942,
+    "regret_ROLL_GMR_ci": [
+      0.027483001081323514,
+      0.039390221232430175
+    ],
+    "regret_LEARNED": 0.0400192429794205,
+    "regret_LEARNED_ci": [
+      0.034285065299575805,
+      0.046074354394326014
+    ],
+    "regret_LEARNED_minus_ROLL_CEP": 0.030981280907298063,
+    "regret_LEARNED_minus_ROLL_CEP_ci": [
+      0.02479341327932024,
+      0.037654992265313714
+    ],
+    "ms_per_decision_CEP": 0.0474287899469492,
+    "ms_per_decision_ROLL_CEP": 1.0242660566539272,
+    "ms_per_decision_ROLL_GMR": 1.0242208034606999,
+    "ms_per_decision_LEARNED": 0.08404337468918456
+  },
+  "T3_size_n7": {
+    "n_instances": 480,
+    "value_CEP_minus_ROLL_CEP_rel": -0.03966746032047622,
+    "value_CEP_minus_ROLL_CEP_rel_ci": [
+      -0.04372788947345303,
+      -0.0358229854611559
+    ],
+    "value_ROLL_GMR_minus_ROLL_CEP_rel": -0.019651926766368642,
+    "value_ROLL_GMR_minus_ROLL_CEP_rel_ci": [
+      -0.023996920342424784,
+      -0.015158943118389678
+    ],
+    "value_LEARNED_minus_ROLL_CEP_rel": -0.01362734687170745,
+    "value_LEARNED_minus_ROLL_CEP_rel_ci": [
+      -0.018025949399763614,
+      -0.009367451303293209
+    ],
+    "ms_per_decision_CEP": 0.20368856915488726,
+    "ms_per_decision_ROLL_CEP": 4.042800707759072,
+    "ms_per_decision_ROLL_GMR": 2.613026038088977,
+    "ms_per_decision_LEARNED": 0.10082897767099117
+  },
+  "T4_size_n9": {
+    "n_instances": 320,
+    "value_CEP_minus_ROLL_CEP_rel": -0.039496304281099896,
+    "value_CEP_minus_ROLL_CEP_rel_ci": [
+      -0.04356133041485479,
+      -0.035884975832879286
+    ],
+    "value_ROLL_GMR_minus_ROLL_CEP_rel": -0.027834124856533207,
+    "value_ROLL_GMR_minus_ROLL_CEP_rel_ci": [
+      -0.032670602790193626,
+      -0.023011870917366378
+    ],
+    "value_LEARNED_minus_ROLL_CEP_rel": -0.017349891775160046,
+    "value_LEARNED_minus_ROLL_CEP_rel_ci": [
+      -0.022046513484489157,
+      -0.012474356722010086
+    ],
+    "ms_per_decision_CEP": 1.765744439937243,
+    "ms_per_decision_ROLL_CEP": 33.318093805788784,
+    "ms_per_decision_ROLL_GMR": 6.24624685754751,
+    "ms_per_decision_LEARNED": 0.1155898358585444
+  },
+  "T5_size_n11": {
+    "n_instances": 80,
+    "value_CEP_minus_ROLL_CEP_rel": -0.04093534915354436,
+    "value_CEP_minus_ROLL_CEP_rel_ci": [
+      -0.04783556678735539,
+      -0.034247827615624754
+    ],
+    "value_ROLL_GMR_minus_ROLL_CEP_rel": -0.023387364670290473,
+    "value_ROLL_GMR_minus_ROLL_CEP_rel_ci": [
+      -0.03009868174411151,
+      -0.01640863717779342
+    ],
+    "value_LEARNED_minus_ROLL_CEP_rel": -0.03227842419813349,
+    "value_LEARNED_minus_ROLL_CEP_rel_ci": [
+      -0.044917562123622114,
+      -0.021047337313535364
+    ],
+    "ms_per_decision_CEP": 4.876033350864437,
+    "ms_per_decision_ROLL_CEP": 77.18841081468722,
+    "ms_per_decision_ROLL_GMR": 8.607922633386156,
+    "ms_per_decision_LEARNED": 0.113972036938733
+  }
+}

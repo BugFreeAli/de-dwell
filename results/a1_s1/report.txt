@@ -1,0 +1,251 @@
+﻿=== P0 decision: GO | information attribution: information-sensitive ===
+{
+  "decision": "GO",
+  "info_attribution": "information-sensitive",
+  "threshold": 0.05,
+  "excess_threshold": 0.02,
+  "n_cells": 100,
+  "n_undefined": 0,
+  "n_flagged": 11,
+  "n_info_flagged": 11,
+  "n_point_flagged": 17,
+  "max_regret_best": 0.09967795543509317,
+  "n_instances_total": 50000,
+  "h1_supported": true
+}
+
+--- regret of best simple rule (%), by cell (point estimate, one-sided 95% lower bound, best rule) ---
+ rho  s   a  regret_pct  lo5_pct best_rule  flagged
+ 0.5  0 0.5        0.00     0.00       EDF    False
+ 0.5  0 0.7        0.00     0.00       EDF    False
+ 0.5  0 0.8        0.00    -0.00       EDF    False
+ 0.5  0 0.9        0.00     0.00       EDF    False
+ 0.5  0 1.0        0.00     0.00       EDF    False
+ 0.5  1 0.5        0.00     0.00       EDF    False
+ 0.5  1 0.7        0.00     0.00       EDF    False
+ 0.5  1 0.8        0.00    -0.00       EDF    False
+ 0.5  1 0.9       -0.00    -0.00       EDF    False
+ 0.5  1 1.0        0.00     0.00       EDF    False
+ 0.5  2 0.5        0.01     0.00       EDF    False
+ 0.5  2 0.7        0.01     0.00       EDF    False
+ 0.5  2 0.8        0.01     0.00       EDF    False
+ 0.5  2 0.9        0.01     0.00       EDF    False
+ 0.5  2 1.0        0.00     0.00       EDF    False
+ 0.5  4 0.5        0.21     0.15       EDF    False
+ 0.5  4 0.7        0.55     0.46       EDF    False
+ 0.5  4 0.8        0.50     0.40       EDF    False
+ 0.5  4 0.9        0.49     0.37       EDF    False
+ 0.5  4 1.0        0.00     0.00       CEP    False
+ 0.8  0 0.5        0.07     0.04       EDF    False
+ 0.8  0 0.7        0.11     0.08       EDF    False
+ 0.8  0 0.8        0.12     0.08       EDF    False
+ 0.8  0 0.9        0.11     0.07       EDF    False
+ 0.8  0 1.0        0.00     0.00       CEP    False
+ 0.8  1 0.5        0.31     0.26       EDF    False
+ 0.8  1 0.7        0.53     0.45       EDF    False
+ 0.8  1 0.8        0.63     0.53       EDF    False
+ 0.8  1 0.9        0.50     0.36       EDF    False
+ 0.8  1 1.0        0.00     0.00       CEP    False
+ 0.8  2 0.5        1.50     1.37       EDF    False
+ 0.8  2 0.7        4.48     4.21       EDF    False
+ 0.8  2 0.8        4.59     4.29       CEP    False
+ 0.8  2 0.9        3.47     3.13       CEP    False
+ 0.8  2 1.0        0.00     0.00       CEP    False
+ 0.8  4 0.5        3.24     2.94       CEP    False
+ 0.8  4 0.7        5.11     4.78       CEP    False
+ 0.8  4 0.8        3.59     3.31       CEP    False
+ 0.8  4 0.9        3.38     3.10       CEP    False
+ 0.8  4 1.0        0.00     0.00       CEP    False
+ 1.1  0 0.5        0.11     0.07       EDF    False
+ 1.1  0 0.7        2.18     2.00       EDF    False
+ 1.1  0 0.8        3.33     3.07       EDF    False
+ 1.1  0 0.9        2.71     2.39       EDF    False
+ 1.1  0 1.0        0.00     0.00       CEP    False
+ 1.1  1 0.5        3.36     3.14       EDF    False
+ 1.1  1 0.7        4.61     4.22       CEP    False
+ 1.1  1 0.8        5.35     4.90       CEP    False
+ 1.1  1 0.9        3.19     2.74       CEP    False
+ 1.1  1 1.0        0.00     0.00       CEP    False
+ 1.1  2 0.5        4.76     4.41       CEP    False
+ 1.1  2 0.7        4.02     3.68       CEP    False
+ 1.1  2 0.8        3.46     3.16       CEP    False
+ 1.1  2 0.9        2.95     2.64       CEP    False
+ 1.1  2 1.0        0.00     0.00       CEP    False
+ 1.1  4 0.5        2.21     1.84       GMR    False
+ 1.1  4 0.7        5.05     4.57       CEP    False
+ 1.1  4 0.8        5.49     4.88       CEP    False
+ 1.1  4 0.9        3.59     2.98       CEP    False
+ 1.1  4 1.0        0.00     0.00       CEP    False
+ 1.5  0 0.5        5.55     5.32       EDF     True
+ 1.5  0 0.7        7.73     7.26       CEP     True
+ 1.5  0 0.8        7.10     6.57       CEP     True
+ 1.5  0 0.9        7.50     6.85       CEP     True
+ 1.5  0 1.0        0.00     0.00       CEP    False
+ 1.5  1 0.5        4.08     3.63       CEP    False
+ 1.5  1 0.7        2.93     2.57       CEP    False
+ 1.5  1 0.8        2.86     2.48       CEP    False
+ 1.5  1 0.9        2.99     2.48       CEP    False
+ 1.5  1 1.0        0.00     0.00       CEP    False
+ 1.5  2 0.5        3.11     2.65       GMR    False
+ 1.5  2 0.7        5.46     5.00       CEP    False
+ 1.5  2 0.8        6.35     5.74       CEP     True
+ 1.5  2 0.9        2.86     2.39       CEP    False
+ 1.5  2 1.0        0.00     0.00       CEP    False
+ 1.5  4 0.5        2.20     1.66       GMR    False
+ 1.5  4 0.7        2.42     2.01       CEP    False
+ 1.5  4 0.8        1.73     1.43       CEP    False
+ 1.5  4 0.9        1.46     1.25       CEP    False
+ 1.5  4 1.0        0.00     0.00       CEP    False
+ 2.0  0 0.5        8.78     8.09       GMR     True
+ 2.0  0 0.7        9.97     9.24       CEP     True
+ 2.0  0 0.8        9.02     8.12       CEP     True
+ 2.0  0 0.9        7.37     6.52       CEP     True
+ 2.0  0 1.0        0.00     0.00       CEP    False
+ 2.0  1 0.5        3.17     2.64       GMR    False
+ 2.0  1 0.7        4.74     4.17       CEP    False
+ 2.0  1 0.8        4.38     3.73       CEP    False
+ 2.0  1 0.9        5.58     4.72       CEP    False
+ 2.0  1 1.0        0.00     0.00       CEP    False
+ 2.0  2 0.5        4.94     4.17       GMR    False
+ 2.0  2 0.7        3.05     2.64       CEP    False
+ 2.0  2 0.8        2.59     2.12       CEP    False
+ 2.0  2 0.9        1.32     1.00       CEP    False
+ 2.0  2 1.0        0.00     0.00       CEP    False
+ 2.0  4 0.5        1.40     1.04       GMR    False
+ 2.0  4 0.7        5.92     5.13       GMR     True
+ 2.0  4 0.8        7.04     6.10       CEP     True
+ 2.0  4 0.9        4.70     3.75       CEP    False
+ 2.0  4 1.0        0.00     0.00       CEP    False
+
+--- H1 check (frozen cells: rho=0.5, s<=1, a>=0.9): upper 97.5% bound < 5% in all 4 cells? True ---
+ rho  s   a  regret_pct  hi97_pct
+ 0.5  0 0.9         0.0       0.0
+ 0.5  0 1.0         0.0       0.0
+ 0.5  1 0.9        -0.0       0.0
+ 0.5  1 1.0         0.0       0.0
+
+--- excess regret vs a=1.0 (percentage points; paired bootstrap one-sided 95% lower bound) ---
+ rho  s   a  excess_pct  lo5_pct  excess_flagged
+ 0.5  0 0.5        0.00     0.00           False
+ 0.5  0 0.7        0.00     0.00           False
+ 0.5  0 0.8        0.00    -0.00           False
+ 0.5  0 0.9        0.00     0.00           False
+ 0.5  1 0.5        0.00     0.00           False
+ 0.5  1 0.7        0.00     0.00           False
+ 0.5  1 0.8        0.00    -0.00           False
+ 0.5  1 0.9       -0.00    -0.00           False
+ 0.5  2 0.5        0.01     0.00           False
+ 0.5  2 0.7        0.01     0.00           False
+ 0.5  2 0.8        0.01     0.00           False
+ 0.5  2 0.9        0.01     0.00           False
+ 0.5  4 0.5        0.21     0.14           False
+ 0.5  4 0.7        0.55     0.46           False
+ 0.5  4 0.8        0.50     0.41           False
+ 0.5  4 0.9        0.49     0.37           False
+ 0.8  0 0.5        0.07     0.04           False
+ 0.8  0 0.7        0.11     0.08           False
+ 0.8  0 0.8        0.12     0.08           False
+ 0.8  0 0.9        0.11     0.07           False
+ 0.8  1 0.5        0.31     0.26           False
+ 0.8  1 0.7        0.53     0.45           False
+ 0.8  1 0.8        0.63     0.52           False
+ 0.8  1 0.9        0.50     0.36           False
+ 0.8  2 0.5        1.50     1.37           False
+ 0.8  2 0.7        4.48     4.20            True
+ 0.8  2 0.8        4.59     4.29            True
+ 0.8  2 0.9        3.47     3.13            True
+ 0.8  4 0.5        3.24     2.93            True
+ 0.8  4 0.7        5.11     4.79            True
+ 0.8  4 0.8        3.59     3.33            True
+ 0.8  4 0.9        3.38     3.09            True
+ 1.1  0 0.5        0.11     0.07           False
+ 1.1  0 0.7        2.18     2.00            True
+ 1.1  0 0.8        3.33     3.08            True
+ 1.1  0 0.9        2.71     2.39            True
+ 1.1  1 0.5        3.36     3.13            True
+ 1.1  1 0.7        4.61     4.21            True
+ 1.1  1 0.8        5.35     4.89            True
+ 1.1  1 0.9        3.19     2.75            True
+ 1.1  2 0.5        4.76     4.43            True
+ 1.1  2 0.7        4.02     3.68            True
+ 1.1  2 0.8        3.46     3.15            True
+ 1.1  2 0.9        2.95     2.64            True
+ 1.1  4 0.5        2.21     1.83           False
+ 1.1  4 0.7        5.05     4.58            True
+ 1.1  4 0.8        5.49     4.84            True
+ 1.1  4 0.9        3.59     2.98            True
+ 1.5  0 0.5        5.55     5.32            True
+ 1.5  0 0.7        7.73     7.25            True
+ 1.5  0 0.8        7.10     6.56            True
+ 1.5  0 0.9        7.50     6.84            True
+ 1.5  1 0.5        4.08     3.65            True
+ 1.5  1 0.7        2.93     2.58            True
+ 1.5  1 0.8        2.86     2.46            True
+ 1.5  1 0.9        2.99     2.47            True
+ 1.5  2 0.5        3.11     2.65            True
+ 1.5  2 0.7        5.46     5.00            True
+ 1.5  2 0.8        6.35     5.74            True
+ 1.5  2 0.9        2.86     2.40            True
+ 1.5  4 0.5        2.20     1.63           False
+ 1.5  4 0.7        2.42     2.02            True
+ 1.5  4 0.8        1.73     1.41           False
+ 1.5  4 0.9        1.46     1.25           False
+ 2.0  0 0.5        8.78     8.08            True
+ 2.0  0 0.7        9.97     9.21            True
+ 2.0  0 0.8        9.02     8.14            True
+ 2.0  0 0.9        7.37     6.52            True
+ 2.0  1 0.5        3.17     2.66            True
+ 2.0  1 0.7        4.74     4.18            True
+ 2.0  1 0.8        4.38     3.73            True
+ 2.0  1 0.9        5.58     4.78            True
+ 2.0  2 0.5        4.94     4.14            True
+ 2.0  2 0.7        3.05     2.66            True
+ 2.0  2 0.8        2.59     2.12            True
+ 2.0  2 0.9        1.32     0.99           False
+ 2.0  4 0.5        1.40     1.04           False
+ 2.0  4 0.7        5.92     5.09            True
+ 2.0  4 0.8        7.04     6.08            True
+ 2.0  4 0.9        4.70     3.72            True
+
+--- marginal means of best-rule regret (%) along each axis (descriptive) ---
+rho
+0.5    0.09
+0.8    1.59
+1.1    2.82
+1.5    3.32
+2.0    4.20 
+
+s
+0    2.87
+1    1.97
+2    2.36
+4    2.41 
+
+a
+0.5    2.45
+0.7    3.44
+0.8    3.41
+0.9    2.71
+1.0    0.00 
+
+--- regret (%) by rule, averaged over cells (descriptive) ---
+regret_FAIR    47.97
+regret_EDF      8.96
+regret_LLF     39.83
+regret_SE      10.33
+regret_GMR      9.61
+regret_BI       9.50
+regret_CEP      3.28
+
+--- information gap (oracle vs DP), mean over cells by a (%) ---
+a
+0.5    8.77
+0.7    6.50
+0.8    4.46
+0.9    2.16
+1.0    0.00
+
+GO region pairs: [((1.5, 0, 0.5), (2.0, 0, 0.5)), ((1.5, 0, 0.7), (2.0, 0, 0.7)), ((1.5, 0, 0.8), (2.0, 0, 0.8)), ((1.5, 0, 0.9), (2.0, 0, 0.9)), ((1.5, 0, 0.5), (1.5, 0, 0.7)), ((2.0, 0, 0.5), (2.0, 0, 0.7)), ((1.5, 0, 0.7), (1.5, 0, 0.8)), ((2.0, 0, 0.7), (2.0, 0, 0.8)), ((2.0, 4, 0.7), (2.0, 4, 0.8)), ((1.5, 0, 0.8), (1.5, 0, 0.9))] 
+MARGINAL region pairs: [((0.8, 4, 0.7), (1.1, 4, 0.7)), ((1.5, 0, 0.5), (2.0, 0, 0.5)), ((1.5, 0, 0.7), (2.0, 0, 0.7)), ((1.5, 0, 0.8), (2.0, 0, 0.8)), ((1.5, 0, 0.9), (2.0, 0, 0.9)), ((2.0, 0, 0.9), (2.0, 1, 0.9)), ((1.5, 0, 0.5), (1.5, 0, 0.7)), ((2.0, 0, 0.5), (2.0, 0, 0.7)), ((1.1, 4, 0.7), (1.1, 4, 0.8)), ((1.5, 0, 0.7), (1.5, 0, 0.8))]
+
+Wrote: results/a1_s1\summary_cells.csv results/a1_s1\decision.json results/a1_s1\fig_p0_regret_best.png

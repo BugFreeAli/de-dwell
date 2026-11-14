@@ -1,0 +1,16 @@
+{
+  "variant": "a5_sense",
+  "sensing_value_region": false,
+  "planner_gap_region": false,
+  "outcome": "no robust value of in-dwell sensing in this model: no new direction",
+  "n_cells": 54,
+  "n_informative_cells": 36,
+  "n_sense_flagged": 0,
+  "n_planner_flagged": 0,
+  "mean_sense_gain_noncorner": 0.0020684772108879126,
+  "max_regret_best": 0.014488892917650542,
+  "mean_regret_best": 0.008270416219947797,
+  "n_instances_total": 16200,
+  "sense_pairs": [],
+  "planner_pairs": []
+}

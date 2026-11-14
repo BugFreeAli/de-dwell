@@ -1,0 +1,16 @@
+{
+  "decision": "NO-GO",
+  "info_attribution": "n/a",
+  "threshold": 0.05,
+  "excess_threshold": 0.02,
+  "n_cells": 36,
+  "n_undefined": 0,
+  "n_flagged": 0,
+  "n_info_flagged": 0,
+  "n_point_flagged": 0,
+  "go_pairs": [],
+  "marginal_pairs": [],
+  "max_regret_best": 0.037924572837702675,
+  "n_instances_total": 10800,
+  "h1_supported": false
+}

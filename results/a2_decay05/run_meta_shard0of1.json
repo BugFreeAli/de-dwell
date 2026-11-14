@@ -1,0 +1,48 @@
+{
+  "config": {
+    "master_seed": 20261108,
+    "n": 5,
+    "D": [
+      2,
+      5
+    ],
+    "kappa": 0.5,
+    "value_set": [
+      1,
+      2,
+      3
+    ],
+    "u_low": 0.35,
+    "n_instances": 300,
+    "rho_grid": [
+      0.8,
+      1.1,
+      1.5,
+      2.0
+    ],
+    "s_grid": [
+      0,
+      2,
+      4
+    ],
+    "a_grid": [
+      0.5,
+      0.7,
+      0.9
+    ],
+    "extra_rules": [
+      "CEP",
+      "LA1"
+    ],
+    "name": "a2_decay05"
+  },
+  "config_file": "configs/a2_decay05.json",
+  "git_commit": "c77420f13311fc3081dc8c6147e0edb5978cdfcb",
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "cpu_count": 4,
+  "workers": 4,
+  "started": "2026-11-09 11:25:42"
+}

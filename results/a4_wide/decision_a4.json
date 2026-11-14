@@ -1,0 +1,40 @@
+{
+  "variant": "a4_wide",
+  "non_corner_misspecification_gap": true,
+  "n_cells": 64,
+  "n_wrong_cells": 48,
+  "n_flagged": 5,
+  "n_noncorner_flagged": 3,
+  "max_regret_wrong": 0.14643304034155036,
+  "mean_regret_wrong": 0.019975678600690484,
+  "mean_regret_correct": -1.3877787807814457e-16,
+  "n_instances_total": 4800,
+  "pairs": [
+    [
+      0.9,
+      [
+        1.1,
+        4,
+        0.5
+      ],
+      [
+        1.5,
+        4,
+        0.5
+      ]
+    ],
+    [
+      0.9,
+      [
+        1.5,
+        2,
+        0.5
+      ],
+      [
+        1.5,
+        4,
+        0.5
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "config": {
+    "name": "b0_learn",
+    "D": [
+      1,
+      8
+    ],
+    "value_set": [
+      1,
+      2,
+      3
+    ],
+    "u_low": 0.35,
+    "train_seed": 777001,
+    "test_seed": 20261120,
+    "n_train": 5,
+    "train_rho": [
+      1.1,
+      1.5,
+      2.0
+    ],
+    "train_s": [
+      2,
+      4
+    ],
+    "train_a": [
+      0.5,
+      0.7,
+      0.9
+    ],
+    "train_instances": 300,
+    "worlds_per_instance": 4,
+    "dagger_iterations": 3,
+    "beta": 0.3,
+    "hidden": 32,
+    "epochs": 60,
+    "lr": 0.01,
+    "tests": {
+      "T1_in_dist_n5": {
+        "n": 5,
+        "rho": [
+          1.1,
+          1.5
+        ],
+        "s": [
+          2,
+          4
+        ],
+        "a": [
+          0.5,
+          0.7,
+          0.9
+        ],
+        "N": 100,
+        "with_dp": true
+      },
+      "T2_ood_slew_n5": {
+        "n": 5,
+        "rho": [
+          1.1,
+          1.5
+        ],
+        "s": [
+          1,
+          6
+        ],
+        "a": [
+          0.5,
+          0.9
+        ],
+        "N": 60,
+        "with_dp": true
+      },
+      "T3_size_n7": {
+        "n": 7,
+        "rho": [
+          1.1,
+          1.5
+        ],
+        "s": [
+          2,
+          4
+        ],
+        "a": [
+          0.5,
+          0.9
+        ],
+        "N": 60,
+        "with_dp": false
+      },
+      "T4_size_n9": {
+        "n": 9,
+        "rho": [
+          1.1,
+          1.5
+        ],
+        "s": [
+          2,
+          4
+        ],
+        "a": [
+          0.5,
+          0.9
+        ],
+        "N": 40,
+        "with_dp": false
+      },
+      "T5_size_n11": {
+        "n": 11,
+        "rho": [
+          1.5
+        ],
+        "s": [
+          2,
+          4
+        ],
+        "a": [
+          0.5,
+          0.9
+        ],
+        "N": 20,
+        "with_dp": false
+      }
+    }
+  },
+  "train_log": [
+    {
+      "iteration": 0,
+      "samples": 9419,
+      "loss_first": 0.7055861378680259,
+      "loss_last": 0.221315906715127,
+      "teacher_agreement": 0.9147467884064125
+    },
+    {
+      "iteration": 1,
+      "samples": 18597,
+      "loss_first": 0.2700359425674029,
+      "loss_last": 0.24935770770830096,
+      "teacher_agreement": 0.9048771307200086
+    },
+    {
+      "iteration": 2,
+      "samples": 27873,
+      "loss_first": 0.2566651707674852,
+      "loss_last": 0.2462011665164617,
+      "teacher_agreement": 0.9088365084490367
+    }
+  ],
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "cpu_count": 4,
+  "train_seconds": 49.75586986541748
+}

@@ -1,0 +1,107 @@
+﻿=== P0 decision: NO-GO | information attribution: n/a ===
+{
+  "decision": "NO-GO",
+  "info_attribution": "n/a",
+  "threshold": 0.05,
+  "excess_threshold": 0.02,
+  "n_cells": 27,
+  "n_undefined": 0,
+  "n_flagged": 1,
+  "n_info_flagged": 1,
+  "n_point_flagged": 1,
+  "max_regret_best": 0.05682338046450264,
+  "n_instances_total": 8100,
+  "h1_supported": false
+}
+
+--- regret of best simple rule (%), by cell (point estimate, one-sided 95% lower bound, best rule) ---
+ rho  s   a  regret_pct  lo5_pct best_rule  flagged
+ 0.8  0 0.5        1.29     1.04       EDF    False
+ 0.8  0 0.8        1.06     0.83       EDF    False
+ 0.8  0 1.0        0.00     0.00       CEP    False
+ 0.8  2 0.5        4.44     4.03       CEP    False
+ 0.8  2 0.8        3.09     2.73       CEP    False
+ 0.8  2 1.0        0.00     0.00       CEP    False
+ 0.8  4 0.5        3.70     3.28       CEP    False
+ 0.8  4 0.8        2.11     1.78       CEP    False
+ 0.8  4 1.0        0.00     0.00       CEP    False
+ 1.1  0 0.5        5.68     5.24       CEP     True
+ 1.1  0 0.8        3.26     2.93       CEP    False
+ 1.1  0 1.0        0.00     0.00       CEP    False
+ 1.1  2 0.5        4.04     3.59       CEP    False
+ 1.1  2 0.8        3.11     2.56       CEP    False
+ 1.1  2 1.0        0.00     0.00       CEP    False
+ 1.1  4 0.5        4.14     3.50       CEP    False
+ 1.1  4 0.8        4.22     3.51       CEP    False
+ 1.1  4 1.0        0.00     0.00       CEP    False
+ 1.5  0 0.5        4.55     4.04       CEP    False
+ 1.5  0 0.8        4.23     3.71       CEP    False
+ 1.5  0 1.0        0.00     0.00       CEP    False
+ 1.5  2 0.5        4.42     3.83       CEP    False
+ 1.5  2 0.8        3.53     2.83       CEP    False
+ 1.5  2 1.0        0.00     0.00       CEP    False
+ 1.5  4 0.5        1.57     1.19       CEP    False
+ 1.5  4 0.8        2.44     1.85       CEP    False
+ 1.5  4 1.0        0.00     0.00       CEP    False
+
+--- H1 check (frozen cells: rho=0.5, s<=1, a>=0.9): upper 97.5% bound < 5% in all 0 cells? False ---
+Empty DataFrame
+Columns: [rho, s, a, regret_pct, hi97_pct]
+Index: []
+
+--- excess regret vs a=1.0 (percentage points; paired bootstrap one-sided 95% lower bound) ---
+ rho  s   a  excess_pct  lo5_pct  excess_flagged
+ 0.8  0 0.5        1.29     1.04           False
+ 0.8  0 0.8        1.06     0.83           False
+ 0.8  2 0.5        4.44     4.01            True
+ 0.8  2 0.8        3.09     2.74            True
+ 0.8  4 0.5        3.70     3.28            True
+ 0.8  4 0.8        2.11     1.78           False
+ 1.1  0 0.5        5.68     5.23            True
+ 1.1  0 0.8        3.26     2.93            True
+ 1.1  2 0.5        4.04     3.60            True
+ 1.1  2 0.8        3.11     2.58            True
+ 1.1  4 0.5        4.14     3.52            True
+ 1.1  4 0.8        4.22     3.51            True
+ 1.5  0 0.5        4.55     4.00            True
+ 1.5  0 0.8        4.23     3.69            True
+ 1.5  2 0.5        4.42     3.81            True
+ 1.5  2 0.8        3.53     2.87            True
+ 1.5  4 0.5        1.57     1.19           False
+ 1.5  4 0.8        2.44     1.86           False
+
+--- marginal means of best-rule regret (%) along each axis (descriptive) ---
+rho
+0.8    1.74
+1.1    2.72
+1.5    2.30 
+
+s
+0    2.23
+2    2.51
+4    2.02 
+
+a
+0.5    3.76
+0.8    3.00
+1.0    0.00 
+
+--- regret (%) by rule, averaged over cells (descriptive) ---
+regret_FAIR    57.51
+regret_EDF     25.69
+regret_LLF     49.91
+regret_SE      28.88
+regret_GMR      8.90
+regret_BI       8.90
+regret_CEP      2.38
+
+--- information gap (oracle vs DP), mean over cells by a (%) ---
+a
+0.5    3.11
+0.8    2.28
+1.0    0.00
+
+GO region pairs: [] 
+MARGINAL region pairs: []
+
+Wrote: results/a1_v4\summary_cells.csv results/a1_v4\decision.json results/a1_v4\fig_p0_regret_best.png

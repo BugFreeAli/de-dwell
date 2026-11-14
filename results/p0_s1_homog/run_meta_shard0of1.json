@@ -1,0 +1,48 @@
+{
+  "config": {
+    "name": "p0_s1_homog",
+    "note": "CONTROL (required for interpretation): all values equal to 1, isolates hardness uncertainty from value packing",
+    "master_seed": 20261108,
+    "n": 5,
+    "D": [
+      2,
+      5
+    ],
+    "value_set": [
+      1
+    ],
+    "u_low": 0.35,
+    "n_instances": 500,
+    "rho_grid": [
+      0.5,
+      0.8,
+      1.1,
+      1.5,
+      2.0
+    ],
+    "s_grid": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "a_grid": [
+      0.5,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ]
+  },
+  "config_file": "configs/p0_s1_homog.json",
+  "git_commit": "ef13c2a2ebe50996ccaf929ca55910fd6abf3930",
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "machine": "AMD64",
+  "cpu_count": 4,
+  "workers": 4,
+  "shard": "0/1",
+  "started": "2026-11-08 23:19:46"
+}

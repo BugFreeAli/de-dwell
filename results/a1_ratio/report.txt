@@ -1,0 +1,107 @@
+﻿=== P0 decision: GO | information attribution: information-sensitive ===
+{
+  "decision": "GO",
+  "info_attribution": "information-sensitive",
+  "threshold": 0.05,
+  "excess_threshold": 0.02,
+  "n_cells": 27,
+  "n_undefined": 0,
+  "n_flagged": 5,
+  "n_info_flagged": 5,
+  "n_point_flagged": 7,
+  "max_regret_best": 0.07485018933127463,
+  "n_instances_total": 8100,
+  "h1_supported": false
+}
+
+--- regret of best simple rule (%), by cell (point estimate, one-sided 95% lower bound, best rule) ---
+ rho  s   a  regret_pct  lo5_pct best_rule  flagged
+ 0.8  0 0.5        1.71     1.50       EDF    False
+ 0.8  0 0.8        0.96     0.79       EDF    False
+ 0.8  0 1.0        0.00     0.00       CEP    False
+ 0.8  2 0.5        4.33     3.90       EDF    False
+ 0.8  2 0.8        5.43     4.94       CEP    False
+ 0.8  2 1.0        0.00     0.00       CEP    False
+ 0.8  4 0.5        3.56     3.27       CEP    False
+ 0.8  4 0.8        4.13     3.65       CEP    False
+ 0.8  4 1.0        0.00     0.00       CEP    False
+ 1.1  0 0.5        4.04     3.64       EDF    False
+ 1.1  0 0.8        5.10     4.70       CEP    False
+ 1.1  0 1.0        0.00     0.00       CEP    False
+ 1.1  2 0.5        4.96     4.53       CEP    False
+ 1.1  2 0.8        5.99     5.38       CEP     True
+ 1.1  2 1.0        0.00     0.00       CEP    False
+ 1.1  4 0.5        3.22     2.80       CEP    False
+ 1.1  4 0.8        4.29     3.67       CEP    False
+ 1.1  4 1.0        0.00     0.00       CEP    False
+ 1.5  0 0.5        6.42     5.83       EDF     True
+ 1.5  0 0.8        6.19     5.59       CEP     True
+ 1.5  0 1.0        0.00     0.00       CEP    False
+ 1.5  2 0.5        7.49     6.82       CEP     True
+ 1.5  2 0.8        6.11     5.48       CEP     True
+ 1.5  2 1.0        0.00     0.00       CEP    False
+ 1.5  4 0.5        3.38     2.94       CEP    False
+ 1.5  4 0.8        4.57     3.90       CEP    False
+ 1.5  4 1.0        0.00     0.00       CEP    False
+
+--- H1 check (frozen cells: rho=0.5, s<=1, a>=0.9): upper 97.5% bound < 5% in all 0 cells? False ---
+Empty DataFrame
+Columns: [rho, s, a, regret_pct, hi97_pct]
+Index: []
+
+--- excess regret vs a=1.0 (percentage points; paired bootstrap one-sided 95% lower bound) ---
+ rho  s   a  excess_pct  lo5_pct  excess_flagged
+ 0.8  0 0.5        1.71     1.50           False
+ 0.8  0 0.8        0.96     0.80           False
+ 0.8  2 0.5        4.33     3.92            True
+ 0.8  2 0.8        5.43     4.95            True
+ 0.8  4 0.5        3.56     3.27            True
+ 0.8  4 0.8        4.13     3.66            True
+ 1.1  0 0.5        4.04     3.64            True
+ 1.1  0 0.8        5.10     4.73            True
+ 1.1  2 0.5        4.96     4.53            True
+ 1.1  2 0.8        5.99     5.36            True
+ 1.1  4 0.5        3.22     2.82            True
+ 1.1  4 0.8        4.29     3.71            True
+ 1.5  0 0.5        6.42     5.83            True
+ 1.5  0 0.8        6.19     5.59            True
+ 1.5  2 0.5        7.49     6.83            True
+ 1.5  2 0.8        6.11     5.44            True
+ 1.5  4 0.5        3.38     2.92            True
+ 1.5  4 0.8        4.57     3.84            True
+
+--- marginal means of best-rule regret (%) along each axis (descriptive) ---
+rho
+0.8    2.23
+1.1    3.07
+1.5    3.79 
+
+s
+0    2.71
+2    3.81
+4    2.57 
+
+a
+0.5    4.34
+0.8    4.75
+1.0    0.00 
+
+--- regret (%) by rule, averaged over cells (descriptive) ---
+regret_FAIR    46.85
+regret_EDF     13.41
+regret_LLF     40.08
+regret_SE      18.04
+regret_GMR      9.95
+regret_BI       9.74
+regret_CEP      3.37
+
+--- information gap (oracle vs DP), mean over cells by a (%) ---
+a
+0.5    6.35
+0.8    3.68
+1.0    0.00
+
+GO region pairs: [((1.1, 2, 0.8), (1.5, 2, 0.8)), ((1.5, 0, 0.5), (1.5, 2, 0.5)), ((1.5, 0, 0.8), (1.5, 2, 0.8)), ((1.5, 0, 0.5), (1.5, 0, 0.8)), ((1.5, 2, 0.5), (1.5, 2, 0.8))] 
+MARGINAL region pairs: [((0.8, 2, 0.8), (1.1, 2, 0.8)), ((1.1, 0, 0.8), (1.5, 0, 0.8)), ((1.1, 2, 0.8), (1.5, 2, 0.8)), ((1.1, 0, 0.8), (1.1, 2, 0.8)), ((1.5, 0, 0.5), (1.5, 2, 0.5)), ((1.5, 0, 0.8), (1.5, 2, 0.8)), ((1.5, 0, 0.5), (1.5, 0, 0.8)), ((1.5, 2, 0.5), (1.5, 2, 0.8))]
+
+Wrote: results/a1_ratio\summary_cells.csv results/a1_ratio\decision.json results/a1_ratio\fig_p0_regret_best.png

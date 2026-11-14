@@ -1,0 +1,31 @@
+{
+  "variant": "a5_long",
+  "sensing_value_region": true,
+  "planner_gap_region": false,
+  "outcome": "sensing is valuable but belief-based planners handle it: sensing value is the contribution, not learning",
+  "n_cells": 36,
+  "n_informative_cells": 24,
+  "n_sense_flagged": 2,
+  "n_planner_flagged": 0,
+  "mean_sense_gain_noncorner": 0.02062477391444828,
+  "max_regret_best": 0.024090814274228767,
+  "mean_regret_best": 0.011762701948288845,
+  "n_instances_total": 7200,
+  "sense_pairs": [
+    [
+      [
+        1.5,
+        2,
+        0.5,
+        0.9
+      ],
+      [
+        1.5,
+        2,
+        0.5,
+        0.99
+      ]
+    ]
+  ],
+  "planner_pairs": []
+}

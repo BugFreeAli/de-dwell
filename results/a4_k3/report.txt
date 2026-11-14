@@ -1,0 +1,49 @@
+﻿=== A4 misspecification verdict: NO GAP ===
+{
+  "variant": "a4_k3",
+  "non_corner_misspecification_gap": false,
+  "n_cells": 64,
+  "n_wrong_cells": 48,
+  "n_flagged": 1,
+  "n_noncorner_flagged": 0,
+  "max_regret_wrong": 0.06572959722922711,
+  "mean_regret_wrong": 0.010284126112735617,
+  "mean_regret_correct": -2.3592239273284576e-16,
+  "n_instances_total": 4800
+}
+
+--- mean regret (%) of the best method, by true accuracy and believed accuracy (all cells) ---
+a_b     0.50  0.70  0.90  0.99
+a_true                        
+0.7     1.35 -0.00  0.21  0.21
+0.9     3.89  0.52  0.00  0.00
+
+--- same, non-corner cells only (s >= 2, rho <= 1.5) ---
+a_b     0.50  0.70  0.90  0.99
+a_true                        
+0.7     1.11 -0.00  0.19  0.19
+0.9     3.11  0.39  0.00  0.00
+
+--- mean regret (%) by method, wrong beliefs only ---
+regret_DPMIS        1.04
+regret_CEP          7.08
+regret_ROLL_CEP     2.77
+regret_ROLL_GMR     3.58
+regret_GMR          9.68
+regret_EDF         28.38
+
+--- mean regret (%) by method, correct belief ---
+regret_DPMIS       -0.00
+regret_CEP          5.62
+regret_ROLL_CEP     1.69
+regret_ROLL_GMR     2.61
+regret_GMR          9.08
+regret_EDF         28.38
+
+--- cells with point estimate >= 5% (wrong beliefs) ---
+ rho  s  a_true  a_b best_method  regret_best  lo5  flagged
+ 1.5  4     0.9  0.5    ROLL_GMR         5.57 4.66    False
+ 2.0  2     0.9  0.5       DPMIS         6.57 5.68     True
+ 2.0  4     0.9  0.5    ROLL_GMR         5.85 4.80    False
+
+non-corner pairs: []

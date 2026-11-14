@@ -1,0 +1,46 @@
+{
+  "config": {
+    "name": "a1_v2",
+    "master_seed": 20261108,
+    "n": 5,
+    "D": [
+      2,
+      5
+    ],
+    "value_set": [
+      1,
+      2
+    ],
+    "u_low": 0.35,
+    "n_instances": 300,
+    "rho_grid": [
+      0.8,
+      1.1,
+      1.5
+    ],
+    "s_grid": [
+      0,
+      2,
+      4
+    ],
+    "a_grid": [
+      0.5,
+      0.8,
+      1.0
+    ],
+    "extra_rules": [
+      "CEP"
+    ]
+  },
+  "config_file": "configs/a1_v2.json",
+  "git_commit": "2c97e32f14cc0521aca7374c9fac74843a9e74a3",
+  "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:05:56) [MSC v.1942 64 bit (AMD64)]",
+  "numpy": "2.5.2",
+  "pandas": "3.0.5",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "machine": "AMD64",
+  "cpu_count": 4,
+  "workers": 4,
+  "shard": "0/1",
+  "started": "2026-11-09 04:34:09"
+}

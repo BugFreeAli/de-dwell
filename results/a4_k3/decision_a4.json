@@ -1,0 +1,13 @@
+{
+  "variant": "a4_k3",
+  "non_corner_misspecification_gap": false,
+  "n_cells": 64,
+  "n_wrong_cells": 48,
+  "n_flagged": 1,
+  "n_noncorner_flagged": 0,
+  "max_regret_wrong": 0.06572959722922711,
+  "mean_regret_wrong": 0.010284126112735617,
+  "mean_regret_correct": -2.3592239273284576e-16,
+  "n_instances_total": 4800,
+  "pairs": []
+}

@@ -1,0 +1,45 @@
+{
+  "config": {
+    "name": "a5_long",
+    "master_seed": 20261108,
+    "n": 4,
+    "D": [
+      5,
+      12
+    ],
+    "value_set": [
+      1,
+      2,
+      3
+    ],
+    "u_low": 0.35,
+    "n_instances": 200,
+    "rho_grid": [
+      1.1,
+      1.5
+    ],
+    "s_grid": [
+      2,
+      4
+    ],
+    "a_grid": [
+      0.5,
+      0.7,
+      0.9
+    ],
+    "q_grid": [
+      0.5,
+      0.9,
+      0.99
+    ]
+  },
+  "config_file": "configs/a5_long.json",
+  "git_commit": "a8f531b918880c1d3abad3bc86bb88d29c495ff3",
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "cpu_count": 4,
+  "workers": 4,
+  "started": "2026-11-10 15:55:01"
+}

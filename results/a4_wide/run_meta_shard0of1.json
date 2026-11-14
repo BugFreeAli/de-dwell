@@ -1,0 +1,48 @@
+{
+  "config": {
+    "name": "a4_wide",
+    "master_seed": 20261108,
+    "n": 5,
+    "D": [
+      1,
+      8
+    ],
+    "kappa": 1.0,
+    "value_set": [
+      1,
+      2,
+      3
+    ],
+    "u_low": 0.35,
+    "n_instances": 300,
+    "rho_grid": [
+      0.8,
+      1.1,
+      1.5,
+      2.0
+    ],
+    "s_grid": [
+      2,
+      4
+    ],
+    "a_true_grid": [
+      0.7,
+      0.9
+    ],
+    "belief_grid": [
+      0.5,
+      0.7,
+      0.9,
+      0.99
+    ]
+  },
+  "config_file": "configs/a4_wide.json",
+  "git_commit": "6717d2dfcb6c1843e1e917c66d0f76e3ba918792",
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "cpu_count": 4,
+  "workers": 4,
+  "started": "2026-11-10 01:56:07"
+}

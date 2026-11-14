@@ -1,0 +1,51 @@
+﻿=== A5 outcome: no robust value of in-dwell sensing in this model: no new direction ===
+{
+  "variant": "a5_sense",
+  "sensing_value_region": false,
+  "planner_gap_region": false,
+  "outcome": "no robust value of in-dwell sensing in this model: no new direction",
+  "n_cells": 54,
+  "n_informative_cells": 36,
+  "n_sense_flagged": 0,
+  "n_planner_flagged": 0,
+  "mean_sense_gain_noncorner": 0.0020684772108879126,
+  "max_regret_best": 0.014488892917650542,
+  "mean_regret_best": 0.008270416219947797,
+  "n_instances_total": 16200
+}
+
+--- sensing gain of the exact optimum over q = 0.5 (%, mean over non-corner cells) by label accuracy a and signal quality q ---
+q     0.7   0.9
+a              
+0.5  0.08  0.34
+0.7  0.09  0.41
+0.9  0.07  0.25
+
+--- share of the oracle gap closed by the signal (mean over non-corner cells) ---
+q      0.7    0.9
+a                
+0.5  0.011  0.044
+0.7  0.020  0.083
+0.9  0.037  0.131
+
+--- regret (%) of the best planner against the exact optimum, by a and q (mean over non-corner cells) ---
+q     0.7   0.9
+a              
+0.5  0.75  0.72
+0.7  0.91  1.03
+0.9  0.77  0.79
+
+--- mean regret (%) by method, informative cells ---
+regret_CEP          4.20
+regret_ROLL_CEP     0.92
+regret_ROLL_GMR     2.29
+regret_GMR         10.37
+regret_EDF         20.63
+
+--- flagged cells (sensing value or planner gap) ---
+Empty DataFrame
+Columns: [rho, s, a, q, sense_gain, sense_flagged, regret_best, best_method, planner_flagged]
+Index: []
+
+sensing pairs: [] 
+planner pairs: []
