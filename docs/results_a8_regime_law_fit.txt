@@ -1,0 +1,16 @@
+fit on 8 points from 2 runs: nominal regret = c * r^2, c = 77.29 (percent)
+free power-law exponent 1.982; max relative residual 0.016
+  a7_noise2  r=0.1000 observed  0.79% [0.72, 0.86] fitted  0.77%
+  a7_main    r=0.1414 observed  1.54% [1.46, 1.62] fitted  1.55%
+  a7_noise2  r=0.1414 observed  1.57% [1.44, 1.72] fitted  1.55%
+  a7_noise2  r=0.1633 observed  2.09% [1.91, 2.29] fitted  2.06%
+  a7_main    r=0.2000 observed  3.08% [2.92, 3.24] fitted  3.09%
+  a7_noise2  r=0.2000 observed  3.14% [2.87, 3.43] fitted  3.09%
+  a7_main    r=0.2309 observed  4.11% [3.89, 4.32] fitted  4.12%
+  a7_main    r=0.2828 observed  6.16% [5.84, 6.47] fitted  6.18%
+
+pre-registered prediction for noise +-3 (noise SD 1.2247 steps):
+  SD10: r=0.0816 predicted nominal regret 0.52%
+  SD14: r=0.1155 predicted nominal regret 1.03%
+  SD16: r=0.1333 predicted nominal regret 1.37%
+  SD20: r=0.1633 predicted nominal regret 2.06%

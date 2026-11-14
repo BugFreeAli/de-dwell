@@ -37,3 +37,4 @@ Research Project 2: when does learning beat strong index and optimisation rules 
     scripts/decide_a7.py      applies the pre-written decision table of A7.3 to a7_main and a7_noise2
     scripts/burley_stats.py   relative dwell error from docs/burley_tables_transcribed.csv
     configs/a7_*.json         run configurations (fresh master seeds)
+    scripts/fit_regime_law.py fits nominal loss = c r^2 and checks the pre-registered prediction for a7_noise3

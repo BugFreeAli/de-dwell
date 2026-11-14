@@ -88,3 +88,9 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] Decision script outcome: REGIME-LIMITED (M, P, S1, S2, S3 met; N not met). Values in plan A7.7.
 - [CODE] A6 files re-analysed (scripts/analyze_a6_ceiling.py, docs/results_a6_ceiling_check.txt): ceiling cost at truth 1.0 is 0.78% (noise) and 0.76% (no noise); best nominal planner at SD16: 3.88% (noise), 11.01% (no noise).
 - [OPEN] Open: noise level of real targets; descriptive runs a7_noise0, a7_noise3, a7_h1, a7_h2 not yet made.
+
+## A8 literature check and regime law (2026-11-14)
+- [DOC] Full text read: Rocha et al., Electronics 15(21):4952 (2026) and Schaeffer et al., J. Compos. Sci. 8(11):471 (2024). Neither reports replicate statistics. Rocha: +-25% coupling change gives -23% / +42% threshold time in one case. Schaeffer: CFRP perforation 0.4 to 0.5 s at 120 kW, 20 mm, 4 mm.
+- [REF] Snippet-level only: aluminium coupons in shear flow, 2A12 model-experiment error 6.2%, Johnson NPS dwell table, an AFIT EADSIM thesis (random dwell draw per target), HPM Monte Carlo arXiv:2602.08477. 9 searches, 2 page reads; not systematic.
+- [CODE] scripts/fit_regime_law.py on docs/results_a7/*: nominal expected regret = 77.3% x r^2 with r = scale-error SD / noise SD (steps); exponent 1.98; max relative residual 1.6%; 8 points, 2 runs. Output: docs/results_a8_regime_law_fit.txt.
+- [CODE] Pre-registered prediction for a7_noise3 (percent): SD10 0.52, SD14 1.03, SD16 1.37, SD20 2.06. Criterion in plan A8.2. tests/test_regime_law.py (5 tests; 5 mutants caught); suite 207 tests pass.

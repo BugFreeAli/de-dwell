@@ -38,3 +38,6 @@
 
 ## 2026-11-14, A7 results
 - Added docs/results_a7/ (metrics, decision, run_meta of a7_main and a7_noise2), docs/results_a6_ceiling_check.txt, scripts/analyze_a6_ceiling.py. Plan A7.7 (outcome) appended; earlier text unchanged. record.md: A7 results.
+
+## 2026-11-14, A8
+- Added scripts/fit_regime_law.py, tests/test_regime_law.py, docs/results_a8_regime_law_fit.txt. Plan A8 (literature check, regime law, pre-registered prediction for a7_noise3) appended; earlier text unchanged. record.md: A8 entry.

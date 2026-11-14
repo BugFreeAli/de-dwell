@@ -475,3 +475,45 @@ Outcome: REGIME-LIMITED. Reported without a rule [CODE, `metrics_a7.json`]:
 Meaning [OPEN, my reading]: adaptation is material only when the atmosphere forecast is poor (SD of about 14% or more) and the idiosyncratic dwell noise is small. It is not material for forecast-level error (SD 10%) and it shrinks by about a factor of five in gain when the noise grows from +-1 to +-2. The claim that the strong case holds in general is not supported. A narrowed claim (regime map over noise and scale error, QMDP as the practical planner) is supported. The noise level of real targets is not known and decides the result.
 
 Deviations: the tag `p0-a7-plan` already existed when the commit was made (see git notes in the record); the plan commit d94034b precedes the runs. My hedged time estimate (30 to 60 minutes for `a7_main`) was about four times too low.
+
+
+### A8 (2026-11-14): literature check on dwell variability and a pre-registered test of a regime law (post-hoc origin)
+
+Written before `a7_noise3` is run. Tag for the frozen text: `p0-a8-plan`.
+
+#### A8.0 Literature check (live web search, 2026-11-14)
+
+Scope: 9 web searches and 2 full-text page reads. Not a systematic search. Question: is there open evidence on target-to-target (within-class) dwell variability, which is the noise level that decided the A7 outcome?
+
+Read in full [DOC]:
+- Rocha et al., Electronics 15(21):4952 (26 October 2026), UAV vulnerability to lasers. The exploratory experiments had no replicate trials and report no variance, confidence interval or repeatability (stated in the paper). In the camera model, changing the coupling factor or surface absorptivity by -25% / +25% moved the threshold time of one case (5 kW, 100 m) from 0.104 s to 0.148 s / 0.080 s, that is +42% / -23%. Three FPV cameras showed no permanent damage while a low-cost drone camera was permanently damaged under the same laser; the authors state that vulnerability cannot be generalised across camera types.
+- Schaeffer et al., J. Compos. Sci. 8(11):471 (13 November 2024), CFRP up to 120 kW. At 120 kW, 20 mm spot and 4 mm thickness both CFRP types were perforated after 0.4 to 0.5 s; one type (8552/IM7) is described as more resistant; larger variance at 10 kW is attributed to carbonised surface layers shielding the fibres. No replicate statistics are reported. Perforation time follows a power law of laser power with exponents -1.13 to -1.06.
+
+Seen as snippets or abstracts only [REF, unread, details unverified]: a fibre-laser study of painted and unpainted aluminium coupons in shear flow (penetration times 0.5 to 10 s; a 45% change of penetration time between two airflow speeds for grey-painted aluminium; authors and year not captured); a study of 2A12 aluminium plates under CW laser (analytical penetration time within 6.2% of experiment); Johnson, NPS, J. Directed Energy 7(2) (dwell-time table by material and atmosphere); an AFIT thesis on EADSIM laser modelling (scholar.afit.edu article 5023; title and author not captured) which states that a random draw before firing selects the dwell time from a vulnerability table, i.e. a per-target random dwell requirement is used in that campaign tool (two other AFIT EADSIM theses, Cook 2004 and Ponack 2008, have vulnerability-table sections); a 2026 high-power-microwave Monte Carlo (arXiv:2602.08477) where stochastic component thresholds make the deterministic link budget overestimate the kill probability by about 60%.
+
+Not found: replicate time-to-kill distributions for identical small-UAV airframes; any standard deviation of dwell within a UAV class; any counter-UAV scheduling paper that models hardness spread.
+
+Reading [OPEN]: the open literature does not fix the within-class noise. Weak brackets only: a controlled laboratory range of 0.4 to 0.5 s (about +-11% of the mean) as a lower scale; a -23% / +42% dwell response to a +-25% coupling change as an upper scale. In our units noise +-1 is a dwell SD of 14% (soft class) and 7% (hard class), noise +-2 is 20% and 10%, noise +-3 is 24% and 12%. Identical-model units suggest the lower end; the class mix, coatings and aspect (not covered by the noise term) suggest the upper end. The noise level is therefore kept as a controlled axis. The A7 decision (REGIME-LIMITED) is not changed.
+
+#### A8.1 Observation: one ratio predicts the nominal planner loss [CODE, post-hoc]
+
+Define r = (standard deviation of the relative scale error) / (standard deviation of the within-class noise in steps). For the base classes (5, 10) the soft-class shift in noise units is 5r.
+
+Data: the 8 points of `a7_main` and `a7_noise2` (SD 10, 14, 16, 20% at noise SD 0.707 and 1.0 steps), nominal expected regret from `metrics_a7.json`. Result (`scripts/fit_regime_law.py`, `docs/results_a8_regime_law_fit.txt`): regret = c r^2 with c = 77.3%; a free power-law fit gives exponent 1.98; maximum relative residual 1.6%. Two matched pairs with equal r but different noise and seed agree: r = 0.141: 1.54% (main) and 1.57% (noise 2); r = 0.200: 3.08% and 3.14%.
+
+Limits: one coefficient fitted on the same 8 points; only the nominal planner loss collapses (the ceiling and QMDP regrets do not, for example ceiling 1.41% at noise 1, SD 14% against 1.87% at noise 2, SD 20%); fixed class structure (5, 10), three-point scale grid, pooled over the 8 cells; no derivation yet. No noise-free case (r infinite): the law does not apply there (measured 11.56% at SD 16%).
+
+#### A8.2 Pre-registered prediction for `a7_noise3` (config and seed unchanged: 20261127)
+
+Noise SD at +-3 is 1.2247 steps. Predicted nominal expected regret of the best nominal planner (percent): SD10 0.52, SD14 1.03, SD16 1.37, SD20 2.06 (computed by `scripts/fit_regime_law.py --predict-m 3` from the 8 points above).
+
+Criterion: a level is inside if the observed value is within the larger of 25% relative or 0.10 points of the prediction. Verdict by `scripts/fit_regime_law.py --check`: HOLDS if 4 of 4 are inside, PARTLY if 3 of 4, FAILS otherwise. Tolerance rationale: the two matched pairs differ by about 2% and the bootstrap half-widths are about 5 to 10%; the new noise shape (binomial of order 6, overlapping soft and hard dwell values) deserves a wider band.
+
+Use of the verdict. HOLDS: the law becomes a candidate for the regime predictor (C2); the confirmatory protocol then tests it on fresh seeds and on a different class structure (for example classes (4, 8) with scales {0.75, 1.0, 1.25}) [OPEN]. PARTLY or FAILS: the law is reported only as an in-sample observation and the claim stays the noise map of A7.
+
+#### A8.3 Decisions
+
+1. The within-class noise is not fixed from the literature; it is a controlled axis, and the regime variable is r.
+2. Next run: `a7_noise3` (about 2 to 3 hours on the author's laptop, hedged from the noise +-2 run of 4,786 s). `a7_h1` is not run now: it tests class structure, not the law.
+3. After `a7_noise3`: plan A9, the frozen confirmatory protocol with fresh seeds (fixed method QMDP, fixed priors, noise +-1, 2, 3 and the second class structure if the law holds).
+4. Standard and novelty: the A7 and A8 evidence supports a narrower claim (regime map with a one-parameter law and a practical planner), not a general strong claim. At r between 0.1 and 0.28 (the measured range) the nominal loss runs from 0.8% to 6.2%; it is above 3% only for r of about 0.2 or more. The materiality at realistic r remains open because the real noise is unknown.
