@@ -31,3 +31,7 @@
 
 ## 2026-11-12, A6 results recorded
 - docs/analysis_plan_P0.md: A6 outcome note appended at the end of Section 12 (no earlier text changed). docs/record.md: A6 results.
+
+## 2026-11-14, amendment A7 (code v0.8)
+- Added: src/dwell/adapt.py, scripts/run_a7.py, analyze_a7.py, decide_a7.py, burley_stats.py, burley_transcribe.py, configs a7_main, a7_noise0, a7_noise2, a7_noise3, a7_h1, a7_h2, tests/test_adapt.py, docs/burley_tables_transcribed.csv, docs/burley_stats_output.txt.
+- Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A7 (appended; no earlier text changed). docs/record.md: A7 inputs and checks.

@@ -1,0 +1,57 @@
+relative error = RMSE / DT  (DT is the table dwell time of the same atmosphere row)
+
+## 1.045 um (ELLA, solid-state-like)
+method                   n   min   q25   med   q75   max  mean  >20%  >40%
+1976 US Standard         24  0.09  0.16  0.19  0.27  0.31  0.21  0.46  0.00
+Climatology              24  0.06  0.13  0.15  0.22  0.44  0.19  0.29  0.08
+Ground tab               24  0.07  0.13  0.18  0.27  0.46  0.22  0.38  0.21
+GFS 48/24/12 h           72  0.06  0.08  0.10  0.13  0.30  0.11  0.03  0.00
+GFS 12 h only            24  0.06  0.08  0.10  0.13  0.19  0.11  0.00  0.00
+Climatology+ground tab   48  0.06  0.13  0.16  0.26  0.46  0.21  0.33  0.15
+All six                 144  0.06  0.10  0.13  0.19  0.46  0.16  0.20  0.05
+
+## 1.31525 um (COIL)
+method                   n   min   q25   med   q75   max  mean  >20%  >40%
+1976 US Standard         24  0.34  0.59  1.13  1.77  3.27  1.32  1.00  0.88
+Climatology              24  0.22  0.43  0.52  0.71  1.48  0.58  1.00  0.79
+Ground tab               24  0.20  0.32  0.43  0.65  1.84  0.53  1.00  0.54
+GFS 48/24/12 h           72  0.14  0.32  0.38  0.56  1.54  0.47  0.94  0.46
+GFS 12 h only            24  0.14  0.32  0.37  0.52  1.10  0.43  0.92  0.42
+Climatology+ground tab   48  0.20  0.34  0.49  0.67  1.84  0.55  1.00  0.67
+All six                 144  0.14  0.34  0.48  0.67  3.27  0.64  0.97  0.60
+
+## by site, 1.045 um, GFS vs clim/ground-tab vs standard (median rel err)
+WPAFB GFS 48/24/12 h: med 0.11 max 0.19 | Climatology+ground tab: med 0.17 max 0.45 | 1976 US Standard: med 0.17 max 0.31
+Kuwait GFS 48/24/12 h: med 0.10 max 0.30 | Climatology+ground tab: med 0.14 max 0.18 | 1976 US Standard: med 0.18 max 0.19
+Brunei GFS 48/24/12 h: med 0.10 max 0.19 | Climatology+ground tab: med 0.26 max 0.46 | 1976 US Standard: med 0.28 max 0.29
+
+## by path, 1.045 um, median rel err (all six)
+top of boundary layer 0.18 GFS 0.12
+3000 m 0.11 GFS 0.08
+
+## 1.045 um largest rel errors
+T14 Brunei top of boundary layer Winter 12z Ground Tab 34.6 15.9 0.46
+T14 Brunei top of boundary layer Winter 00z Ground Tab 38.4 17.4 0.45
+T10 WPAFB top of boundary layer Summer 12z Ground Tab 37.0 16.5 0.45
+T14 Brunei top of boundary layer Winter 00z 50% Climatology 37.7 16.6 0.44
+T14 Brunei top of boundary layer Summer 12z Ground Tab 31.0 13.6 0.44
+T14 Brunei top of boundary layer Summer 00z 50% Climatology 33.0 14.0 0.42
+T14 Brunei top of boundary layer Summer 00z Ground Tab 31.7 12.8 0.40
+T10 WPAFB top of boundary layer Summer 12z 50% Climatology 32.9 12.1 0.37
+
+## 1.045 um smallest rel errors
+T15 Brunei 3000 m Winter 00z 12 Hr GFS 24.1 1.4 0.06
+T13 Kuwait 3000 m Winter 12z 12 Hr GFS 28.9 1.7 0.06
+T15 Brunei 3000 m Winter 00z 50% Climatology 25.7 1.6 0.06
+T13 Kuwait 3000 m Winter 12z 48 Hr GFS 28.9 1.8 0.06
+T13 Kuwait 3000 m Winter 12z 24 Hr GFS 28.9 1.8 0.06
+
+## 1.31525 um largest rel errors
+T14 Brunei top of boundary layer Winter 00z 1976 US Standard 3.7 12.1 3.27
+T15 Brunei 3000 m Winter 00z 1976 US Standard 3.9 11.5 2.95
+T14 Brunei top of boundary layer Summer 00z 1976 US Standard 4.4 11.8 2.68
+T15 Brunei 3000 m Summer 00z 1976 US Standard 5.4 12.0 2.22
+T14 Brunei top of boundary layer Summer 12z 1976 US Standard 4.4 9.6 2.18
+T14 Brunei top of boundary layer Winter 12z 1976 US Standard 3.2 6.7 2.09
+
+absolute RMSE 1.045 um, GFS rows: min 1.4 max 8.9; all rows: min 1.4 max 17.4

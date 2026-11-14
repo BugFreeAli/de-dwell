@@ -1,0 +1,145 @@
+table,site,path,season,profile,dt1045_s,rmse1045_s,dt1315_s,rmse1315_s
+T10,WPAFB,top of boundary layer,Summer 00z,1976 US Standard,19.6,1.8,3.6,5.4
+T10,WPAFB,top of boundary layer,Summer 00z,50% Climatology,23.2,3.2,7.3,3.8
+T10,WPAFB,top of boundary layer,Summer 00z,Ground Tab,23.4,4.4,8.5,2.7
+T10,WPAFB,top of boundary layer,Summer 00z,48 Hr GFS,20.0,2.2,6.8,3.0
+T10,WPAFB,top of boundary layer,Summer 00z,24 Hr GFS,19.7,1.9,6.3,2.5
+T10,WPAFB,top of boundary layer,Summer 00z,12 Hr GFS,19.8,1.9,6.1,2.1
+T10,WPAFB,top of boundary layer,Summer 12z,1976 US Standard,18.7,2.9,3.6,5.2
+T10,WPAFB,top of boundary layer,Summer 12z,50% Climatology,32.9,12.1,7.3,3.1
+T10,WPAFB,top of boundary layer,Summer 12z,Ground Tab,37.0,16.5,7.0,2.2
+T10,WPAFB,top of boundary layer,Summer 12z,48 Hr GFS,22.2,3.9,7.5,3.4
+T10,WPAFB,top of boundary layer,Summer 12z,24 Hr GFS,22.3,4.2,7.3,2.5
+T10,WPAFB,top of boundary layer,Summer 12z,12 Hr GFS,22.2,3.9,7.3,2.5
+T10,WPAFB,top of boundary layer,Winter 00z,1976 US Standard,17.7,4.8,3.2,2.6
+T10,WPAFB,top of boundary layer,Winter 00z,50% Climatology,27.2,6.7,2.7,2.6
+T10,WPAFB,top of boundary layer,Winter 00z,Ground Tab,24.9,6.5,2.5,1.9
+T10,WPAFB,top of boundary layer,Winter 00z,48 Hr GFS,22.8,4.1,3.7,2.2
+T10,WPAFB,top of boundary layer,Winter 00z,24 Hr GFS,22.7,4.1,3.6,1.6
+T10,WPAFB,top of boundary layer,Winter 00z,12 Hr GFS,22.7,4.2,3.6,1.5
+T10,WPAFB,top of boundary layer,Winter 12z,1976 US Standard,19.6,6.0,3.6,2.8
+T10,WPAFB,top of boundary layer,Winter 12z,50% Climatology,27.2,4.2,3.8,2.8
+T10,WPAFB,top of boundary layer,Winter 12z,Ground Tab,30.3,8.6,2.8,2.2
+T10,WPAFB,top of boundary layer,Winter 12z,48 Hr GFS,25.8,3.6,3.4,1.4
+T10,WPAFB,top of boundary layer,Winter 12z,24 Hr GFS,26.5,4.7,3.5,1.3
+T10,WPAFB,top of boundary layer,Winter 12z,12 Hr GFS,26.0,4.4,3.5,1.3
+T11,WPAFB,3000 m,Summer 00z,1976 US Standard,25.5,2.3,4.5,5.6
+T11,WPAFB,3000 m,Summer 00z,50% Climatology,28.5,2.7,8.4,4.0
+T11,WPAFB,3000 m,Summer 00z,Ground Tab,28.6,3.4,9.4,3.0
+T11,WPAFB,3000 m,Summer 00z,48 Hr GFS,26.0,2.2,7.5,2.9
+T11,WPAFB,3000 m,Summer 00z,24 Hr GFS,25.6,2.1,7.1,2.7
+T11,WPAFB,3000 m,Summer 00z,12 Hr GFS,25.7,2.0,6.9,2.5
+T11,WPAFB,3000 m,Summer 12z,1976 US Standard,25.5,4.5,4.5,6.4
+T11,WPAFB,3000 m,Summer 12z,50% Climatology,31.8,4.7,8.6,4.1
+T11,WPAFB,3000 m,Summer 12z,Ground Tab,33.2,6.2,8.2,3.7
+T11,WPAFB,3000 m,Summer 12z,48 Hr GFS,28.7,4.1,8.6,4.8
+T11,WPAFB,3000 m,Summer 12z,24 Hr GFS,29.0,3.1,8.5,2.7
+T11,WPAFB,3000 m,Summer 12z,12 Hr GFS,28.6,3.9,8.1,4.0
+T11,WPAFB,3000 m,Winter 00z,1976 US Standard,24.4,5.8,4.1,2.7
+T11,WPAFB,3000 m,Winter 00z,50% Climatology,29.5,4.8,3.2,2.6
+T11,WPAFB,3000 m,Winter 00z,Ground Tab,28.5,5.0,3.0,2.0
+T11,WPAFB,3000 m,Winter 00z,48 Hr GFS,27.4,2.5,3.7,3.4
+T11,WPAFB,3000 m,Winter 00z,24 Hr GFS,27.5,2.7,3.3,1.9
+T11,WPAFB,3000 m,Winter 00z,12 Hr GFS,27.7,3.1,3.2,1.5
+T11,WPAFB,3000 m,Winter 12z,1976 US Standard,24.4,3.5,4.1,2.3
+T11,WPAFB,3000 m,Winter 12z,50% Climatology,27.8,3.2,4.0,2.1
+T11,WPAFB,3000 m,Winter 12z,Ground Tab,28.6,3.7,2.9,1.2
+T11,WPAFB,3000 m,Winter 12z,48 Hr GFS,27.3,2.1,2.6,0.6
+T11,WPAFB,3000 m,Winter 12z,24 Hr GFS,27.4,2.4,2.7,0.8
+T11,WPAFB,3000 m,Winter 12z,12 Hr GFS,27.2,2.2,2.7,0.9
+T12,Kuwait,top of boundary layer,Summer 00z,1976 US Standard,29.8,5.8,3.6,3.1
+T12,Kuwait,top of boundary layer,Summer 00z,50% Climatology,24.0,3.3,3.9,3.0
+T12,Kuwait,top of boundary layer,Summer 00z,Ground Tab,24.1,3.2,3.5,2.6
+T12,Kuwait,top of boundary layer,Summer 00z,48 Hr GFS,30.0,8.9,5.7,8.8
+T12,Kuwait,top of boundary layer,Summer 00z,24 Hr GFS,27.1,6.0,2.9,3.3
+T12,Kuwait,top of boundary layer,Summer 00z,12 Hr GFS,27.1,4.9,2.9,3.2
+T12,Kuwait,top of boundary layer,Summer 12z,1976 US Standard,27.9,5.1,2.9,1.1
+T12,Kuwait,top of boundary layer,Summer 12z,50% Climatology,22.4,3.1,2.0,1.1
+T12,Kuwait,top of boundary layer,Summer 12z,Ground Tab,22.4,3.0,2.5,0.8
+T12,Kuwait,top of boundary layer,Summer 12z,48 Hr GFS,25.3,3.0,3.6,2.9
+T12,Kuwait,top of boundary layer,Summer 12z,24 Hr GFS,24.1,1.9,2.3,0.8
+T12,Kuwait,top of boundary layer,Summer 12z,12 Hr GFS,24.1,1.9,2.5,0.8
+T12,Kuwait,top of boundary layer,Winter 00z,1976 US Standard,27.5,2.6,4.5,1.6
+T12,Kuwait,top of boundary layer,Winter 00z,50% Climatology,28.6,3.5,4.5,1.7
+T12,Kuwait,top of boundary layer,Winter 00z,Ground Tab,27.4,2.5,3.2,1.2
+T12,Kuwait,top of boundary layer,Winter 00z,48 Hr GFS,24.6,2.1,3.2,1.2
+T12,Kuwait,top of boundary layer,Winter 00z,24 Hr GFS,24.9,2.7,3.4,2.0
+T12,Kuwait,top of boundary layer,Winter 00z,12 Hr GFS,24.9,2.7,3.4,2.0
+T12,Kuwait,top of boundary layer,Winter 12z,1976 US Standard,25.7,4.9,3.8,2.0
+T12,Kuwait,top of boundary layer,Winter 12z,50% Climatology,24.3,4.3,3.6,1.9
+T12,Kuwait,top of boundary layer,Winter 12z,Ground Tab,24.1,4.2,2.6,1.2
+T12,Kuwait,top of boundary layer,Winter 12z,48 Hr GFS,22.7,2.3,2.2,0.8
+T12,Kuwait,top of boundary layer,Winter 12z,24 Hr GFS,22.7,2.3,2.2,0.8
+T12,Kuwait,top of boundary layer,Winter 12z,12 Hr GFS,22.7,2.2,2.2,0.7
+T13,Kuwait,3000 m,Summer 00z,1976 US Standard,34.2,6.5,3.5,2.1
+T13,Kuwait,3000 m,Summer 00z,50% Climatology,29.3,3.1,2.8,2.2
+T13,Kuwait,3000 m,Summer 00z,Ground Tab,29.3,3.1,2.6,2.1
+T13,Kuwait,3000 m,Summer 00z,48 Hr GFS,30.9,3.8,3.7,2.4
+T13,Kuwait,3000 m,Summer 00z,24 Hr GFS,29.8,2.7,2.8,1.7
+T13,Kuwait,3000 m,Summer 00z,12 Hr GFS,29.7,2.8,2.9,1.6
+T13,Kuwait,3000 m,Summer 12z,1976 US Standard,34.2,5.8,3.5,1.2
+T13,Kuwait,3000 m,Summer 12z,50% Climatology,28.1,3.2,2.3,1.2
+T13,Kuwait,3000 m,Summer 12z,Ground Tab,28.1,3.2,2.8,0.9
+T13,Kuwait,3000 m,Summer 12z,48 Hr GFS,31.2,3.5,3.9,2.6
+T13,Kuwait,3000 m,Summer 12z,24 Hr GFS,29.8,2.0,2.8,0.8
+T13,Kuwait,3000 m,Summer 12z,12 Hr GFS,29.9,2.0,3.0,0.8
+T13,Kuwait,3000 m,Winter 00z,1976 US Standard,31.9,5.0,4.5,4.6
+T13,Kuwait,3000 m,Winter 00z,50% Climatology,31.7,4.9,3.1,4.6
+T13,Kuwait,3000 m,Winter 00z,Ground Tab,31.4,4.8,2.5,4.6
+T13,Kuwait,3000 m,Winter 00z,48 Hr GFS,28.0,2.7,3.1,3.2
+T13,Kuwait,3000 m,Winter 00z,24 Hr GFS,28.2,2.1,3.2,2.4
+T13,Kuwait,3000 m,Winter 00z,12 Hr GFS,28.2,2.0,3.2,2.1
+T13,Kuwait,3000 m,Winter 12z,1976 US Standard,31.9,5.0,4.5,2.2
+T13,Kuwait,3000 m,Winter 12z,50% Climatology,30.9,4.5,4.2,2.0
+T13,Kuwait,3000 m,Winter 12z,Ground Tab,30.7,4.4,3.1,1.2
+T13,Kuwait,3000 m,Winter 12z,48 Hr GFS,28.9,1.8,2.7,0.9
+T13,Kuwait,3000 m,Winter 12z,24 Hr GFS,28.9,1.8,2.7,0.9
+T13,Kuwait,3000 m,Winter 12z,12 Hr GFS,28.9,1.7,2.7,0.7
+T14,Brunei,top of boundary layer,Summer 00z,1976 US Standard,26.5,7.4,4.4,11.8
+T14,Brunei,top of boundary layer,Summer 00z,50% Climatology,33.0,14.0,10.6,6.1
+T14,Brunei,top of boundary layer,Summer 00z,Ground Tab,31.7,12.8,10.1,6.5
+T14,Brunei,top of boundary layer,Summer 00z,48 Hr GFS,17.4,2.3,10.3,6.6
+T14,Brunei,top of boundary layer,Summer 00z,24 Hr GFS,17.5,2.1,10.4,6.5
+T14,Brunei,top of boundary layer,Summer 00z,12 Hr GFS,17.6,2.0,10.1,6.6
+T14,Brunei,top of boundary layer,Summer 12z,1976 US Standard,25.6,7.3,4.4,9.6
+T14,Brunei,top of boundary layer,Summer 12z,50% Climatology,23.0,5.0,14.2,4.2
+T14,Brunei,top of boundary layer,Summer 12z,Ground Tab,31.0,13.6,13.2,4.5
+T14,Brunei,top of boundary layer,Summer 12z,48 Hr GFS,17.2,3.3,11.7,5.8
+T14,Brunei,top of boundary layer,Summer 12z,24 Hr GFS,17.2,3.3,11.7,5.8
+T14,Brunei,top of boundary layer,Summer 12z,12 Hr GFS,17.3,3.2,11.5,5.9
+T14,Brunei,top of boundary layer,Winter 00z,1976 US Standard,28.3,6.3,3.7,12.1
+T14,Brunei,top of boundary layer,Winter 00z,50% Climatology,37.7,16.6,9.5,6.6
+T14,Brunei,top of boundary layer,Winter 00z,Ground Tab,38.4,17.4,10.3,5.9
+T14,Brunei,top of boundary layer,Winter 00z,48 Hr GFS,21.1,2.1,19.0,6.5
+T14,Brunei,top of boundary layer,Winter 00z,24 Hr GFS,21.2,2.1,19.5,7.3
+T14,Brunei,top of boundary layer,Winter 00z,12 Hr GFS,21.3,2.1,19.9,7.8
+T14,Brunei,top of boundary layer,Winter 12z,1976 US Standard,25.6,6.2,3.2,6.7
+T14,Brunei,top of boundary layer,Winter 12z,50% Climatology,29.2,9.9,8.6,1.9
+T14,Brunei,top of boundary layer,Winter 12z,Ground Tab,34.6,15.9,8.8,1.8
+T14,Brunei,top of boundary layer,Winter 12z,48 Hr GFS,18.0,2.0,8.5,2.1
+T14,Brunei,top of boundary layer,Winter 12z,24 Hr GFS,17.9,2.3,8.8,2.3
+T14,Brunei,top of boundary layer,Winter 12z,12 Hr GFS,17.9,2.3,8.8,1.7
+T15,Brunei,3000 m,Summer 00z,1976 US Standard,33.6,9.4,5.4,12.0
+T15,Brunei,3000 m,Summer 00z,50% Climatology,32.6,8.5,12.6,5.4
+T15,Brunei,3000 m,Summer 00z,Ground Tab,31.8,7.7,11.9,6.0
+T15,Brunei,3000 m,Summer 00z,48 Hr GFS,22.7,1.9,11.9,6.2
+T15,Brunei,3000 m,Summer 00z,24 Hr GFS,22.8,1.9,11.9,5.9
+T15,Brunei,3000 m,Summer 00z,12 Hr GFS,22.9,1.8,11.6,6.1
+T15,Brunei,3000 m,Summer 12z,1976 US Standard,33.6,9.8,5.4,8.6
+T15,Brunei,3000 m,Summer 12z,50% Climatology,28.4,4.9,12.6,3.2
+T15,Brunei,3000 m,Summer 12z,Ground Tab,31.7,8.5,11.3,3.9
+T15,Brunei,3000 m,Summer 12z,48 Hr GFS,22.8,2.2,12.9,4.0
+T15,Brunei,3000 m,Summer 12z,24 Hr GFS,22.8,2.2,12.9,4.0
+T15,Brunei,3000 m,Summer 12z,12 Hr GFS,22.8,2.2,12.6,4.4
+T15,Brunei,3000 m,Winter 00z,1976 US Standard,33.7,9.1,3.9,11.5
+T15,Brunei,3000 m,Winter 00z,50% Climatology,25.7,1.6,9.5,6.2
+T15,Brunei,3000 m,Winter 00z,Ground Tab,25.8,1.9,10.0,5.8
+T15,Brunei,3000 m,Winter 00z,48 Hr GFS,23.9,1.5,16.4,4.2
+T15,Brunei,3000 m,Winter 00z,24 Hr GFS,24.0,1.5,16.8,4.9
+T15,Brunei,3000 m,Winter 00z,12 Hr GFS,24.1,1.4,17.1,4.9
+T15,Brunei,3000 m,Winter 12z,1976 US Standard,33.7,9.3,3.9,6.5
+T15,Brunei,3000 m,Winter 12z,50% Climatology,27.5,3.5,8.6,2.3
+T15,Brunei,3000 m,Winter 12z,Ground Tab,29.4,5.5,8.4,2.4
+T15,Brunei,3000 m,Winter 12z,48 Hr GFS,23.1,2.2,9.9,1.7
+T15,Brunei,3000 m,Winter 12z,24 Hr GFS,23.1,2.1,9.9,1.6
+T15,Brunei,3000 m,Winter 12z,12 Hr GFS,23.2,1.9,10.2,1.4

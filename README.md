@@ -29,3 +29,11 @@ Research Project 2: when does learning beat strong index and optimisation rules 
 - Tags: `p0-plan-v1` freezes the plan before the first run; `p0-main-run1` marks the commit used for the main run; later steps use `s2-...`.
 - Provenance tags in docs: [CODE] from code or tests, [DOC] from a document read, [MEM] unverified memory, [OPEN] unverified or inference.
 - Never edit a frozen plan: add a dated amendment instead.
+
+## Amendment A7 files
+    src/dwell/adapt.py        class sets, robust Bayes-adaptive model, practical adaptive planners, exact recursive evaluator
+    scripts/run_a7.py         resumable runner (one CSV per cell; invariants checked, fails loudly)
+    scripts/analyze_a7.py     pooled regrets, scale-error mixtures, recovery, safety, paired bootstrap; writes metrics_a7.json
+    scripts/decide_a7.py      applies the pre-written decision table of A7.3 to a7_main and a7_noise2
+    scripts/burley_stats.py   relative dwell error from docs/burley_tables_transcribed.csv
+    configs/a7_*.json         run configurations (fresh master seeds)

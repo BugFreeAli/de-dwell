@@ -1,0 +1,91 @@
+{
+  "master_seed": 20261128,
+  "n": 4,
+  "D0": [
+    5,
+    10
+  ],
+  "value_set": [
+    1,
+    2,
+    3
+  ],
+  "u_low": 0.35,
+  "n_instances": 100,
+  "rho_grid": [
+    1.1,
+    1.5
+  ],
+  "s_grid": [
+    2,
+    4
+  ],
+  "a_grid": [
+    0.5,
+    0.9
+  ],
+  "noise_offsets": [
+    [
+      -1,
+      0,
+      1
+    ],
+    [
+      -2,
+      0,
+      2
+    ]
+  ],
+  "noise_probs": [
+    0.25,
+    0.5,
+    0.25
+  ],
+  "scales": [
+    0.8,
+    1.0,
+    1.2
+  ],
+  "truths": [
+    0.8,
+    1.0,
+    1.2
+  ],
+  "priors": {
+    "B": {
+      "lams": [
+        0.8,
+        1.0,
+        1.2
+      ],
+      "weights": null
+    },
+    "O": {
+      "lams": [
+        0.8,
+        1.0,
+        1.2
+      ],
+      "weights": [
+        0.125,
+        0.75,
+        0.125
+      ]
+    }
+  },
+  "practical": {
+    "B": [
+      "PLUG_DP",
+      "PLUG_CEP",
+      "QMDP",
+      "MIXCEP"
+    ],
+    "O": [
+      "PLUG_DP",
+      "PLUG_CEP",
+      "QMDP",
+      "MIXCEP"
+    ]
+  },
+  "name": "a7_h1"
+}

@@ -326,3 +326,128 @@ a6_det (no noise): mean regret by error 20.7%, 16.9%, 9.2%, 20.3%; recovery 0.85
 
 Reading [OPEN]: the strong case holds under the assumptions listed under Limits; in particular the Bayes-adaptive policy is an upper bound for adaptation, the realistic dwell error is unverified, and one scale is shared by all threats.
 
+
+
+### A7 (2026-11-14): practical adaptation to dwell-model error (post-hoc)
+
+Written before any A7 run. Everything under A7 is post-hoc and is reported as such. Prepared in a new chat after the A6 outcome. Tag for the frozen plan: `p0-a7-plan`.
+
+#### A7.0 Literature input: Burley (AFIT 2012, DTIC ADA557011), read 2026-11-14
+
+Source and read status [DOC]: Tables 10 to 15 (printed pages 107 to 112) and the Conclusions (printed pages 93 to 95), read from the PDF supplied by the author (file `Comparison_of_High_Energy_Laser_Expected_Dwell_Times_and_Probabil.pdf`, 132 PDF pages, printed page = PDF page - 16). The tables are images. The values were transcribed by eye into `docs/burley_tables_transcribed.csv` (144 rows: 3 sites, 2 paths, 4 season and time blocks, 6 atmosphere methods); 94 of 144 rows were confirmed by an independent OCR pass and the other rows were checked by eye only [CODE, FILE]. Nothing else of the thesis was re-read for this amendment.
+
+What the tables give. For each atmosphere method (1976 US Standard, 50th percentile climatology, ground tab, and 48, 24 and 12 hour GFS forecasts) the predicted dwell time DT (s) and the RMSE (s) of the predicted dwell time against the dwell time computed from the sounding, for a 1.045 micrometre laser (ELLA) and a 1.31525 micrometre laser (COIL). Each row aggregates 25 days of one season and time of day at one site (printed page 37). Relative error is RMSE / DT with DT the predicted dwell of the same row; the control dwell is not tabulated [DOC, CODE: `scripts/burley_stats.py`].
+
+Realistic range at 1.045 micrometre (144 rows) [CODE on transcribed FILE values]:
+
+| Atmosphere method | Rows | Median | Quartiles | Maximum | Share above 20% | Share above 40% |
+|---|---|---|---|---|---|---|
+| GFS 48, 24, 12 h | 72 | 10% | 8 to 13% | 30% | 3% | 0% |
+| Climatology and ground tab | 48 | 16% | 13 to 26% | 46% | 33% | 15% |
+| 1976 US Standard | 24 | 19% | 16 to 27% | 31% | 46% | 0% |
+| All six | 144 | 13% | 10 to 19% | 46% | 20% | 5% |
+
+The COIL wavelength gives relative errors of 14 to 327% (median 48%); the thesis attributes its worse behaviour to thermal blooming from molecular absorption and states that the move to solid state lasers reduces the impact of a dynamic atmosphere (printed page 95) [DOC]. COIL is not used for calibration here.
+
+Reading for A6 and A7 [OPEN, my reading]: a dwell prediction error of about 10% (forecast-based atmosphere) to about 16% (climatology or ground tab) in the median, with 20% as an upper-typical value and 40% as a tail value (5% of rows, all climatology or ground tab at the top of the boundary layer). The A6 error of 20% is therefore an upper-typical error and 40% a tail error. The thesis convention (error relative to the prediction) equals the convention truth scale = 1 +- r with the nominal scale 1.
+
+What the thesis does not support [DOC unless marked]:
+1. The "truth" is itself a model result: the control is the dwell computed by the thesis software (HELTDA) from in-situ radiosonde profiles (printed pages 34 and 35), with GADS aerosol and HV 5/7 turbulence profiles assumed in all simulations (printed page 42). Real engagement dwell error is not measured, and aerosol and turbulence errors are not in the figures. They are a lower bound for the atmospheric part only.
+2. Only the atmosphere is varied. Target hardness, material and aspect, jitter, tracking, thermal state and beam quality are not varied. A solid target-to-target spread within a class (our noise e) is not estimated by the thesis at all.
+3. One airborne ELLA prototype (150 kW, 0.4 m aperture, beam quality 2.9, 150 m/s) in a circular orbit at about 3,977 m ground range around a stationary ground target; the damage threshold of 1e5 J/cm2 is described as an extremely hard target chosen to extend dwell (printed pages 42, 44 and 45), giving predicted dwell of 17 to 38 s at 1.045 micrometre (tables). It is not a counter-UAV scenario.
+4. The RMSE has no sign. Bias and random error are not separated, so a shared scale offset cannot be told from day-to-day scatter.
+5. The distribution of errors inside a row is not given (25 days are aggregated); no quantiles, no correlation between paths or azimuths.
+6. The table lists the predicted DT, not the control DT. Where a method over-predicts strongly (for example ground tab at the Brunei boundary layer, DT 31.7 s against about 17.5 s for the GFS rows [OPEN, proxy]), the error relative to the control dwell would be larger than RMSE / DT.
+7. How the number of threats, their ranges and azimuths change the shared share of the error is not studied.
+
+#### A7.1 Critical review of A6 (Section 10.17, `docs/record.md`, A6 outcome note above)
+
+1. The effect at 20% is borderline. Mean regret of the best method was 5.48% at -20% and 4.81% at +20%, with 4 and 2 of 8 cells flagged; the regions are four pairs at -20% (all at label accuracy 0.9) and one pair at +20% (load 1.5, slew 4). With Burley, 20% is an upper-typical error, so the FRAGILE_20 outcome rests on a tail, not on the typical case. Using the A6 pooled numbers only (best nominal planner 4.76% at truth 0.8, 6.25% at truth 1.2, 0% at truth 1.0), a symmetric scale distribution with standard deviation 16% (probabilities 1/3 each on 0.8, 1.0, 1.2) would give about 3.7% and one with standard deviation 10% about 1.4% [OPEN, back-of-envelope, not a result].
+2. Conventions are mixed. The tolerance part uses believed scale minus 1 (the planner is wrong by -20% or +20% of the truth), the adaptation part uses the truths 0.8 and 1.2 against the nominal 1.0 (errors +25% and -17% relative to the truth). A7 uses the Burley convention: truth = nominal x (1 +- r).
+3. The recovery criterion was met only through truth 1.2 (nominal regret 6.25%); at truth 0.8 the nominal regret (4.76%) was below the 5% bar.
+4. The Bayes-adaptive policy is a ceiling, not a method: its prior is uniform on exactly the three scales that are later used as truths, it knows the noise law and the class prior, the scale is shared by all threats, and it is exact (unbounded compute). Its regret at the nominal truth 1.0 was computed in A6 (column `Vba_t1.0`) but not reported; adaptation can cost value when the forecast is right.
+5. The result depends on the within-class noise. Without noise the regret at 20% is 9 to 17% and the recovery 0.85 to 0.90; with noise of plus or minus one step it is about 5% and 0.67 to 0.69. The true level of target-to-target variability is unknown (Burley does not give it).
+6. n = 4, K = 6 classes, a three-point scale grid, symmetric noise, one effector. Deadlines and load are generated at the nominal scale, so a wrong scale changes the real load; this couples the scale error to the load.
+7. All A1 to A6 are post-hoc; the 5%, 0.5 and 0.3 bars were set after earlier amendments; the cell flags use 200 instances per cell and no multiplicity control over 8 cells x 5 errors.
+8. In A6 the planners had no way to adapt (tolerance part) and the only adaptive policy was the ceiling. Whether a practical planner gets most of the ceiling is untested.
+
+#### A7.2 Design
+
+Instance generation and model are those of A6 (base classes (5, 10), n = 4, values {1, 2, 3}, same cell grid: load 1.1 and 1.5, slew 2 and 4, label accuracy 0.5 and 0.9; deadlines, values and labels generated at the nominal scale). The hidden scale is shared by all threats. Dwell of a threat of base class c is round(scale x D0[c]) + e; classes are (base class, noise), independent across threats. Classes with equal dwell are merged before the DP (exact). Truth and planner models use the same noise law (the planner knows everything except the scale, as in A6).
+
+Planners (all see only the dwell received and the kill flags; all are exact functions of the observable state; the value of each is an exact expectation computed by recursion over observable states, `eval_rec`, which equals the world-enumeration evaluator `eval_obs` in the tests):
+
+| Name | Definition |
+|---|---|
+| Nominal DPMIS, CEP, ROLL_CEP | As in A6, built for the nominal scale 1.0 (the forecast). No adaptation |
+| BA | Bayes-adaptive optimum for a stated prior over scales (exact DP). Ceiling |
+| PLUG_DP | Plug-in with re-planning: after every step the posterior over the scale grid is computed from the dwell and kill history; the planner acts as the optimal policy (DP) of the model of the most probable scale (ties go to the scale nearest 1.0). If that model sees no useful action but the posterior still allows a kill, it keeps the current target |
+| PLUG_CEP | The same with the CEP rule of the plug-in model |
+| QMDP | Planning on the posterior mixture: the action with the highest posterior-weighted Q-value, where Q is the exact value of acting once and then following the optimal policy of the model of each scale. It does not value future learning |
+| MIXCEP | CEP plan enumeration with the expected remaining dwell of every threat taken under the posterior mixture over scales (re-planned at every step) |
+| Learned adaptive scorer | Not built in A7. Gated: see A7.6, outcome HEADROOM |
+
+Observations outside the support of a planner's prior (truth outside the grid) are handled by a fixed convention (documented limitation): an alive dwell above the largest class dwell of the support is clamped to the largest minus one; a kill at a dwell that no class of the support has is mapped to the nearest support dwell (ties to the smaller); if all scales still have zero likelihood, the likelihoods are floored at 1e-6 for that observation only. In-support observations are never changed (tested).
+
+Priors of the adaptive planners:
+
+| Prior | Support and weights | Meaning |
+|---|---|---|
+| B | {0.8, 1.0, 1.2}, uniform | Matches a scale error with standard deviation 16.3% (as A6) |
+| O | {0.8, 1.0, 1.2}, (0.125, 0.75, 0.125) | Forecast-calibrated: matches a standard deviation of 10% (Burley GFS median); narrower than B |
+| W | {0.6, 0.8, 1.0, 1.2, 1.4}, uniform | Wider than the truths of interest |
+
+Truths: scales 0.6, 0.8, 1.0, 1.2, 1.4 in `a7_main` (0.6 and 1.4 lie outside the support of B and O); 0.8, 1.0, 1.2 in the other runs. Scale error distributions Pi_p: probability p on 0.8, p on 1.2 and 1 - 2p on 1.0, with standard deviation 0.2 x sqrt(2p). p = 0.125 gives 10% (Burley GFS median), p = 0.25 gives 14.1%, p = 1/3 gives 16.3% (Burley climatology and ground tab median), p = 0.5 gives 20% (stress). Names SD10, SD14, SD16, SD20.
+
+Runs (all in `configs/`; fresh master seeds, none used before; all instances paired across methods):
+
+| Run | Content | Instances per cell (8 cells) | Master seed |
+|---|---|---|---|
+| `a7_main` | Noise +-1 (0.25, 0.5, 0.25), truths 0.6 to 1.4, priors B, O, W, all planners (W: PLUG_DP and QMDP only) | 200 | 20261124 |
+| `a7_noise2` | Noise +-2 (binomial 1, 4, 6, 4, 1 over 16), truths 0.8, 1.0, 1.2, priors B and O | 100 | 20261126 |
+| `a7_noise0` | No noise, same as noise2 otherwise (descriptive) | 100 | 20261125 |
+| `a7_noise3` | Noise +-3 (binomial of order 6), same (descriptive) | 100 | 20261127 |
+| `a7_h1` | Class-proportional idiosyncratic spread: offsets (-1, 0, 1) for the soft class and (-2, 0, 2) for the hard class, shared scale unknown (descriptive) | 100 | 20261128 |
+| `a7_h2` | No shared scale: every threat has its own independent scale in {0.8, 1.0, 1.2} with probabilities (0.25, 0.5, 0.25); planners built for deterministic dwell; adaptive planners use the (wrong) shared-scale model B (descriptive) | 200 | 20261129 |
+
+Heterogeneity (task d) is exact in three ways: the noise sweep (additive spread per threat), `a7_h1` (spread that grows with the class) and `a7_h2` (fully independent multiplicative scale per threat, i.e. no shared component). A partly shared scale is the sum of a shared scale and idiosyncratic spread, which `a7_h1` and the noise runs represent. The per-threat scale is not modelled as a hidden vector with correlation; that would need a different exact solver.
+
+Metrics. Regret = 1 - (sum of values) / (sum of calibrated optima of the true scale), pooled over all cells and instances of a run. Expected regret under Pi_p = sum over the three truths of the probability times the regret. Paired bootstrap over instance index, 2000 resamples, seed 20261130; selections (best nominal planner, best practical planner) are recomputed in every resample; the lower bound is the 5th percentile. Gain = expected regret of the best nominal planner minus that of the best practical planner of the matched prior. Recovery = gain / expected regret of the best nominal planner. Attainment = gain / (nominal minus ceiling), defined only if that difference is at least 0.25 points.
+
+#### A7.3 Pre-written decision table (applied mechanically by `scripts/decide_a7.py` to `a7_main` and `a7_noise2`)
+
+Primary scenario: Pi at SD16, prior B (matched), the best practical planner of `a7_main` (the method is then fixed for S1 to S3).
+
+| Criterion | Rule |
+|---|---|
+| M, material loss | Expected regret of the best nominal planner at SD16 at least 3.0% and its lower bound at least 2.0% (3% is about twice the mean regret of the best planners in A1 to A5 [MEM, from the summaries in project memory, unverified]) |
+| P, practical recovery | Recovery at least 0.5 with lower bound at least 0.3, and attainment at least 0.75 |
+| S1 | With prior O the primary method loses at most 1.0 point at the nominal truth 1.0 |
+| S2 | At the truths 0.6 and 1.4 (outside the support of B) the primary method with prior B is not worse than the best nominal planner by more than 0.5 points |
+| S3 | With the narrow prior O under SD16 truths the primary method is not worse than the best nominal planner |
+| N | M and P both hold in `a7_noise2` (SD16, prior B) |
+
+| Outcome | Meaning and action |
+|---|---|
+| Not M | STOP. At the Burley-level error the best nominal planner loses less than the materiality bar. The direction does not support a top-tier claim; report plainly |
+| M, P, S1, S2, S3, N | STRONG-PRACTICAL. Proceed to the frozen confirmatory protocol with fresh seeds |
+| M, P, S1, S2, S3, not N | REGIME-LIMITED. The effect needs low idiosyncratic noise. Continue only with a narrowed claim (noise regime map); the noise level must then be justified from the literature |
+| M, P, not (S1, S2, S3) | UNSAFE-ADAPTATION. Add a safeguard (A7b) first |
+| M, not P, ceiling recovery at least 0.5 | HEADROOM. Run A7-L (a learned adaptive scorer; specified in a further amendment before any run) |
+| M, not P, ceiling recovery below 0.5 | CEILING-WEAK. Neither practical planners nor the ceiling recover enough: tolerance analysis only, moderate tier |
+
+Reported without a rule: the same quantities at SD10 (the forecast case; scope note: material or not), SD14 and SD20; per-truth regrets; per-cell values; `a7_noise0`, `a7_noise3`, `a7_h1`, `a7_h2`; the wide prior W.
+
+Stop rule. (1) Any assertion in `scripts/run_a7.py` fails (values outside [0, calibrated optimum], BA policy value different from its DP value, a practical planner above the Bayes-adaptive optimum, DPMIS at the nominal truth different from the calibrated value): no table is applied; the cause is fixed and the affected runs are repeated. (2) `a7_main` and `a7_noise2` give "Not M": the direction is dropped. (3) If the wall time of `a7_main` exceeds 4 hours on the author's laptop, stop and reduce the instances per cell before continuing. (4) The descriptive runs never change the outcome.
+
+#### A7.4 Tests and checks [CODE, sandbox, Python 3.12.3, numpy 2.5.4, pandas 3.0.6, 1 core]
+
+`tests/test_adapt.py` (23 tests; 202 tests in the whole suite pass): class dwells (flat and class-specific offsets, integer scaling fails loudly); merging of equal-dwell classes keeps mass and order; the posterior over scales equals an independent joint enumeration (uniform and non-uniform prior); the Bayes-adaptive DP value equals an independent brute force (non-uniform priors, class-specific offsets) and the average of the policy values over the scales equals the DP value; `eval_rec` equals world enumeration for all planners and for deliberately bad policies (infeasible or dead targets); QMDP Q-values equal an independent expectimax; the mixture durations and the first move of MIXCEP equal an independent enumeration; PLUG_DP equals the DP of the most probable scale; with a single-scale support all planners reduce to the nominal ones; practical planners lie between 0 and the calibrated optimum and below the Bayes-adaptive optimum on average; out-of-support truths run without failure; projection is the identity in support. 16 deliberate code mutations of `src/dwell/adapt.py` were tried: 15 are caught by the tests (five survived the first version of the tests and led to new tests); the 16th (dropping the class lower bound m from the translated state) is an equivalent mutant, because m is a function of the dwell in a model with sorted classes.
+
+#### A7.5 Exploratory disclosure (seed 1, small samples; not results)
+
+Smoke runs of the final code on exploratory seed 1 (not a frozen seed), in the sandbox, with the analysis scripts. a7_main, 24 instances (3 per cell): best nominal planner 6.9% (truth 0.8) and 9.3% (truth 1.2); QMDP 1.1% and 3.4%; the Bayes-adaptive ceiling with prior B 1.8% and 2.7%; at SD16 expected regret nominal 5.7%, QMDP 2.4%, ceiling 2.1%; at SD10 with prior O nominal 2.2%, QMDP 1.4%, ceiling 1.1%. PLUG_CEP and MIXCEP were poor (about 14 and 12% at the nominal truth). With prior B the ceiling itself loses 1.9% at the nominal truth 1.0. Noise runs (16 instances for m = 0 and 2, 8 for m = 3): SD16 nominal 8.9% (m = 0), 3.7% (m = 2), 3.2% (m = 3); recovery by QMDP 0.70, 0.26, 0.29. `a7_h1` (16 instances): nominal 3.2%, recovery 0.24. `a7_h2` (16 instances): nominal DPMIS 4.2%, the shared-scale adaptive planners 7.1 to 10.3%. Changes made after seeing these numbers: (1) the safety criterion S1 was moved from prior B to prior O because the ceiling itself pays about 1.9% at the nominal truth under B; (2) the attainment ratio is defined only when the nominal-to-ceiling gap is at least 0.25 points; (3) the forecast-case scope note was added. The main thresholds M, P and N were fixed before these smoke runs were analysed in detail. The smoke suggests the effect shrinks quickly with noise, so a REGIME-LIMITED or weaker outcome is plausible [OPEN].
+
+#### A7.6 Limits
+
+Post-hoc; one shared scale on a three-point (five-point for W) grid; the planners know the noise law and class prior; the Bayes-adaptive policy and QMDP are exact on a small model (n = 4) and their compute does not scale; the realistic within-class noise is unknown; Burley's error is atmospheric only and model-to-model; the fixed convention for out-of-support observations affects the results for truths 0.6 and 1.4; instance (not seed) is the unit because no policy is trained; no learned adaptive scorer is tested.
