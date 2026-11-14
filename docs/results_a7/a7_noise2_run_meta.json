@@ -1,0 +1,99 @@
+{
+  "config": {
+    "master_seed": 20261126,
+    "n": 4,
+    "D0": [
+      5,
+      10
+    ],
+    "value_set": [
+      1,
+      2,
+      3
+    ],
+    "u_low": 0.35,
+    "n_instances": 100,
+    "rho_grid": [
+      1.1,
+      1.5
+    ],
+    "s_grid": [
+      2,
+      4
+    ],
+    "a_grid": [
+      0.5,
+      0.9
+    ],
+    "noise_offsets": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "noise_probs": [
+      0.0625,
+      0.25,
+      0.375,
+      0.25,
+      0.0625
+    ],
+    "scales": [
+      0.8,
+      1.0,
+      1.2
+    ],
+    "truths": [
+      0.8,
+      1.0,
+      1.2
+    ],
+    "priors": {
+      "B": {
+        "lams": [
+          0.8,
+          1.0,
+          1.2
+        ],
+        "weights": null
+      },
+      "O": {
+        "lams": [
+          0.8,
+          1.0,
+          1.2
+        ],
+        "weights": [
+          0.125,
+          0.75,
+          0.125
+        ]
+      }
+    },
+    "practical": {
+      "B": [
+        "PLUG_DP",
+        "PLUG_CEP",
+        "QMDP",
+        "MIXCEP"
+      ],
+      "O": [
+        "PLUG_DP",
+        "PLUG_CEP",
+        "QMDP",
+        "MIXCEP"
+      ]
+    },
+    "name": "a7_noise2"
+  },
+  "config_file": "configs/a7_noise2.json",
+  "git_commit": "d94034b813e4cf970ac026aa4bff4b132d1868d9",
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "cpu_count": 4,
+  "workers": 4,
+  "started": "2026-11-14 08:58:23"
+}

@@ -1,0 +1,16 @@
+/tmp/a6noise: 8 files, 1600 rows
+truth 0.8: best nominal DPMIS 4.76%  ceiling 1.48%
+truth 1.0: best nominal DPMIS -0.00%  ceiling 0.78%
+truth 1.2: best nominal ROLL_CEP 6.25%  ceiling 2.09%
+SD10: best nominal DPMIS 1.45%  ceiling (prior B) 1.03%
+SD14: best nominal DPMIS 2.91%  ceiling (prior B) 1.28%
+SD16: best nominal DPMIS 3.88%  ceiling (prior B) 1.45%
+SD20: best nominal DPMIS 5.82%  ceiling (prior B) 1.79%
+/tmp/a6det: 8 files, 1600 rows
+truth 0.8: best nominal DPMIS 9.07%  ceiling 1.32%
+truth 1.0: best nominal DPMIS -0.00%  ceiling 0.76%
+truth 1.2: best nominal CEP 22.69%  ceiling 2.27%
+SD10: best nominal DPMIS 4.17%  ceiling (prior B) 1.02%
+SD14: best nominal DPMIS 8.34%  ceiling (prior B) 1.28%
+SD16: best nominal ROLL_CEP 11.01%  ceiling (prior B) 1.45%
+SD20: best nominal ROLL_CEP 16.24%  ceiling (prior B) 1.80%

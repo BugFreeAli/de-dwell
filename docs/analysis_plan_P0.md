@@ -451,3 +451,27 @@ Smoke runs of the final code on exploratory seed 1 (not a frozen seed), in the s
 #### A7.6 Limits
 
 Post-hoc; one shared scale on a three-point (five-point for W) grid; the planners know the noise law and class prior; the Bayes-adaptive policy and QMDP are exact on a small model (n = 4) and their compute does not scale; the realistic within-class noise is unknown; Burley's error is atmospheric only and model-to-model; the fixed convention for out-of-support observations affects the results for truths 0.6 and 1.4; instance (not seed) is the unit because no policy is trained; no learned adaptive scorer is tested.
+
+#### A7.7 Outcome (2026-11-14): REGIME-LIMITED
+
+Runs `a7_main` (1600 instances, seed 20261124, 7,940 s) and `a7_noise2` (800 instances, seed 20261126, 4,786 s), both at commit d94034b (recorded in `run_meta.json`; files in `docs/results_a7/`), laptop with 4 workers. The table of A7.3 was applied mechanically by `scripts/decide_a7.py`; no threshold was changed after the runs. All run assertions held. The descriptive runs (`a7_noise0`, `a7_noise3`, `a7_h1`, `a7_h2`) are not yet made.
+
+| Criterion | Value | Result |
+|---|---|---|
+| M, expected regret of best nominal planner (DPMIS) at SD16, noise +-1 | 4.11% (lo5 3.89%) | met |
+| P, QMDP recovery / lower bound / attainment | 0.52 / 0.49 / 0.85 | met |
+| S1, cost at truth 1.0 with prior O | 0.18% (prior B 1.12%, ceiling B 0.85%) | met |
+| S2, truths 0.6 and 1.4 outside the support, QMDP minus nominal | -2.9 and -5.8 points | met |
+| S3, prior O under SD16 truths | 2.16% against 4.11% nominal | met |
+| N, noise +-2: nominal / recovery / attainment | 2.09% (below 3%) / 0.21 / 0.63 | not met |
+
+Outcome: REGIME-LIMITED. Reported without a rule [CODE, `metrics_a7.json`]:
+- Scope: at SD10 (forecast case) the best nominal planner loses 1.54%; the gain of QMDP with prior O is 0.62 points. At SD14 the loss is 3.08%, at SD20 6.16%. At noise +-2 the loss is 0.79%, 1.57%, 2.09%, 3.14% at SD10, 14, 16, 20.
+- Gain of QMDP at SD16: 2.13 points (noise +-1), 0.43 points (noise +-2). Ceiling recovery 0.61 and 0.33.
+- PLUG_DP (2.97%), PLUG_CEP (8.63%) and MIXCEP (7.65%) are worse than QMDP (1.98%) at SD16, prior B, noise +-1. QMDP is the only practical planner that reaches the ceiling.
+- The wide prior W is worse than no adaptation at SD10 (gain -1.05 points) and gains 1.14 points at SD16.
+- The result at noise +-1 reproduces A6 (A6 files re-analysed: best nominal 3.88% at SD16, ceiling cost at truth 1.0: 0.78%; without noise 11.01% and 0.76%; `docs/results_a6_ceiling_check.txt`).
+
+Meaning [OPEN, my reading]: adaptation is material only when the atmosphere forecast is poor (SD of about 14% or more) and the idiosyncratic dwell noise is small. It is not material for forecast-level error (SD 10%) and it shrinks by about a factor of five in gain when the noise grows from +-1 to +-2. The claim that the strong case holds in general is not supported. A narrowed claim (regime map over noise and scale error, QMDP as the practical planner) is supported. The noise level of real targets is not known and decides the result.
+
+Deviations: the tag `p0-a7-plan` already existed when the commit was made (see git notes in the record); the plan commit d94034b precedes the runs. My hedged time estimate (30 to 60 minutes for `a7_main`) was about four times too low.

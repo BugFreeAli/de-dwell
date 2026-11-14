@@ -82,3 +82,9 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] Timing (sandbox core, exploratory seed 1): a7_main about 4.2 s per instance (24 instances: 101 s); noise m = 0, 2, 3 about 0.7, 4.9, 4.4 s per instance in the small smoke samples, 1.2, 7, 11 s in the slower cells; h1 about 2.6 s; h2 about 0.4 s. Full A7 extrapolated about 30,000 s single-core [OPEN, laptop speed not measured].
 - [CODE] Exploratory smoke results (seed 1, 8 to 24 instances; not results) are disclosed in the plan, A7.5.
 - Plan: Section 12 of docs/analysis_plan_P0.md now also holds amendment A7 (dated 2026-11-14; tag p0-a7-plan to be set before the first run).
+
+## A7 results (2026-11-14, author's laptop, 4 workers, Python 3.12.16, numpy 2.5.4, pandas 3.0.6, Windows 11)
+- [CODE] a7_main: 1600 instances, 7,940 s, mean 16.0 s per instance (max 245 s). a7_noise2: 800 instances, 4,786 s, mean 18.7 s per instance (max 216 s). Commit d94034b. Files: docs/results_a7/.
+- [CODE] Decision script outcome: REGIME-LIMITED (M, P, S1, S2, S3 met; N not met). Values in plan A7.7.
+- [CODE] A6 files re-analysed (scripts/analyze_a6_ceiling.py, docs/results_a6_ceiling_check.txt): ceiling cost at truth 1.0 is 0.78% (noise) and 0.76% (no noise); best nominal planner at SD16: 3.88% (noise), 11.01% (no noise).
+- [OPEN] Open: noise level of real targets; descriptive runs a7_noise0, a7_noise3, a7_h1, a7_h2 not yet made.
