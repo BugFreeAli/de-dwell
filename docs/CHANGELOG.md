@@ -44,3 +44,6 @@
 
 ## 2026-11-14, A8 outcome
 - Plan A8.4 (outcome and correction) appended; docs/results_a8_noise3_check.txt, docs/results_a7/a7_noise3_metrics.json added; fit_regime_law.py prints per-run coefficients instead of the exponent; test updated. Earlier text unchanged.
+
+## 2026-11-14, A9
+- Added configs/a9_m1.json, a9_m2.json, a9_m3.json, a9_x2.json, scripts/analyze_a9.py, tests/test_a9.py. Plan A9 appended (earlier text unchanged). record.md: A9 design.

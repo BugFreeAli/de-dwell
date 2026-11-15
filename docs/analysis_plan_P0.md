@@ -527,3 +527,47 @@ Correction of A8.1 (my error, found while analysing this result). The nominal ex
 Other values at noise +-3: nominal loss 1.61% at SD 16% (below the 3% materiality bar), QMDP gain 0.21 points with recovery 0.13, ceiling recovery 0.26; the effect is not material anywhere except possibly the stress case (SD 20%: 2.42%).
 
 Consequence: the gate of A8.3 is passed formally (the claim "nominal loss at +-20% shift scales roughly as the inverse noise variance" predicted the +-3 level within the tolerance, with a bias). The claim of a two-variable regime law is not yet supported. The next step needs data that vary the shift and the noise together (see A9). `scripts/fit_regime_law.py` no longer prints the exponent.
+
+
+### A9 (2026-11-14): does the nominal planner loss depend on the shift and the noise together? (post-hoc origin)
+
+Written before any A9 run. Tag for the frozen text: `p0-a9-plan`. Motivation: A8.4 retracted the two-variable law; what is supported is only that the loss at a fixed +-20% shift falls about as the inverse noise variance (three noise levels, one shift). A9 tests, with fresh seeds and with the nominal planners only (cheap), whether the loss is a function of the ratio rho = shift in steps / noise SD in steps. Shift in steps is |scale - 1| x 5 (soft class of the base classes (5, 10)): scale 0.8 and 1.2 give 1 step, scale 0.6 and 1.4 give 2 steps. The hard class is shifted by twice as much; the ratio is defined by the soft class.
+
+#### A9.1 Runs
+
+All with the instance generator, cells (load 1.1 and 1.5, slew 2 and 4, label accuracy 0.5 and 0.9), n = 4, classes (5, 10), as A7; nominal planners DPMIS, CEP and ROLL_CEP built for the scale 1.0; the true scale is the truth; calibrated optimum by DP. No adaptive planner is evaluated. Run with `scripts/run_a7.py` (configs with empty `priors`); 200 instances per cell, 1600 per run.
+
+| Run | Noise offsets and probabilities | Noise SD (steps) | Truths (scale) | Master seed |
+|---|---|---|---|---|
+| `a9_m1` | -1, 0, 1 with 1/4, 1/2, 1/4 | 0.707 | 0.6, 0.8, 1.2, 1.4 | 20261201 |
+| `a9_m2` | -2 to 2, binomial 1, 4, 6, 4, 1 over 16 | 1.0 | 0.6, 0.8, 1.2, 1.4 | 20261202 |
+| `a9_m3` | -3 to 3, binomial of order 6 | 1.225 | 0.8, 1.2, 1.4 (0.6 is impossible: dwell would be 0) | 20261203 |
+| `a9_x2` | -2, 0, 2 with 1/4, 1/2, 1/4 (the `a9_m1` noise doubled) | 1.414 | 0.6, 0.8, 1.2, 1.4 | 20261204 |
+
+Metric: pooled regret of the best nominal planner per truth (recomputed in every bootstrap resample; 2000 resamples over the instance index, seed 20261205), `scripts/analyze_a9.py`.
+
+#### A9.2 Pre-written criteria (applied by `scripts/analyze_a9.py`)
+
+- C1, noise scaling at a one-step shift (scales 0.8 and 1.2) on `a9_m1`, `a9_m2`, `a9_m3`: with K = regret x noise SD squared, every K lies within +-20% of the mean K of that side (down and up separately).
+- C2, monotone in the ratio: on `a9_m1`, `a9_m2`, `a9_m3`, regret strictly increases with rho on each side (down: 5 points; up: 6 points).
+- C3, equal-ratio pair: `a9_x2` at a two-step shift has rho = 1.414, the same as `a9_m1` at a one-step shift; the regrets (best nominal planner) must agree within the larger of 25% relative or 0.5 points on both sides (0.6 against 0.8, 1.4 against 1.2).
+
+| Outcome | Rule | Action |
+|---|---|---|
+| SUPPORTED | C1, C2 and C3 | The loss is a function of shift over noise. Write A10, the frozen confirmatory protocol with fresh seeds (law and QMDP gain map) |
+| NOISE-LAW-ONLY | C1 but not both of C2 and C3 | The claim stays the inverse-variance scaling at a fixed shift plus the noise map; the author decides whether this is enough |
+| NOT-SUPPORTED | not C1 | Drop the law. Decide the direction (stop or change) |
+
+Stop rule: an assertion in `run_a7.py` fails, or a cell file is missing (the analysis refuses to run): no outcome is applied. Descriptive output (not a criterion): the regret table over all runs, truths and sides, and the lower and upper 90% bounds.
+
+#### A9.3 Tests and disclosure [CODE]
+
+`tests/test_a9.py` (8 tests; the whole suite has 215 passing tests): table values, a synthetic case that must give SUPPORTED, one that must give NOISE-LAW-ONLY, one that must give NOT-SUPPORTED, the C1 boundary on both sides, a missing cell file, per-truth choice of the best planner. 8 deliberate mutations of `analyze_a9.py` were all caught.
+
+Smoke runs on exploratory seed 1 (3 instances per cell, 24 per run; sandbox; not results): at a one-step shift and noise SD 0.707, 1.0, 1.225 the best nominal regret was 6.9, 4.3, 3.6% (down) and 9.3, 3.5, 2.6% (up); C1 was not met in this tiny sample (wide bounds). The doubled-noise run gave at a two-step shift 9.4% (down) and 13.3% (up) against 6.9% and 9.3% for `a9_m1` at a one-step shift (36% and 43% higher). With 24 instances per run these differences are within the bootstrap bounds; they warn that C3 may fail. No criterion or run setting was changed after seeing them.
+
+Expected cost [OPEN, hedged]: the nominal-only runs were about 30 times cheaper than the full runs in the sandbox (0.2 to 0.4 s per instance); scaled by the laptop-to-sandbox factor of the A7 runs (about 3.8) this is about 5 to 10 minutes per run and 30 to 60 minutes for all four.
+
+#### A9.4 Limits
+
+One class structure (5, 10), shifts of 1 and 2 steps only, integer dwell, binomial and one three-point noise shape; the ratio test C3 compares two noise scales that differ by a factor of 2 while the deadlines and slews stay fixed, so a failure may reflect the time scale of the problem and not the law; only nominal planners; post-hoc origin; the thresholds (+-20%, 25%, 0.5 points) are mine.

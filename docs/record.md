@@ -98,3 +98,7 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 ## A8 outcome (2026-11-14)
 - [CODE] a7_noise3 (800 instances, commit 7811ae2): pre-registered check HOLDS 4 of 4; observed nominal regret 0.60, 1.21, 1.61, 2.42% against predicted 0.52, 1.03, 1.37, 2.06% (biased low by 15 to 18%).
 - [CODE] Correction: the earlier exponent 1.98 and 8-point collapse are by construction (the mixture is linear in p). Independent evidence: S = R(0.8) + R(1.2) = 12.32, 6.28, 4.83 at noise SD 0.707, 1.0, 1.225; S x SD^2 = 6.16, 6.28, 7.25. Shift dependence is not quadratic (R(0.6)/R(0.8) = 1.8, R(1.4)/R(1.2) = 2.6).
+
+## A9 design (2026-11-14, sandbox)
+- [CODE] configs a9_m1, a9_m2, a9_m3, a9_x2 (seeds 20261201 to 20261204, 200 instances per cell, nominal planners only), scripts/analyze_a9.py (criteria C1 to C3), tests/test_a9.py (8 tests, 8 mutants caught; suite 215 tests pass).
+- [CODE] Smoke on seed 1 (24 instances per run): C1 not met in the tiny sample; doubled-noise run 36 to 43% above the reference. Disclosed in plan A9.3. No run made.
