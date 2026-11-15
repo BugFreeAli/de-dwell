@@ -33,9 +33,11 @@ def main():
     r = np.array([p[2] for p in pts])
     y = np.array([p[3] for p in pts])
     c = float((r ** 2 * y).sum() / (r ** 4).sum())
-    b = np.polyfit(np.log(r), np.log(y), 1)
     print(f"fit on {len(pts)} points from {len(args.fit)} runs: nominal regret = c * r^2, c = {100*c:.2f} (percent)")
-    print(f"free power-law exponent {b[0]:.3f}; max relative residual {np.abs((y - c * r ** 2) / y).max():.3f}")
+    print("note: inside one run the four levels are exact multiples of each other (the mixture is linear in p), so only the coefficient per run is independent information")
+    for f in args.fit:
+        pr = points(json.load(open(f)))
+        print(f"  coefficient of {pr[0][0]}: {100*np.mean([q[3] / q[2] ** 2 for q in pr]):.2f} (percent)")
     for p in sorted(pts, key=lambda x: x[2]):
         print(f"  {p[0]:10s} r={p[2]:.4f} observed {100*p[3]:5.2f}% [{100*p[4]:.2f}, {100*p[5]:.2f}] fitted {100*c*p[2]**2:5.2f}%")
     if args.predict_m is not None:

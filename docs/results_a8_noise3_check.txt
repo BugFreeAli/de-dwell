@@ -1,0 +1,10 @@
+conda run -n de-dwell python scripts/fit_regime_law.py --fit results/a7_main/metrics_a7.json results/a7_noise2/metrics_a7.json --check results/a7_noise3/metrics_a7.json
+(console output supplied by the author, 2026-11-14; script version before the note on the exponent was removed)
+fit on 8 points from 2 runs: nominal regret = c * r^2, c = 77.29 (percent)
+free power-law exponent 1.982; max relative residual 0.016
+check against results/a7_noise3/metrics_a7.json (tolerance: 25% relative or 0.10 points absolute, whichever larger)
+  SD10: predicted 0.52% observed 0.60% [0.54, 0.68] inside
+  SD14: predicted 1.03% observed 1.21% [1.08, 1.36] inside
+  SD16: predicted 1.37% observed 1.61% [1.43, 1.81] inside
+  SD20: predicted 2.06% observed 2.42% [2.15, 2.71] inside
+verdict: HOLDS (4 of 4)

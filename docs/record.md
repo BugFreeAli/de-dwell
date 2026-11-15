@@ -94,3 +94,7 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [REF] Snippet-level only: aluminium coupons in shear flow, 2A12 model-experiment error 6.2%, Johnson NPS dwell table, an AFIT EADSIM thesis (random dwell draw per target), HPM Monte Carlo arXiv:2602.08477. 9 searches, 2 page reads; not systematic.
 - [CODE] scripts/fit_regime_law.py on docs/results_a7/*: nominal expected regret = 77.3% x r^2 with r = scale-error SD / noise SD (steps); exponent 1.98; max relative residual 1.6%; 8 points, 2 runs. Output: docs/results_a8_regime_law_fit.txt.
 - [CODE] Pre-registered prediction for a7_noise3 (percent): SD10 0.52, SD14 1.03, SD16 1.37, SD20 2.06. Criterion in plan A8.2. tests/test_regime_law.py (5 tests; 5 mutants caught); suite 207 tests pass.
+
+## A8 outcome (2026-11-14)
+- [CODE] a7_noise3 (800 instances, commit 7811ae2): pre-registered check HOLDS 4 of 4; observed nominal regret 0.60, 1.21, 1.61, 2.42% against predicted 0.52, 1.03, 1.37, 2.06% (biased low by 15 to 18%).
+- [CODE] Correction: the earlier exponent 1.98 and 8-point collapse are by construction (the mixture is linear in p). Independent evidence: S = R(0.8) + R(1.2) = 12.32, 6.28, 4.83 at noise SD 0.707, 1.0, 1.225; S x SD^2 = 6.16, 6.28, 7.25. Shift dependence is not quadratic (R(0.6)/R(0.8) = 1.8, R(1.4)/R(1.2) = 2.6).

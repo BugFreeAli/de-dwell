@@ -38,7 +38,8 @@ def test_fit_recovers_coefficient_and_exponent(tmp_path):
     r = run(["--fit", a, b])
     assert r.returncode == 0
     assert "c = 50.00" in r.stdout
-    assert "free power-law exponent 2.000" in r.stdout
+    assert "coefficient of a: 50.00" in r.stdout
+    assert "coefficient of b: 50.00" in r.stdout
 
 
 def test_check_holds_for_exact_prediction_and_fails_for_inflated(tmp_path):
