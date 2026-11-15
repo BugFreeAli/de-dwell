@@ -585,3 +585,45 @@ Runs `a9_m1`, `a9_m2`, `a9_m3`, `a9_x2` (1600 instances each, 551.6, 790.7, 733.
 Outcome: NOT-SUPPORTED. The joint ratio law is rejected: doubling the shift and the noise together raises the loss by about 35% on both sides, so the loss is not scale-free (deadlines and slew times fix a time scale). The inverse-variance scaling at a one-step shift held on the up side (within 3%) and not on the down side (m=3 is 29% above the mean); by the pre-written rule it is not part of the claim. The smoke warning of A9.3 (36 to 43%) was right.
 
 Consequence per the table: drop the law as a claim; do not write A10 as planned. What remains from A7 to A9: the exact model and ceiling, QMDP as the only practical adaptive planner near the ceiling, the noise dependence of the loss and of the QMDP gain, and the loss of the nominal planner as a function of scale error and noise (a regime map without a closed form).
+
+
+### A10 (2026-11-14): does the loss of the nominal planner grow with the swarm size? (post-hoc origin)
+
+Written before any A10 run. Tag for the frozen text: `p0-a10-plan`. Motivation: after A7 to A9 the weakest point is materiality: at realistic noise the loss of the nominal planner stays below 3% at n = 4 (2.09% at noise +-2 and SD 16%). Real swarms are larger. A10 asks whether the loss grows with the number of threats n at equal load. If it does not, the compact paper is the right choice; if it does, a larger-n study is justified.
+
+#### A10.1 Design
+
+Instance generator, cells (load 1.1 and 1.5, slew 2 and 4, label accuracy 0.5 and 0.9), classes (5, 10), values {1, 2, 3} as in A7; the load ratio is defined relative to the last deadline, so it is constant over n by construction while the horizon grows with n; the slew time is fixed. Nominal planners DPMIS, CEP and ROLL_CEP built for the scale 1.0; truths 0.8 and 1.2 (the loss at the nominal truth is 0 for DPMIS); calibrated optimum by exact DP. No adaptive planner (the exact ceiling is too costly beyond n = 4). Quantity: E16 = (R(0.8) + R(1.2)) / 3, the expected regret of the best nominal planner under a scale error with standard deviation 16.3% (as A7). Paired bootstrap over the instance index within a run (2000 resamples, seed 20261220); the best nominal planner per truth is recomputed in every resample. `scripts/run_a7.py` (configs with empty `priors`) and `scripts/analyze_a10.py`.
+
+| Run | n | Noise | Instances per cell | Master seed |
+|---|---|---|---|---|
+| `a10_n3_m1`, `a10_n4_m1`, `a10_n5_m1` | 3, 4, 5 | +-1 (1/4, 1/2, 1/4) | 200, 200, 100 | 20261211, 20261212, 20261213 |
+| `a10_n3_m2`, `a10_n4_m2`, `a10_n5_m2` | 3, 4, 5 | +-2 (binomial 1, 4, 6, 4, 1 over 16) | 200, 200, 100 | 20261214, 20261215, 20261216 |
+| `a10_n6_m1` (optional, descriptive) | 6 | +-1 | 30 | 20261217 |
+
+#### A10.2 Pre-written criteria (computed per noise level by `scripts/analyze_a10.py`)
+
+- Growth: E16 strictly increases over n = 3, 4, 5 (point estimates), the difference E16(n = 5) minus E16(n = 3) is at least 0.5 points and the 5th percentile of that difference (independent bootstrap draws of the two runs) is above 0.
+- Material at n = 5: E16(n = 5) at least 3.0% and its 5th percentile at least 2.0%.
+- Extrapolation: the number of threats n* at which the least-squares line through the three E16 values reaches 3% (n* = 5 + (3% - E16(n = 5)) / slope; infinite if the slope is not positive).
+
+| Outcome | Rule (noise +-2 decides; noise +-1 is required to grow for the first outcome) | Action |
+|---|---|---|
+| GROWS-MATERIAL | growth at both noise levels and material at n = 5 at noise +-2 | Continue toward the top-tier path: plan A11, scale-up beyond the exact DP |
+| MIXED | growth and materiality at noise +-2, no growth at noise +-1 | Decide with the author before any scale-up |
+| GROWS-EXTRAPOLATES | growth at noise +-2, not material at n = 5, n* at most 10 | Continue only after a larger-n check (the optional n = 6 run) and the author's acceptance of the risk |
+| FLAT-OR-FALLING | anything else (including missing runs) | Write the compact paper |
+
+The optional run `a10_n6_m1` is not part of any criterion. Stop rule: an assertion in `run_a7.py` fails or a cell file is missing (the analysis refuses to run): no outcome is applied.
+
+#### A10.3 Tests and disclosure [CODE]
+
+`tests/test_a10.py` (13 tests; 228 tests in the suite pass): table values, each outcome, the growth boundary of 0.5 points, a noisy difference that fails the lower bound, the materiality lower bound, a missing run, a missing cell file, asymmetric truths, the extrapolation arithmetic. 11 deliberate mutations of `analyze_a10.py` were caught (three survived a first version of the tests and led to new tests and to the outcome MIXED, which was undefined before).
+
+Smoke runs on exploratory seed 1 (3 instances per cell, 24 per run; sandbox; not results): E16 (percent) at n = 3, 4, 5 was 4.59, 5.39, 3.02 at noise +-1 and 2.57, 2.59, 1.71 at noise +-2: no growth in this tiny sample, a fall at n = 5. No criterion or run setting was changed after seeing them.
+
+Expected cost [OPEN, hedged]: sandbox time per instance 0.02 s (n = 3), 0.1 to 0.2 s (n = 4), 0.8 to 1.3 s (n = 5) and about 20 s for n = 6; with the laptop factor of about 3.8 and 4 workers: about 40 to 90 minutes for the six main runs and 1 to 2 hours for the optional run.
+
+#### A10.4 Limits
+
+n up to 5 only; equal load means the horizon grows with n; one class structure and one slew grid; nominal planners only (the adaptive gain at larger n is not measured); the thresholds (0.5 points, 3%, 2%, n = 10) are mine; post-hoc origin.

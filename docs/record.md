@@ -107,3 +107,7 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] Four runs of 1600 instances: 551.6, 790.7, 733.4, 554.3 s (about 44 minutes in total). Files: docs/results_a9/decision_a9.json.
 - [CODE] Outcome NOT-SUPPORTED. C1 down side fails (K x 100 = 2.64, 2.48, 3.86), up side passes (3.47, 3.29, 3.43); C2 fails on the down side; C3 fails on both sides: doubled noise at a two-step shift gives 7.04% (down) and 9.47% (up) against 5.27% and 6.95% at the same ratio with noise +-1 (+34% and +36%).
 - [OPEN] Direction decision pending (author).
+
+## A10 design (2026-11-14, sandbox)
+- [CODE] configs a10_n3_m1, a10_n4_m1, a10_n5_m1, a10_n3_m2, a10_n4_m2, a10_n5_m2 (seeds 20261211 to 20261216), a10_n6_m1 (optional, 20261217); scripts/analyze_a10.py; tests/test_a10.py (13 tests, 11 mutants caught; suite 228 tests pass).
+- [CODE] Smoke on seed 1 (24 instances per run): no growth of E16 with n (4.59, 5.39, 3.02 at noise +-1; 2.57, 2.59, 1.71 at noise +-2). No run made.

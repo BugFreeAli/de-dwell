@@ -50,3 +50,6 @@
 
 ## 2026-11-14, A9 outcome
 - Added docs/results_a9/decision_a9.json; plan A9.5 (outcome NOT-SUPPORTED) appended, earlier text unchanged; record.md: A9 outcome.
+
+## 2026-11-14, A10
+- Added configs/a10_*.json, scripts/analyze_a10.py, tests/test_a10.py. Plan A10 appended (earlier text unchanged). record.md: A10 design.

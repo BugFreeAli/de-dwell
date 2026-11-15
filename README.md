@@ -39,3 +39,4 @@ Research Project 2: when does learning beat strong index and optimisation rules 
     configs/a7_*.json         run configurations (fresh master seeds)
     scripts/fit_regime_law.py fits nominal loss = c r^2 and checks the pre-registered prediction for a7_noise3
     scripts/analyze_a9.py     criteria C1 to C3 of amendment A9 (nominal loss against shift and noise)
+    scripts/analyze_a10.py    criteria of amendment A10 (nominal loss against swarm size)
