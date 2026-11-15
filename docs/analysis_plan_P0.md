@@ -627,3 +627,18 @@ Expected cost [OPEN, hedged]: sandbox time per instance 0.02 s (n = 3), 0.1 to 0
 #### A10.4 Limits
 
 n up to 5 only; equal load means the horizon grows with n; one class structure and one slew grid; nominal planners only (the adaptive gain at larger n is not measured); the thresholds (0.5 points, 3%, 2%, n = 10) are mine; post-hoc origin.
+
+#### A10.5 Outcome (2026-11-14): FLAT-OR-FALLING
+
+Runs `a10_n3_m1`, `a10_n4_m1`, `a10_n5_m1`, `a10_n3_m2`, `a10_n4_m2`, `a10_n5_m2` (1600, 1600, 800, 1600, 1600, 800 instances; 34, 288, 1548, 54, 527 and 3417 s on the author's laptop with 4 workers, about 98 minutes in total), at the commit of the plan tag `p0-a10-plan` (ad4f28c). The criteria of A10.2 were applied mechanically by `scripts/analyze_a10.py`; nothing was changed after the runs. Result file: `docs/results_a10/decision_a10.json`.
+
+E16, expected regret of the best nominal planner under a scale error with SD 16.3% (percent):
+
+| Noise | n = 3 | n = 4 | n = 5 | Difference n = 5 minus n = 3 (lower bound) | Material at n = 5 |
+|---|---|---|---|---|---|
+| +-1 | 4.56 | 3.81 | 3.45 | -1.11 (-1.48) | yes (3.45%, lower bound 3.24%) |
+| +-2 | 2.23 | 1.97 | 1.84 | -0.39 (-0.66) | no (1.84%, lower bound 1.70%) |
+
+Outcome: FLAT-OR-FALLING. The loss falls with the swarm size at equal load, at both noise levels, monotonically in n and with the upper side of the difference below zero. The smoke warning of A10.3 was right. At noise +-1 the loss remains material (about 3.5%) at n = 5 but is not growing; at noise +-2 it is not material.
+
+Consequence per the table: write the compact paper. No A11 scale-up. The data of A7 to A10 are treated as final for the compact paper unless the author asks for the optional checks listed in the record (adaptive gain at n = 5, `a10_n6_m1`).

@@ -111,3 +111,9 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 ## A10 design (2026-11-14, sandbox)
 - [CODE] configs a10_n3_m1, a10_n4_m1, a10_n5_m1, a10_n3_m2, a10_n4_m2, a10_n5_m2 (seeds 20261211 to 20261216), a10_n6_m1 (optional, 20261217); scripts/analyze_a10.py; tests/test_a10.py (13 tests, 11 mutants caught; suite 228 tests pass).
 - [CODE] Smoke on seed 1 (24 instances per run): no growth of E16 with n (4.59, 5.39, 3.02 at noise +-1; 2.57, 2.59, 1.71 at noise +-2). No run made.
+
+## A10 outcome (2026-11-14, author's laptop, 4 workers)
+- [CODE] Six runs, 34, 288, 1548, 54, 527, 3417 s (about 98 minutes; my hedge of 40 to 90 minutes was slightly low). Files: docs/results_a10/decision_a10.json.
+- [CODE] E16 (percent) at n = 3, 4, 5: 4.56, 3.81, 3.45 (noise +-1); 2.23, 1.97, 1.84 (noise +-2). Outcome FLAT-OR-FALLING: the loss falls with n. Decision: write the compact paper.
+- [OPEN] Optional before writing: adaptive (QMDP) gain at n = 5 without the ceiling; a10_n6_m1.
+- [REF] Candidate venue seen on the publisher pages: Journal of Defense Modeling and Simulation (SAGE); the publisher guidelines say papers should ideally be 10 to 20 pages; indexing and ranking come from third-party listings and are unverified.

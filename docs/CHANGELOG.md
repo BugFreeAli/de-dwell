@@ -53,3 +53,6 @@
 
 ## 2026-11-14, A10
 - Added configs/a10_*.json, scripts/analyze_a10.py, tests/test_a10.py. Plan A10 appended (earlier text unchanged). record.md: A10 design.
+
+## 2026-11-14, A10 outcome
+- Added docs/results_a10/decision_a10.json; plan A10.5 appended (earlier text unchanged); record.md: A10 outcome.
