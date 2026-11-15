@@ -47,3 +47,6 @@
 
 ## 2026-11-14, A9
 - Added configs/a9_m1.json, a9_m2.json, a9_m3.json, a9_x2.json, scripts/analyze_a9.py, tests/test_a9.py. Plan A9 appended (earlier text unchanged). record.md: A9 design.
+
+## 2026-11-14, A9 outcome
+- Added docs/results_a9/decision_a9.json; plan A9.5 (outcome NOT-SUPPORTED) appended, earlier text unchanged; record.md: A9 outcome.

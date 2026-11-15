@@ -102,3 +102,8 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 ## A9 design (2026-11-14, sandbox)
 - [CODE] configs a9_m1, a9_m2, a9_m3, a9_x2 (seeds 20261201 to 20261204, 200 instances per cell, nominal planners only), scripts/analyze_a9.py (criteria C1 to C3), tests/test_a9.py (8 tests, 8 mutants caught; suite 215 tests pass).
 - [CODE] Smoke on seed 1 (24 instances per run): C1 not met in the tiny sample; doubled-noise run 36 to 43% above the reference. Disclosed in plan A9.3. No run made.
+
+## A9 outcome (2026-11-14, author's laptop, 4 workers)
+- [CODE] Four runs of 1600 instances: 551.6, 790.7, 733.4, 554.3 s (about 44 minutes in total). Files: docs/results_a9/decision_a9.json.
+- [CODE] Outcome NOT-SUPPORTED. C1 down side fails (K x 100 = 2.64, 2.48, 3.86), up side passes (3.47, 3.29, 3.43); C2 fails on the down side; C3 fails on both sides: doubled noise at a two-step shift gives 7.04% (down) and 9.47% (up) against 5.27% and 6.95% at the same ratio with noise +-1 (+34% and +36%).
+- [OPEN] Direction decision pending (author).

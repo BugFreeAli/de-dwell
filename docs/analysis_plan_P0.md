@@ -571,3 +571,17 @@ Expected cost [OPEN, hedged]: the nominal-only runs were about 30 times cheaper 
 #### A9.4 Limits
 
 One class structure (5, 10), shifts of 1 and 2 steps only, integer dwell, binomial and one three-point noise shape; the ratio test C3 compares two noise scales that differ by a factor of 2 while the deadlines and slews stay fixed, so a failure may reflect the time scale of the problem and not the law; only nominal planners; post-hoc origin; the thresholds (+-20%, 25%, 0.5 points) are mine.
+
+#### A9.5 Outcome (2026-11-14): NOT-SUPPORTED
+
+Runs `a9_m1`, `a9_m2`, `a9_m3`, `a9_x2` (1600 instances each, 551.6, 790.7, 733.4 and 554.3 s on the author's laptop, 4 workers), at the commit of the plan tag `p0-a9-plan` (7d01bc4). The criteria of A9.2 were applied mechanically by `scripts/analyze_a9.py`; nothing was changed after the runs. Result file: `docs/results_a9/decision_a9.json`.
+
+| Criterion | Value | Result |
+|---|---|---|
+| C1, K = regret x noise SD^2 (times 100) at a one-step shift, within +-20% of the mean | down 2.64, 2.48, 3.86 (the third is 29% above the mean 3.00); up 3.47, 3.29, 3.43 (within 3% of the mean 3.40) | not met (down side fails, up side passes) |
+| C2, strictly monotone in the ratio | down: 2.58% at 0.816 against 2.48% at 1.0 (bounds overlap); up: monotone | not met (down side) |
+| C3, equal-ratio pair within 25% or 0.5 points | down 7.04% (doubled noise, two-step shift) against 5.27% (noise +-1, one-step shift), +34%; up 9.47% against 6.95%, +36%; the 90% bounds do not overlap on either side | not met |
+
+Outcome: NOT-SUPPORTED. The joint ratio law is rejected: doubling the shift and the noise together raises the loss by about 35% on both sides, so the loss is not scale-free (deadlines and slew times fix a time scale). The inverse-variance scaling at a one-step shift held on the up side (within 3%) and not on the down side (m=3 is 29% above the mean); by the pre-written rule it is not part of the claim. The smoke warning of A9.3 (36 to 43%) was right.
+
+Consequence per the table: drop the law as a claim; do not write A10 as planned. What remains from A7 to A9: the exact model and ceiling, QMDP as the only practical adaptive planner near the ceiling, the noise dependence of the loss and of the QMDP gain, and the loss of the nominal planner as a function of scale error and noise (a regime map without a closed form).
