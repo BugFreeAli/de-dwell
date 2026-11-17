@@ -1,0 +1,22 @@
+{
+  "name": "a7_h2",
+  "n_instances_total": 1600,
+  "git_commit": "bc37d6482bb146ec528fd8f692cd82d84092d03a",
+  "master_seed": 20261129,
+  "noise_offsets": [
+    0
+  ],
+  "noise_probs": [
+    1.0
+  ],
+  "iid": {
+    "nominal_DPMIS": 0.0670776761645806,
+    "nominal_CEP": 0.0814270762449516,
+    "nominal_ROLL_CEP": 0.06697400976346835,
+    "BA_B": 0.055730699867333366,
+    "B:PLUG_DP": 0.07097625307091515,
+    "B:PLUG_CEP": 0.08313645757028765,
+    "B:QMDP": 0.059619802377888664,
+    "B:MIXCEP": 0.08377575288527739
+  }
+}

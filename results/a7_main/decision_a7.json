@@ -1,0 +1,48 @@
+{
+  "criteria": {
+    "M_material": true,
+    "M_values": {
+      "nominal": 0.04105360156969055,
+      "lo5": 0.038948371525847944
+    },
+    "scope_forecast_case_material": false,
+    "scope_forecast_values": {
+      "nominal": 0.015395100588633956,
+      "gain_prior_O": 0.006167732024773873
+    },
+    "P_practical": true,
+    "P_values": {
+      "method": "QMDP",
+      "recovery": 0.5177204267301743,
+      "recovery_lo5": 0.48527899633594046,
+      "attainment": 0.8478848824679165,
+      "ceiling_recovery": 0.6106022615042492
+    },
+    "S1_cost_at_nominal_truth_forecast_prior": true,
+    "S1_value": {
+      "prior_O": 0.001778937617861187,
+      "prior_B": 0.011242961648118999,
+      "ceiling_B": 0.008520943956183302,
+      "ceiling_O": 0.0013249419528188477
+    },
+    "S2_out_of_support_not_worse": true,
+    "S2_values": {
+      "0.6": -0.028712315731856175,
+      "1.4": -0.057941923017038155
+    },
+    "S3_overconfident_prior_not_worse": true,
+    "S3_values": {
+      "overconfident_prior": 0.02164142014052491,
+      "nominal": 0.04105360156969055
+    },
+    "N_values": {
+      "nominal": 0.020939884089138827,
+      "lo5": 0.019138620549110877,
+      "recovery": 0.2067599188900716,
+      "recovery_lo5": 0.1578773317295243,
+      "attainment": 0.6300297100891176
+    },
+    "N_survives_noise2": false
+  },
+  "outcome": "REGIME-LIMITED: the effect needs low idiosyncratic noise; continue only with a claim narrowed to the noise regime map"
+}

@@ -1,0 +1,64 @@
+{
+  "config": {
+    "master_seed": 20261215,
+    "n": 4,
+    "D0": [
+      5,
+      10
+    ],
+    "value_set": [
+      1,
+      2,
+      3
+    ],
+    "u_low": 0.35,
+    "n_instances": 200,
+    "rho_grid": [
+      1.1,
+      1.5
+    ],
+    "s_grid": [
+      2,
+      4
+    ],
+    "a_grid": [
+      0.5,
+      0.9
+    ],
+    "noise_offsets": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "noise_probs": [
+      0.0625,
+      0.25,
+      0.375,
+      0.25,
+      0.0625
+    ],
+    "scales": [
+      0.8,
+      1.0,
+      1.2
+    ],
+    "truths": [
+      0.8,
+      1.2
+    ],
+    "priors": {},
+    "practical": {},
+    "name": "a10_n4_m2"
+  },
+  "config_file": "configs/a10_n4_m2.json",
+  "git_commit": "ad4f28c235f78dbc2cd0712cc62e78eb5b1f9e62",
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "cpu_count": 4,
+  "workers": 4,
+  "started": "2026-11-15 20:40:56"
+}
