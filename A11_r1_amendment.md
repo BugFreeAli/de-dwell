@@ -1,0 +1,21 @@
+
+### A11.r1 (2026-11-17): implementation clarifications and corrections to A11 (before any A11 main run)
+
+Written after the A11 code, the tests and the audit were built, and before any run on the main seed. Tag for the frozen text: `p0-a11-plan-r1`. The main run uses the last tag. No A11 result on the main seed exists. Nothing in this text changes the grid, the thresholds, the method list or the go rule of A11.
+
+1. Corrections to A11.2 and A11.7.
+   (a) The argument that idle is weakly dominated without a dwell budget (A11.2, "Known property") needs a rate profile that does not fall as the breach approaches (g non-increasing in tau). The A11 profile satisfies this (g = gamma for tau <= tau_c, else 1, gamma >= 1). The test of A11.7 item 4 uses such profiles; the brute-force test of item 3 uses arbitrary profiles, for which idle can pay.
+   (b) A11.7 item 1 and the invariant of A11.6.2 ("with gamma = 1 every M and L variant equals the M0 rule") hold for the 16 non-rollout methods with idle enabled, and for the six rollouts with idle disabled. With idle enabled a rollout may strictly improve on the M0 rollout by deferring one step (3 of 120 test cases). The count is reported in the audit (`n_roll_idle_differs_from_m0`) and is not an invariant.
+   (c) "The wait share is expected to be exactly zero" for epsilon = infinity (A11.2) refers to the DP. Rollouts may wait there. The audit asserts it for the DP only.
+2. Definitions the text left open.
+   (a) The rate of a dwell step is read at the start of the step after the slew. Beyond the breach (tau < 1) the profile is extended with g(1); this only enters the step counts of classes that cannot finish in time.
+   (b) L variants: the plan start time of an element is the end of the previous element (an expected value, hence fractional) plus the slew, rounded up to the next integer step for the rate lookup. M variants use g(d_j - t) of the decision time for every plan element.
+   (c) CEP falls back to GMR of the same variant when no plan element is feasible. Ties: the current target first, then the lowest index; idle last.
+   (d) Idle is offered only if some alive threat could still be killed when starting at t + 1 with zero slew and the remaining energy (exact pruning; tested against the unrestricted brute force).
+   (e) Bootstrap: one random generator per cell, seeded with the pair (20261223, cell number in sorted grid order), so the result does not depend on the order of the cells. The paired L minus M bootstrap uses seed 20261224 as in A11.5.
+3. Procedure.
+   (a) The audit and the smoke tests were run on exploratory seed 1, as instructed by the author; the cost probe on seed 2. The audit seeds 20261221 and 20261219 of A11.6 stay unused. The main seed 20261222 has not been used.
+   (b) The author works on `main` only: the branch sentence of A11.12 is replaced by "code, configs, tests and the audit are committed on `main` after the plan tag". Two empty branches (`a11-range-dwell`, `a12-adversary`, commit 51c9cd1) are ignored.
+   (c) Gate: `scripts/run_a11.py` refuses a run with role `main` unless `results/a11_gate.json` exists and carries the hash of `src/dwell/m1.py`, `src/dwell/rules1.py` and `scripts/run_a11.py`. `scripts/a11_gate.py` writes that file only if the tests (22), all 11 mutations (the plan named 10 kinds), the complete control audit (24 cells) and the complete main-grid audit (48 cells) pass with those hashes.
+4. Cost probe (A11.6.5), seed 2, 12 instances in four cells, one sandbox core: mean 0.2 s and maximum 0.66 s per instance for the DP and the 22 methods. Predicted for the main run: 9600 instances, far below the 10-hour limit, so the reduction order of A11.6.5 is not triggered. Laptop speed is not measured [OPEN].
+5. Audit (A11.6.2), exploratory seed 1, 20 instances in each of 48 cells and 24 control cells: no invariant violated in 1440 rows; code hash recorded in `run_meta.json` and in `results/a11_gate.json`. Cost in the audit grid (DP and 22 methods, without audit extras): mean 0.38 s, maximum 8.3 s per instance on one sandbox core; the largest DP had 594,310 states [CODE]. The audit regrets are exploratory; no grid, threshold or method was changed because of them.

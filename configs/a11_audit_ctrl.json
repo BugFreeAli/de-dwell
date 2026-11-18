@@ -1,0 +1,38 @@
+{
+ "n": 4,
+ "D": [
+  5,
+  10
+ ],
+ "value_set": [
+  1,
+  2,
+  3
+ ],
+ "u_low": 0.35,
+ "n_stats": 50,
+ "name": "a11_audit_ctrl",
+ "role": "audit",
+ "master_seed": 1,
+ "n_instances": 20,
+ "rho_grid": [
+  1.1,
+  1.5
+ ],
+ "s_grid": [
+  2,
+  4
+ ],
+ "a_grid": [
+  0.5,
+  0.9
+ ],
+ "gamma_grid": [
+  1
+ ],
+ "eps_grid": [
+  0.5,
+  0.8,
+  "inf"
+ ]
+}

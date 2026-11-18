@@ -1,0 +1,16 @@
+{
+ "code_hash": "34c7a897169626469cc2ed0afecc60cf057bfd9787424da45867372b75c86228",
+ "written": "2026-11-18 19:52:40",
+ "tests": "22 passed in 23.46s",
+ "mutations": "11 of 11 mutations caught",
+ "audit_main_grid": {
+  "cells": 48,
+  "rows": 960,
+  "seed": 1
+ },
+ "audit_control": {
+  "cells": 24,
+  "rows": 480,
+  "seed": 1
+ }
+}
