@@ -1,0 +1,55 @@
+{
+ "config": {
+  "n": 4,
+  "D0": [
+   5,
+   10
+  ],
+  "value_set": [
+   1,
+   2,
+   3
+  ],
+  "u_low": 0.35,
+  "rho_grid": [
+   1.1,
+   1.5
+  ],
+  "s_grid": [
+   2,
+   4
+  ],
+  "a_grid": [
+   0.5,
+   0.9
+  ],
+  "planner_scales": [
+   0.8,
+   1.0,
+   1.2,
+   1.4
+  ],
+  "noise_offsets": [
+   -1,
+   0,
+   1
+  ],
+  "noise_probs": [
+   0.25,
+   0.5,
+   0.25
+  ],
+  "name": "a12_main",
+  "role": "main",
+  "master_seed": 20261228,
+  "n_instances": 200
+ },
+ "code_hash": "d0535058ead193359bdcf6f264e61bf3b7a34931b1d048915f46b886cb83faba",
+ "python": "3.12.16",
+ "numpy": "2.5.4",
+ "pandas": "3.0.6",
+ "platform": "Windows-11-10.0.26100-SP0",
+ "cpu_count": 4,
+ "workers": 4,
+ "started": "2026-11-19 18:08:23"
+}

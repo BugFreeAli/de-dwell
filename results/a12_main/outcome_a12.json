@@ -1,0 +1,13 @@
+{
+ "flags": {
+  "X": true,
+  "R": true,
+  "S": false
+ },
+ "noise2_flags": {
+  "X": false,
+  "R": true,
+  "S": false
+ },
+ "outcome": "REGIME-LIMITED"
+}
