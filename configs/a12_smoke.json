@@ -1,0 +1,42 @@
+{
+ "n": 4,
+ "D0": [
+  5,
+  10
+ ],
+ "value_set": [
+  1,
+  2,
+  3
+ ],
+ "u_low": 0.35,
+ "rho_grid": [
+  1.1
+ ],
+ "s_grid": [
+  2
+ ],
+ "a_grid": [
+  0.9
+ ],
+ "planner_scales": [
+  0.8,
+  1.0,
+  1.2,
+  1.4
+ ],
+ "noise_offsets": [
+  -1,
+  0,
+  1
+ ],
+ "noise_probs": [
+  0.25,
+  0.5,
+  0.25
+ ],
+ "name": "a12_smoke",
+ "role": "audit",
+ "master_seed": 1,
+ "n_instances": 2
+}
