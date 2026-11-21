@@ -40,3 +40,14 @@ Research Project 2: when does learning beat strong index and optimisation rules 
     scripts/fit_regime_law.py fits nominal loss = c r^2 and checks the pre-registered prediction for a7_noise3
     scripts/analyze_a9.py     criteria C1 to C3 of amendment A9 (nominal loss against shift and noise)
     scripts/analyze_a10.py    criteria of amendment A10 (nominal loss against swarm size)
+
+
+## Amendments A11 to A13 files
+    src/dwell/m1.py, rules1.py        A11 model with approach, idle and energy budget; 22 methods
+    src/dwell/hard.py                 A12 hardening adversary and defenders
+    src/dwell/m0g.py                  A13 slew matrix model, bearings, oracle, row runner
+    src/dwell/analysis_a11.py, analysis_a12.py, analysis_a13.py   go-rule and decision logic
+    scripts/run_a11.py, run_a12.py, run_a13.py                     resumable runners (gate file required for main runs)
+    scripts/a11_gate.py, a12_gate.py, a13_gate.py                  write results/aNN_gate.json (tests, mutations, audits)
+    scripts/analyze_a11.py, analyze_a12.py, analyze_a13.py         decision tables
+    scripts/mutate_a11.py, mutate_a12.py, mutate_a13.py            mutation checks

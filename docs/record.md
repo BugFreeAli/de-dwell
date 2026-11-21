@@ -117,3 +117,28 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] E16 (percent) at n = 3, 4, 5: 4.56, 3.81, 3.45 (noise +-1); 2.23, 1.97, 1.84 (noise +-2). Outcome FLAT-OR-FALLING: the loss falls with n. Decision: write the compact paper.
 - [OPEN] Optional before writing: adaptive (QMDP) gain at n = 5 without the ceiling; a10_n6_m1.
 - [REF] Candidate venue seen on the publisher pages: Journal of Defense Modeling and Simulation (SAGE); the publisher guidelines say papers should ideally be 10 to 20 pages; indexing and ranking come from third-party listings and are unverified.
+
+
+## A11 (2026-11-17 to 2026-11-19, added 2026-11-20; record.md had stopped at A10)
+- [CODE] Plan frozen in commit d44d9be, code and gate in 910f210 (22 tests, 11 of 11 mutations caught, audit 960 rows main grid and 480 rows control, seed 1, no violation). Main run seed 20261222: 48 cells, 9600 rows, 0 violations, wall 3571 s on 4 workers.
+- [CODE] Outcome NO-GO: 0 flagged cells, largest best-method regret 4.12% (rho 1.1, s 2, a 0.5, gamma 2, eps 0.5; ROLL_CEP_L), mean over cells 0.62%; best method is a rollout in 95.8% of cells. Value of idle 0.42% at eps 0.5 and 0 at eps 0.8 and infinity. Recomputed from the raw cell files on 2026-11-20 (summary_cells.csv).
+- [DOC] Plan text A11.r1 was committed in 910f210 and appended to the plan only after the run (append_a11_r1.py failed its end-of-file check); disclosed in the plan.
+
+## A12 (2026-11-19 to 2026-11-20)
+- [CODE] Plan frozen in commit 4d795d4, code and gate in ac3a94a (70 tests passed, 1 skipped, 12 of 12 mutations caught, audit 160 rows seed 1). Main run seed 20261228 (1600 rows) and noise run seed 20261229 (800 rows), 0 violations, commit ac3a94a.
+- [CODE] Outcome REGIME-LIMITED: X true (best non-adaptive worst case 10.24%, 5th percentile 9.63), R true (best adaptive 3.62%, reduction 0.646, 5th percentile 0.614), S false (largest difference +0.30 points, 5th percentile 0.08), N false (noise +-2: 5.38%, 5th percentile 4.80). Minimax mixture equals the pure defender IID_DP. Saved analysis output re-read on 2026-11-20; matches.
+- [OPEN] The three best adaptive defenders are built with knowledge of the attack family, and IID_DP has zero regret under PH50_14 by construction.
+
+## A13 (2026-11-20)
+- [CODE] Plan frozen in commit d412965 (before any code), code, r1, audits and gate in a603068 (25 tests, 10 of 10 mutations caught; audit seed 1, 640 rows matrix and 640 rows control, no violation; gate hash 16bb7279...0098). 
+- [CODE] Audit review recomputed from the raw audit files on 2026-11-20 equals the console output: best regret at most 1.52%, mean best regret 0.72% (matrix) against 0.35% (uniform control).
+- [DOC] Main run seed 20261241: 32 cells, 6400 rows, 0 violations, wall 2021.2 s. Outcome NO-GO: largest best-method regret 1.38%, no cell flagged, ROLL_CEP best in all cells. Details in the plan, A13 outcome. Control on the main seed not run.
+- [CODE] Check of A13.r1 item 1 (sandbox, 2000 draws, n = 5, master seed 9): closure changed 60%, 60%, 27%, 61% of the matrices (SPREAD 2 and 4, CLUSTER 2 and 4); mean slew after rounding and closure 1.81, 3.80, 1.87, 3.82 against s_bar 2, 4, 2, 4, so the geometry cells have about 0.90 to 0.96 times the mean slew of the control.
+
+## Repository state notes (review of 2026-11-20)
+- [CODE] Full test suite: 346 passed in 39.7 s (sandbox, one core). The plan file is append-only over all commits (the A1 commit replaced the placeholder line "None yet.").
+- [CODE] No git tags exist after a10-result (workflow decision of 2026-11-17: no branches, no tags); freeze points after A10 are commits d44d9be (A11), 4d795d4 (A12), d412965 (A13). Earlier text in the literature document that mentions tags p0-a11-plan and p0-a12-plan does not match the repository.
+- [CODE] The plan holds the paragraph "A12 outcome (2026-11-19): REGIME-LIMITED" twice with identical text.
+- [CODE] environment-lock.yml is a UTF-16 export of the conda base environment, not of de-dwell; run_meta.json files hold the actual Python, numpy and pandas versions.
+- [CODE] The A13 gate hashes only src/dwell/m0g.py and scripts/run_a13.py; changes to dp.py, m0.py, rules.py, instances.py or analysis_a13.py would not close it.
+- [OPEN] Raw per-instance cell files are git-ignored; keep a dated archive with SHA-256 outside git (results/a13_main, a12_main, a12_noise2, a11_main).

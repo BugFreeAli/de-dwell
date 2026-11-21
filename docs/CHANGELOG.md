@@ -56,3 +56,12 @@
 
 ## 2026-11-14, A10 outcome
 - Added docs/results_a10/decision_a10.json; plan A10.5 appended (earlier text unchanged); record.md: A10 outcome.
+
+
+## 2026-11-17 to 2026-11-19, A11 and A12 (added 2026-11-20)
+- A11 (range-dependent dwell, idle, energy budget): src/dwell/m1.py, rules1.py, analysis_a11.py, scripts/run_a11.py, analyze_a11.py, a11_gate.py, mutate_a11.py, configs a11_*, tests/test_a11.py, test_a11_analysis.py, brute_m1.py. Plan A11 and A11.r1. Outcome NO-GO.
+- A12 (budgeted hardening adversary): src/dwell/hard.py, analysis_a12.py, scripts/run_a12.py, analyze_a12.py, a12_gate.py, mutate_a12.py, configs a12_*, tests/test_a12.py, test_a12_analysis.py. Plan A12 and A12.r1. Outcome REGIME-LIMITED.
+
+## 2026-11-20, A13 (geometry-dependent slew)
+- Added src/dwell/m0g.py, analysis_a13.py, scripts/run_a13.py, analyze_a13.py, a13_gate.py, mutate_a13.py, configs a13_*, tests/test_a13.py, test_a13_analysis.py, brute_g.py. Plan A13 (d412965) and A13.r1 (a603068).
+- Outcome NO-GO (main seed 20261241, 6400 rows, largest best-method regret 1.38%). docs/record.md: A11 to A13 entries and repository-state notes added.
