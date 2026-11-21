@@ -144,3 +144,10 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [OPEN] Raw per-instance cell files are git-ignored; keep a dated archive with SHA-256 outside git (results/a13_main, a12_main, a12_noise2, a11_main).
 
 - [CODE] Correction 2026-11-21: the A13 outcome text first said "the seventh structure test without a gap larger than 5%"; that count was not verified and was replaced (docs/analysis_plan_P0.md, same sentence) by the pattern statement above.
+
+
+## A14 (2026-11-21)
+- [CODE] Plan commit before code; code, tests (64), mutations (19 of 19), audit (seed 1, 480 rows, 0 violations) and gate in 5f3f913 (gate hash 6aa7a603...7719). The author's audit output equals my sandbox run to the last digit.
+- [DOC] Main run seed 20261251: 24 cells, 4800 rows, 0 violations, 1064.1 s on 4 workers. Outcome MISMATCH (regions for the EV set, none for ALL). Best EV-based method loses up to 32.1% of the survival probability (rho 1.5, s 2, a 0.5, lam 0.25; DPEV); best of all 17 loses at most 13.5% (RU_DPEV; absolute gap 2.2 points, not flagged because of the absolute floor). Details in the plan, A14 outcome.
+- [OPEN] Reading: the loss is caused by the objective (the exact expected-value optimum is mismatched), concentrated at lam 0.25 and low label accuracy; objective-aware one-step improvement recovers most of it at n = 4. n = 5 and the dependence on lam are described in A14.r1 (planned, not run).
+- [CODE] Previous gate hashes covered 2 files; the A14 gate covers 7 (m0u, analysis_a14, m0, dp, rules, instances, run_a14).

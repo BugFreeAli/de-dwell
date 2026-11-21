@@ -65,3 +65,8 @@
 ## 2026-11-20, A13 (geometry-dependent slew)
 - Added src/dwell/m0g.py, analysis_a13.py, scripts/run_a13.py, analyze_a13.py, a13_gate.py, mutate_a13.py, configs a13_*, tests/test_a13.py, test_a13_analysis.py, brute_g.py. Plan A13 (d412965) and A13.r1 (a603068).
 - Outcome NO-GO (main seed 20261241, 6400 rows, largest best-method regret 1.38%). docs/record.md: A11 to A13 entries and repository-state notes added.
+
+
+## 2026-11-21, A14 (asset-survival objective)
+- Added src/dwell/m0u.py, analysis_a14.py, scripts/run_a14.py, analyze_a14.py, a14_gate.py, mutate_a14.py, report_a14_lam.py, configs a14_*, tests/test_a14.py, test_a14_analysis.py, brute_u.py. Plan A14 (commit before code), code and gate 5f3f913.
+- Outcome MISMATCH (main seed 20261251, 4800 rows). A14.r1 plans a tolerance sweep and an n = 5 spot check (descriptive). docs/record.md: A14 entry.
