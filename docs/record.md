@@ -142,3 +142,5 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] environment-lock.yml is a UTF-16 export of the conda base environment, not of de-dwell; run_meta.json files hold the actual Python, numpy and pandas versions.
 - [CODE] The A13 gate hashes only src/dwell/m0g.py and scripts/run_a13.py; changes to dp.py, m0.py, rules.py, instances.py or analysis_a13.py would not close it.
 - [OPEN] Raw per-instance cell files are git-ignored; keep a dated archive with SHA-256 outside git (results/a13_main, a12_main, a12_noise2, a11_main).
+
+- [CODE] Correction 2026-11-21: the A13 outcome text first said "the seventh structure test without a gap larger than 5%"; that count was not verified and was replaced (docs/analysis_plan_P0.md, same sentence) by the pattern statement above.
