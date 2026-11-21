@@ -1,0 +1,46 @@
+{
+ "config": {
+  "D0": [
+   5,
+   10
+  ],
+  "value_set": [
+   1,
+   2,
+   3
+  ],
+  "u_low": 0.35,
+  "n_grid": [
+   4
+  ],
+  "rho_grid": [
+   0.8,
+   1.1,
+   1.5
+  ],
+  "s_grid": [
+   2,
+   4
+  ],
+  "a_grid": [
+   0.5,
+   0.9
+  ],
+  "lam_grid": [
+   0.25,
+   0.5
+  ],
+  "name": "a14_audit",
+  "role": "audit",
+  "master_seed": 1,
+  "n_instances": 20
+ },
+ "code_hash": "6aa7a603232dac9ccdfcd627180f02dd2ea50061b8b792824daff77f11227719",
+ "python": "3.12.16",
+ "numpy": "2.5.4",
+ "pandas": "3.0.6",
+ "platform": "Windows-11-10.0.26100-SP0",
+ "cpu_count": 4,
+ "workers": 4,
+ "started": "2026-11-21 17:08:03"
+}

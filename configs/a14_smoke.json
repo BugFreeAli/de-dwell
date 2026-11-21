@@ -1,0 +1,31 @@
+{
+ "D0": [
+  5,
+  10
+ ],
+ "value_set": [
+  1,
+  2,
+  3
+ ],
+ "u_low": 0.35,
+ "n_grid": [
+  4
+ ],
+ "rho_grid": [
+  1.1
+ ],
+ "s_grid": [
+  2
+ ],
+ "a_grid": [
+  0.5
+ ],
+ "lam_grid": [
+  0.25
+ ],
+ "name": "a14_smoke",
+ "role": "audit",
+ "master_seed": 2,
+ "n_instances": 3
+}
