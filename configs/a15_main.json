@@ -1,0 +1,83 @@
+{
+ "D0": [
+  5,
+  10
+ ],
+ "value_set": [
+  1,
+  2,
+  3
+ ],
+ "u_low": 0.35,
+ "train_n": [
+  4,
+  5
+ ],
+ "rho_grid": [
+  1.1,
+  1.5
+ ],
+ "s_grid": [
+  2,
+  4
+ ],
+ "a_grid": [
+  0.5,
+  0.9
+ ],
+ "lam_grid": [
+  0.15,
+  0.25,
+  0.4,
+  0.5,
+  0.6
+ ],
+ "eval_rho": [
+  1.1,
+  1.5
+ ],
+ "eval_s": [
+  2,
+  4
+ ],
+ "eval_a": [
+  0.5,
+  0.9
+ ],
+ "eval_lam": [
+  0.25,
+  0.5
+ ],
+ "shard_size": 25,
+ "epochs": 60,
+ "time_sizes": [
+  7,
+  9
+ ],
+ "name": "a15_main",
+ "role": "main",
+ "pool_seed": 20261262,
+ "eval_seed": 20261261,
+ "pool_instances": 500,
+ "worlds_per_instance": 24,
+ "n_seeds": 10,
+ "eval_sizes": [
+  5,
+  7,
+  9
+ ],
+ "eval_instances": {
+  "5": 80,
+  "7": 50,
+  "9": 30
+ },
+ "time_instances": 10,
+ "time_states": 12,
+ "distill_n": [
+  6,
+  7
+ ],
+ "distill_instances": 150,
+ "distill_worlds": 30,
+ "distill_a_max": 9
+}

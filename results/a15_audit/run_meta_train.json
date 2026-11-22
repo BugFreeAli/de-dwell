@@ -1,0 +1,88 @@
+{
+ "config": {
+  "D0": [
+   5,
+   10
+  ],
+  "value_set": [
+   1,
+   2,
+   3
+  ],
+  "u_low": 0.35,
+  "train_n": [
+   4,
+   5
+  ],
+  "rho_grid": [
+   1.1,
+   1.5
+  ],
+  "s_grid": [
+   2,
+   4
+  ],
+  "a_grid": [
+   0.5,
+   0.9
+  ],
+  "lam_grid": [
+   0.15,
+   0.25,
+   0.4,
+   0.5,
+   0.6
+  ],
+  "eval_rho": [
+   1.5
+  ],
+  "eval_s": [
+   4
+  ],
+  "eval_a": [
+   0.5,
+   0.9
+  ],
+  "eval_lam": [
+   0.25
+  ],
+  "shard_size": 10,
+  "epochs": 30,
+  "time_sizes": [
+   7,
+   9
+  ],
+  "name": "a15_audit",
+  "role": "audit",
+  "pool_seed": 1,
+  "eval_seed": 2,
+  "pool_instances": 40,
+  "worlds_per_instance": 12,
+  "n_seeds": 3,
+  "eval_sizes": [
+   5,
+   7
+  ],
+  "eval_instances": {
+   "5": 4,
+   "7": 3
+  },
+  "time_instances": 2,
+  "time_states": 4,
+  "distill_n": [
+   6
+  ],
+  "distill_instances": 10,
+  "distill_worlds": 6,
+  "distill_a_max": 9
+ },
+ "code_hash": "cc3f06b0e0777ef2e67894fb0a766ccfa7f73921a8c78226d7876bd59a5c7287",
+ "python": "3.12.16",
+ "numpy": "2.5.4",
+ "pandas": "3.0.6",
+ "platform": "Windows-11-10.0.26100-SP0",
+ "cpu_count": 4,
+ "workers": 4,
+ "stage": "train",
+ "started": "2026-11-22 21:36:41"
+}

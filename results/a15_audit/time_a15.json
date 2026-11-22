@@ -1,0 +1,50 @@
+{
+ "per_decision": {
+  "7": {
+   "IL_AD": {
+    "mean_ms": 2.53724999492988,
+    "median_ms": 0.810549987363629,
+    "decisions": 8
+   },
+   "CEP": {
+    "mean_ms": 0.5718000065826345,
+    "median_ms": 0.5200500163482502,
+    "decisions": 8
+   },
+   "CEPS": {
+    "mean_ms": 0.6408750014088582,
+    "median_ms": 0.5834499897900969,
+    "decisions": 8
+   },
+   "RU_CEP": {
+    "mean_ms": 33.623250001255656,
+    "median_ms": 29.770250010187738,
+    "decisions": 8
+   }
+  },
+  "9": {
+   "IL_AD": {
+    "mean_ms": 42.16798749985173,
+    "median_ms": 33.37365000334103,
+    "decisions": 8
+   },
+   "CEP": {
+    "mean_ms": 32.28404999390477,
+    "median_ms": 26.648150000255555,
+    "decisions": 8
+   },
+   "CEPS": {
+    "mean_ms": 48.12527499962016,
+    "median_ms": 32.27595001226291,
+    "decisions": 8
+   },
+   "RU_CEP": {
+    "mean_ms": 1844.4431375064596,
+    "median_ms": 1288.9505999919493,
+    "decisions": 8
+   }
+  }
+ },
+ "cpu": "Intel64 Family 6 Model 142 Stepping 9, GenuineIntel",
+ "python": "3.12.16"
+}

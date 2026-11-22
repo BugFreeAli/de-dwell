@@ -1,0 +1,15 @@
+{
+ "code_hash": "cc3f06b0e0777ef2e67894fb0a766ccfa7f73921a8c78226d7876bd59a5c7287",
+ "written": "2026-11-22 21:38:19",
+ "tests": "26 passed in 4.02s",
+ "mutations": "19 of 19 mutations caught",
+ "audit": {
+  "pool_shards": 4,
+  "pool_d_shards": 1,
+  "models": 15,
+  "cells": 4,
+  "rows": 14,
+  "pool_seed": 1,
+  "eval_seed": 2
+ }
+}
