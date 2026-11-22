@@ -70,3 +70,7 @@
 ## 2026-11-21, A14 (asset-survival objective)
 - Added src/dwell/m0u.py, analysis_a14.py, scripts/run_a14.py, analyze_a14.py, a14_gate.py, mutate_a14.py, report_a14_lam.py, configs a14_*, tests/test_a14.py, test_a14_analysis.py, brute_u.py. Plan A14 (commit before code), code and gate 5f3f913.
 - Outcome MISMATCH (main seed 20261251, 4800 rows). A14.r1 plans a tolerance sweep and an n = 5 spot check (descriptive). docs/record.md: A14 entry.
+
+
+## 2026-11-21, A14.r1 (descriptive runs)
+- Added scripts/report_a14_lam.py, configs/a14_lam.json (tolerance sweep) and configs/a14_n5.json (n = 5 spot check, rho 1.1 and 1.5). Outcomes recorded in docs/analysis_plan_P0.md (A14.r1 outcome) and docs/record.md.

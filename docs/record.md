@@ -151,3 +151,9 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [DOC] Main run seed 20261251: 24 cells, 4800 rows, 0 violations, 1064.1 s on 4 workers. Outcome MISMATCH (regions for the EV set, none for ALL). Best EV-based method loses up to 32.1% of the survival probability (rho 1.5, s 2, a 0.5, lam 0.25; DPEV); best of all 17 loses at most 13.5% (RU_DPEV; absolute gap 2.2 points, not flagged because of the absolute floor). Details in the plan, A14 outcome.
 - [OPEN] Reading: the loss is caused by the objective (the exact expected-value optimum is mismatched), concentrated at lam 0.25 and low label accuracy; objective-aware one-step improvement recovers most of it at n = 4. n = 5 and the dependence on lam are described in A14.r1 (planned, not run).
 - [CODE] Previous gate hashes covered 2 files; the A14 gate covers 7 (m0u, analysis_a14, m0, dp, rules, instances, run_a14).
+
+
+## A14.r1 (2026-11-21)
+- [DOC] Tolerance sweep (seed 20261253, n = 4, 40 cells, 8000 rows, 0 violations, 534.9 s): at lam 0.25 two EV regions replicate the A14 finding (best EV-based method up to 38.0%, best of all 17 up to 18.8%, cell rho 1.5, s 2, a 0.5); at lam 0.4 and above the best EV-based method loses at most 4.8%; lam 0.1 has no informative cell. No monotone trend is claimed (informative cells differ per lam).
+- [DOC] n = 5 spot check (16 cells, 1600 rows, 0 violations, 889.3 s): best EV-based method up to 19.3% (DPEV), best of all 17 up to 6.8% (RU_DPEV); mean regret over informative cells DPEV 5.34, RU_DPEV 1.27, RU_CEP 3.70, CEPS 9.00. Cost per instance 3.6 to 10.3 times the n = 4 cost.
+- [OPEN] Reading: the mismatch persists at n = 5 and on a new seed; the open question is a scalable objective-aware method. No go rule applied; the A14 outcome MISMATCH is unchanged.
