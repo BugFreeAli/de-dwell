@@ -1,0 +1,115 @@
+{
+ "result": {
+  "outcome": "LEARN-BEHIND",
+  "objective_matters": false,
+  "accumulated_value_needed": true,
+  "planner_feature_helps": true,
+  "improves_cheap_planner": false
+ },
+ "contrasts": [
+  {
+   "a": "IL_A",
+   "b": "CEPS",
+   "n": 5,
+   "mean_delta": 0.002103420454545435,
+   "min_delta": -0.021176113636363736,
+   "max_delta": 0.016263079545454584,
+   "p": 0.34765625,
+   "undefined": false,
+   "holm_reject": false,
+   "material": false,
+   "win": false
+  },
+  {
+   "a": "IL_AD",
+   "b": "CEPS",
+   "n": 7,
+   "mean_delta": -0.008911808274999955,
+   "min_delta": -0.027051717500000017,
+   "max_delta": 0.007403985000000057,
+   "p": 0.986328125,
+   "undefined": false,
+   "holm_reject": false,
+   "material": false,
+   "win": false
+  },
+  {
+   "a": "IL_AD",
+   "b": "CEPS",
+   "n": 9,
+   "mean_delta": -0.01593797283333327,
+   "min_delta": -0.03921004579166665,
+   "max_delta": 0.009112180000000136,
+   "p": 0.9951171875,
+   "undefined": false,
+   "holm_reject": false,
+   "material": false,
+   "win": false
+  },
+  {
+   "a": "IL_AD",
+   "b": "RU_CEP",
+   "n": 7,
+   "mean_delta": -0.02667198827500008,
+   "min_delta": -0.04481189750000014,
+   "max_delta": -0.010356195000000068,
+   "p": 1.0,
+   "undefined": false,
+   "holm_reject": false,
+   "material": false,
+   "win": false
+  },
+  {
+   "a": "IL_AD",
+   "b": "RU_CEP",
+   "n": 9,
+   "mean_delta": -0.03960686533333331,
+   "min_delta": -0.06287893829166669,
+   "max_delta": -0.014556712499999902,
+   "p": 1.0,
+   "undefined": false,
+   "holm_reject": false,
+   "material": false,
+   "win": false
+  },
+  {
+   "a": "IL_A",
+   "b": "IL_G",
+   "n": 5,
+   "mean_delta": 0.05156496249999999,
+   "min_delta": 0.030063011363636316,
+   "max_delta": 0.07397755681818186,
+   "p": 0.0009765625,
+   "undefined": false,
+   "holm_reject": true,
+   "material": true,
+   "win": true
+  },
+  {
+   "a": "IL_G",
+   "b": "IL_EV",
+   "n": 5,
+   "mean_delta": -0.005815259090909086,
+   "min_delta": -0.023800329545454635,
+   "max_delta": 0.019212647727272714,
+   "p": 0.9033203125,
+   "undefined": false,
+   "holm_reject": false,
+   "material": false,
+   "win": false
+  },
+  {
+   "a": "IL_G",
+   "b": "IL_G_noacc",
+   "n": 5,
+   "mean_delta": 0.04258066363636362,
+   "min_delta": 0.025279465909090915,
+   "max_delta": 0.06299548863636356,
+   "p": 0.0009765625,
+   "undefined": false,
+   "holm_reject": true,
+   "material": true,
+   "win": true
+  }
+ ]
+}

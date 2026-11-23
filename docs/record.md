@@ -157,3 +157,10 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [DOC] Tolerance sweep (seed 20261253, n = 4, 40 cells, 8000 rows, 0 violations, 534.9 s): at lam 0.25 two EV regions replicate the A14 finding (best EV-based method up to 38.0%, best of all 17 up to 18.8%, cell rho 1.5, s 2, a 0.5); at lam 0.4 and above the best EV-based method loses at most 4.8%; lam 0.1 has no informative cell. No monotone trend is claimed (informative cells differ per lam).
 - [DOC] n = 5 spot check (16 cells, 1600 rows, 0 violations, 889.3 s): best EV-based method up to 19.3% (DPEV), best of all 17 up to 6.8% (RU_DPEV); mean regret over informative cells DPEV 5.34, RU_DPEV 1.27, RU_CEP 3.70, CEPS 9.00. Cost per instance 3.6 to 10.3 times the n = 4 cost.
 - [OPEN] Reading: the mismatch persists at n = 5 and on a new seed; the open question is a scalable objective-aware method. No go rule applied; the A14 outcome MISMATCH is unchanged.
+
+
+## A15 (2026-11-22 to 2026-11-23)
+- [CODE] Plan commit 5170031 before any code; code, 26 tests, 19 of 19 mutations, audit pipeline and gate in df36152 (gate hash cc3f06b0...7287). The author's audit and gate run matched my sandbox (same hash).
+- [DOC] Main run: pool 170 s, training of 50 models 475 s, evaluation 2560 rows with 0 violations 3468 s; time stage separate. Outcome LEARN-BEHIND: IL_AD minus RU_CEP -2.7 and -4.0 points at n = 7 and 9 (all seeds negative); IL_AD minus CEPS -0.9 and -1.6; IL_A minus CEPS +0.2 (n = 5, not significant). Accumulated value needed (IL_G_noacc -4.3 points, Holm win); planner feature helps (IL_A over IL_G +5.2 points); teacher objective effect not shown.
+- [DOC] Decision time at n = 9: RU_CEP 439 ms, CEPS 10.3 ms, IL_AD 10.5 ms (42 times faster than RU_CEP, but equal to CEPS).
+- [OPEN] Reading: learning does not add over the objective-aware planners here; CEPS keeps +6.4 and +7.3 points over its expected-value counterpart CEP at n = 7 and 9 at equal cost (descriptive, no paired intervals yet). Next candidate: a planner-side confirmatory plan (A16).

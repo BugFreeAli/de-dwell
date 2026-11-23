@@ -74,3 +74,8 @@
 
 ## 2026-11-21, A14.r1 (descriptive runs)
 - Added scripts/report_a14_lam.py, configs/a14_lam.json (tolerance sweep) and configs/a14_n5.json (n = 5 spot check, rho 1.1 and 1.5). Outcomes recorded in docs/analysis_plan_P0.md (A14.r1 outcome) and docs/record.md.
+
+
+## 2026-11-23, A15 (learned scorers against objective-aware planners)
+- Added src/dwell/learned_g.py, analysis_a15.py, scripts/run_a15.py (stages pool, train, eval, time), analyze_a15.py, a15_gate.py, mutate_a15.py, configs a15_*, tests/test_a15.py, test_a15_analysis.py. Plan 5170031, code and gate df36152.
+- Outcome LEARN-BEHIND (main run, 2560 rows). docs/record.md: A15 entry.
