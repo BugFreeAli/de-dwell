@@ -79,3 +79,8 @@
 ## 2026-11-23, A15 (learned scorers against objective-aware planners)
 - Added src/dwell/learned_g.py, analysis_a15.py, scripts/run_a15.py (stages pool, train, eval, time), analyze_a15.py, a15_gate.py, mutate_a15.py, configs a15_*, tests/test_a15.py, test_a15_analysis.py. Plan 5170031, code and gate df36152.
 - Outcome LEARN-BEHIND (main run, 2560 rows). docs/record.md: A15 entry.
+
+
+## 2026-11-24, A16 (planner-side confirmatory evaluation)
+- Added src/dwell/a16.py, analysis_a16.py, scripts/run_a16.py, analyze_a16.py, a16_gate.py, mutate_a16.py, configs a16_*, tests/test_a16.py, test_a16_analysis.py. Plan 9f2f4d1, code and gate ee8d676.
+- Outcome CONFIRMED (main run, 4480 rows). docs/record.md: A16 entry.

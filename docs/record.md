@@ -164,3 +164,9 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [DOC] Main run: pool 170 s, training of 50 models 475 s, evaluation 2560 rows with 0 violations 3468 s; time stage separate. Outcome LEARN-BEHIND: IL_AD minus RU_CEP -2.7 and -4.0 points at n = 7 and 9 (all seeds negative); IL_AD minus CEPS -0.9 and -1.6; IL_A minus CEPS +0.2 (n = 5, not significant). Accumulated value needed (IL_G_noacc -4.3 points, Holm win); planner feature helps (IL_A over IL_G +5.2 points); teacher objective effect not shown.
 - [DOC] Decision time at n = 9: RU_CEP 439 ms, CEPS 10.3 ms, IL_AD 10.5 ms (42 times faster than RU_CEP, but equal to CEPS).
 - [OPEN] Reading: learning does not add over the objective-aware planners here; CEPS keeps +6.4 and +7.3 points over its expected-value counterpart CEP at n = 7 and 9 at equal cost (descriptive, no paired intervals yet). Next candidate: a planner-side confirmatory plan (A16).
+
+
+## A16 (2026-11-23 to 2026-11-24)
+- [CODE] Plan commit 9f2f4d1 before any code; code, 18 tests, 17 of 17 mutations, audit and gate in ee8d676 (gate hash 0ba38840...0349, identical to my sandbox).
+- [DOC] Main run: 88 cells, 4480 rows, 0 violations, 3596.5 s. Outcome CONFIRMED: P1 +3.22, +4.90, +6.68 points at n = 5, 7, 9 (lower bounds 2.62, 4.45, 5.89); P2 RU_CEP minus CEPS +1.76 and +1.69 (upper bounds 2.13, 2.11); P3 regime difference +4.70 points (lower 3.99). n = 11 CEPS minus CEP +6.97 (descriptive). All three robustness variants show the mismatch (CEPS minus CEP +4.58, +2.22, +3.95).
+- [OPEN] Reading: P2 holds for the base family only (CEPS to RU_CEP regret gap 5.1, 5.0 and 8.7 points in the variants); tau explains the gain of CEPS over CEP (Spearman -0.401) but not the DPEV loss at n = 5 (+0.111). Next candidate: planner robustness across instance families at n = 7 and 9 (A17).
