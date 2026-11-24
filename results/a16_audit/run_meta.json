@@ -1,0 +1,79 @@
+{
+ "config": {
+  "D0": [
+   5,
+   10
+  ],
+  "value_set": [
+   1,
+   2,
+   3
+  ],
+  "u_low": 0.35,
+  "rho_grid": [
+   1.1
+  ],
+  "s_grid": [
+   2
+  ],
+  "a_grid": [
+   0.5
+  ],
+  "lam_grid": [
+   0.25
+  ],
+  "name": "a16_audit",
+  "role": "audit",
+  "eval_seed": 2,
+  "sizes": [
+   {
+    "n": 5,
+    "instances": 6,
+    "level": "exact"
+   },
+   {
+    "n": 7,
+    "instances": 6,
+    "level": "ru"
+   },
+   {
+    "n": 9,
+    "instances": 4,
+    "level": "ru"
+   },
+   {
+    "n": 11,
+    "instances": 2,
+    "level": "cheap"
+   }
+  ],
+  "variants": [
+   {
+    "name": "K3",
+    "D0": [
+     3,
+     6,
+     10
+    ],
+    "value_set": [
+     1,
+     2,
+     3
+    ]
+   }
+  ],
+  "variant_n": 5,
+  "variant_a": [
+   0.5
+  ],
+  "variant_instances": 4
+ },
+ "code_hash": "0ba38840da39fd9327c43971d8a3853a6d514b08d905d5a5ba45aec5d9540349",
+ "python": "3.12.16",
+ "numpy": "2.5.4",
+ "pandas": "3.0.6",
+ "platform": "Windows-11-10.0.26100-SP0",
+ "cpu_count": 4,
+ "workers": 4,
+ "started": "2026-11-24 06:24:05"
+}
