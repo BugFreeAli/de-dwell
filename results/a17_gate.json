@@ -1,0 +1,12 @@
+{
+ "code_hash": "12537126b6ee6312da2c2675ff1b80ef9e4117abfcbd71f1ca348622ebcb0065",
+ "written": "2026-11-25 06:47:23",
+ "tests": "7 passed in 11.99s",
+ "mutations": "12 of 12 mutations caught",
+ "audit": {
+  "cells": 9,
+  "rows": 27,
+  "eval_seed": 3,
+  "sec_sum": 112.7
+ }
+}
