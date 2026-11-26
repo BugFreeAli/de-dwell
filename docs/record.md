@@ -170,3 +170,9 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] Plan commit 9f2f4d1 before any code; code, 18 tests, 17 of 17 mutations, audit and gate in ee8d676 (gate hash 0ba38840...0349, identical to my sandbox).
 - [DOC] Main run: 88 cells, 4480 rows, 0 violations, 3596.5 s. Outcome CONFIRMED: P1 +3.22, +4.90, +6.68 points at n = 5, 7, 9 (lower bounds 2.62, 4.45, 5.89); P2 RU_CEP minus CEPS +1.76 and +1.69 (upper bounds 2.13, 2.11); P3 regime difference +4.70 points (lower 3.99). n = 11 CEPS minus CEP +6.97 (descriptive). All three robustness variants show the mismatch (CEPS minus CEP +4.58, +2.22, +3.95).
 - [OPEN] Reading: P2 holds for the base family only (CEPS to RU_CEP regret gap 5.1, 5.0 and 8.7 points in the variants); tau explains the gain of CEPS over CEP (Spearman -0.401) but not the DPEV loss at n = 5 (+0.111). Next candidate: planner robustness across instance families at n = 7 and 9 (A17).
+
+
+## A17 (2026-11-24 to 2026-11-25)
+- [CODE] Code, 7 tests, 12 of 12 mutations, audit and gate in commit 2913a1f (gate hash 12537126...0065, identical to my sandbox). Deviation: the A17 plan text was not committed before the run (append_a17_plan.py was run before A17_amendment.md was in the repository root); the deciding rules were in committed code and configs before the run (see the plan file).
+- [DOC] Main run: 160 cells, 5280 rows, 0 violations, 4413.7 s. Outcome ROBUST: CEPS minus CEP +4.24 to +6.78 points in all 8 variant statements (lower bounds 3.36 to 5.92); P3 pooled +5.19 (lower 4.54). Cheap-planner class: ADEQUATE in 3 of 8 variant statements, INCONCLUSIVE in 5, never ROLLOUT-WORTH (RU_CEP minus CEPS +0.45 to +3.78).
+- [OPEN] Reading: the mismatch and the planner gain are robust across the families; adequacy of the cheap planner is borderline and seed-sensitive near 3 points. Next: freeze the evidence and write.

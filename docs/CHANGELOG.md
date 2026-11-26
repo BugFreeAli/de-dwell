@@ -84,3 +84,8 @@
 ## 2026-11-24, A16 (planner-side confirmatory evaluation)
 - Added src/dwell/a16.py, analysis_a16.py, scripts/run_a16.py, analyze_a16.py, a16_gate.py, mutate_a16.py, configs a16_*, tests/test_a16.py, test_a16_analysis.py. Plan 9f2f4d1, code and gate ee8d676.
 - Outcome CONFIRMED (main run, 4480 rows). docs/record.md: A16 entry.
+
+
+## 2026-11-25, A17 (planner robustness across instance families)
+- Added src/dwell/analysis_a17.py, scripts/run_a17.py, analyze_a17.py, a17_gate.py, mutate_a17.py, configs a17_*, tests/test_a17.py (reuses src/dwell/a16.py). Code and gate 2913a1f; plan text committed after the run (deviation noted in the plan).
+- Outcome ROBUST (main run, 5280 rows). docs/record.md: A17 entry.
