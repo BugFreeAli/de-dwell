@@ -183,3 +183,9 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [DOC] Main run: 192 cells, 12800 rows, 0 violations, 7747.8 s. Outcome MOSTLY: CEPS minus CEP holds in 8 of 9 statements (fails at scale 0.8, n = 5: +1.22, lower bound 0.97); control scale 1.0: +2.87, +5.98, +6.86 points at n = 5, 7, 9.
 - [DOC] A wrong dwell scale costs 12 to 54 points of survival probability (informed minus nominal CEPS, all LARGE); the informed expected-value planner beats the nominal survival-aware planner in all nine statements; the rollout is below CEPS at scales 1.2 and 1.4.
 - [OPEN] Reading: the planner gain survives, but dwell-model accuracy matters far more than the objective; the loss is for a nominal planner that abandons threats beyond the largest nominal dwell. Open: whether to test a planner that learns the scale (A19) or to write with A18 as a sensitivity section.
+
+
+## A19 (2026-11-27)
+- [CODE] Plan 896bc1b (frozen before code); code, 32 tests, 39 of 39 mutations, audit and gate a586f44 (gate hash 0d8a986d...3891, identical to my sandbox).
+- [DOC] Pilot: 64 cells, 1280 rows, 0 violations, 313.3 s, rule GO (pooled recovery 0.99). Main: 128 cells, 7680 rows, 0 violations, 2082.8 s. Outcome WORKS / LEARNING-ADDS: ADAPT minus NOM +14.5 to +48.3 points at the scales 0.8, 1.2 and 1.4 (all lower bounds above 13 points), pooled recovery 1.00; ADAPT minus CLAMP +3.5 to +15.6 points (lower bounds 2.6 to 14.1); regret against the exact optimum at n = 5: 1.3 to 2.3 points for ADAPT, 17.8 to 44.1 for NOM.
+- [OPEN] Reading: learning the scale removes the A18 loss; not abandoning (CLAMP) already removes about four fifths of it at scales 1.2 and 1.4. Open: a rollout-matched baseline, true scales outside the prior, class-specific error and decision times (A20); the design favours the learner.

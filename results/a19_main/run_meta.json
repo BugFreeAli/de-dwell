@@ -1,0 +1,63 @@
+{
+ "config": {
+  "u_low": 0.35,
+  "D0": [
+   5,
+   10
+  ],
+  "value_set": [
+   1,
+   2,
+   3
+  ],
+  "support": [
+   0.8,
+   1.0,
+   1.2,
+   1.4
+  ],
+  "rho_grid": [
+   1.1,
+   1.5
+  ],
+  "s_grid": [
+   2,
+   4
+  ],
+  "a_grid": [
+   0.5,
+   0.9
+  ],
+  "lam_grid": [
+   0.25,
+   0.5
+  ],
+  "scales": [
+   1.0,
+   0.8,
+   1.2,
+   1.4
+  ],
+  "sizes": [
+   {
+    "n": 5,
+    "instances": 60
+   },
+   {
+    "n": 7,
+    "instances": 60
+   }
+  ],
+  "name": "a19_main",
+  "role": "main",
+  "eval_seed": 20261301
+ },
+ "code_hash": "0d8a986d49593e2b50e353894fc44d9e90fcd37bbb192559c65eac35b9153891",
+ "python": "3.12.16",
+ "numpy": "2.5.4",
+ "pandas": "3.0.6",
+ "platform": "Windows-11-10.0.26100-SP0",
+ "cpu_count": 4,
+ "workers": 4,
+ "started": "2026-11-27 14:24:05"
+}

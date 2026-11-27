@@ -1262,3 +1262,39 @@ Reported, not part of the label: U_ADAPT_V against U_ADAPT; the mean regret of e
 **A19.7 Procedure and cost.** Commit this text. Add the code, run tests, mutations, audit and gate, commit. Run the pilot (configs/a19_pilot.json) and analyse it with scripts/analyze_a19.py --dir results/a19_pilot; apply the pilot rule. Only after GO run configs/a19_main.json once with 4 workers and analyse with scripts/analyze_a19.py --dir results/a19_main. Cost, calibrated on the real A18 cell times (the author's laptop took about 5 to 7 times my sandbox time per instance on the hard cells, and my A18 estimate was too low): my sandbox needs about 260 s (pilot) and 1730 s (main) on one core; hedged wall time on the author's laptop with 4 workers: pilot 10 to 30 minutes, main 60 to 120 minutes [OPEN, not measured there]; the gate needs about 15 to 30 minutes (39 mutations).
 **A19.8 What each label means (not commitments).** WORKS: a planner that learns the dwell scale repairs most of the A18 loss without a cost when the nominal model is right, and the paper's survival claim holds under dwell error. HELPS: it repairs part of it; the shortfall is reported with the statements that fail. LIMITED or NO GAIN: learning from the kills in an episode does not repair the loss and the paper reports A18 as a limitation. LEARNING-ADDS against CLAMP-COMPARABLE says whether learning is needed or not abandoning is enough.
 **A19.9 Limits stated now.** The true scale is always in the support of the prior (a scale outside it is not tested); one common multiplicative error for all classes, fixed per episode; four scales and the base family only; n = 5 and 7 only and no exact reference at n = 7; informative cells are selected with the informed planner and differ between scales; ADAPT is a one-step lookahead with a CEPS base policy (not the Bayes-optimal learner, whose exact value is not computed); thresholds are mine; the amendments A1 to A19 are post-hoc relative to each other.
+
+
+#### A19 outcome (2026-11-27): WORKS / LEARNING-ADDS
+Pilot (role pilot, eval seed 20261302, n = 5, 20 instances per cell) after commit a586f44 (gate hash 0d8a986d...3891): 64 cells, 1280 rows, 0 violations, 313.3 s on 4 workers (hedged estimate 10 to 30 minutes). Console output supplied by the author [DOC]; raw files not re-analysed by me. Pooled recovery 0.99 (lower bound 0.98), loss at the control -0.02 points of survival probability (ADAPT above NOM): pilot rule GO.
+Main run (role main, eval seed 20261301, bootstrap seed 20261303) after the same commit: 128 cells, 7680 rows, 0 violations, 2082.8 s on 4 workers (hedged estimate 60 to 120 minutes). Console output supplied by the author [DOC]; raw files not re-analysed by me.
+ADAPT minus NOM (points; one-sided 95% lower bound in brackets; informative cells; instances). P1 (lower bound at least 3 points) holds in all 6 statements; the control has no P1 statement:
+  - scale 1.0 (control): n = 5: +1.51 (lower 1.11); 11 of 16 cells, 660 instances; n = 7: +1.63 (lower 1.25); 8 of 16 cells, 480 instances
+  - scale 0.8: n = 5: +15.58 (lower 14.11), P1 holds; 11 of 16 cells, 660 instances; n = 7: +14.46 (lower 13.07), P1 holds; 8 of 16 cells, 480 instances
+  - scale 1.2: n = 5: +42.80 (lower 40.82), P1 holds; 11 of 16 cells, 660 instances; n = 7: +48.28 (lower 46.29), P1 holds; 9 of 16 cells, 540 instances
+  - scale 1.4: n = 5: +38.22 (lower 36.05), P1 holds; 9 of 16 cells, 540 instances; n = 7: +40.08 (lower 38.29), P1 holds; 10 of 16 cells, 600 instances
+P2 (upper bound of NOM minus ADAPT at most 3 points at the control) holds at n = 5 and 7 (n = 5: upper bound of U_NOM minus U_ADAPT -1.11, P2 holds; n = 7: upper bound of U_NOM minus U_ADAPT -1.25, P2 holds).
+Recovery of the gap to the informed rollout planner (U_RU_CEP_T minus U_NOM), pooled over the six statements: 1.00 (lower bound 1.00, class HIGH), mean gap 33.4 points; per statement:
+  - scale 1.0: n = 5: gap to informed 2.00 points, R 0.76 (lower 0.63) HIGH; n = 7: gap to informed 2.06 points, R 0.79 (lower 0.72) HIGH
+  - scale 0.8: n = 5: gap to informed 16.16 points, R 0.96 (lower 0.94) HIGH; n = 7: gap to informed 14.79 points, R 0.98 (lower 0.97) HIGH
+  - scale 1.2: n = 5: gap to informed 42.83 points, R 1.00 (lower 1.00) HIGH; n = 7: gap to informed 48.61 points, R 0.99 (lower 0.99) HIGH
+  - scale 1.4: n = 5: gap to informed 37.25 points, R 1.03 (lower 1.01) HIGH; n = 7: gap to informed 39.98 points, R 1.00 (lower 1.00) HIGH
+ADAPT minus CLAMP (points; lower bound in brackets), S1 (lower bound at least 1 point) holds in all 6 statements:
+  - scale 1.0 (control): n = 5: +1.51 (lower 1.11); n = 7: +1.63 (lower 1.25)
+  - scale 0.8: n = 5: +15.58 (lower 14.11); n = 7: +14.46 (lower 13.07)
+  - scale 1.2: n = 5: +8.01 (lower 6.89); n = 7: +8.25 (lower 7.28)
+  - scale 1.4: n = 5: +8.66 (lower 7.45); n = 7: +3.49 (lower 2.60)
+Mean survival probability over the informative cells (NOM, CLAMP, ADAPT, ADAPT_V, CEPS_T, RU_CEP_T):
+  - scale 1.0: n = 5: 0.68, 0.68, 0.70, 0.65, 0.68, 0.70; n = 7: 0.72, 0.72, 0.74, 0.71, 0.72, 0.74
+  - scale 0.8: n = 5: 0.52, 0.52, 0.67, 0.61, 0.66, 0.68; n = 7: 0.65, 0.65, 0.79, 0.77, 0.78, 0.79
+  - scale 1.2: n = 5: 0.16, 0.51, 0.59, 0.56, 0.58, 0.59; n = 7: 0.15, 0.55, 0.63, 0.62, 0.62, 0.64
+  - scale 1.4: n = 5: 0.19, 0.48, 0.57, 0.54, 0.53, 0.56; n = 7: 0.16, 0.53, 0.56, 0.55, 0.55, 0.56
+Regret against the exact optimum of the true model at n = 5 (points, informative cells; NOM, CLAMP, ADAPT, ADAPT_V, CEPS_T, RU_CEP_T): scale 1.0: 3.51, 3.51, 2.0, 6.6, 3.51, 1.51; scale 0.8: 17.84, 17.84, 2.26, 8.72, 3.53, 1.68; scale 1.2: 44.12, 9.33, 1.32, 4.3, 2.77, 1.29; scale 1.4: 40.4, 10.83, 2.17, 5.49, 5.7, 3.15.
+Label: WORKS; second label LEARNING-ADDS.
+Pilot (descriptive, n = 5; ADAPT minus NOM, lower bound in brackets):
+  - scale 1.0 (control): n = 5: +1.93 (lower 1.37); 11 of 16 cells, 220 instances
+  - scale 0.8: n = 5: +14.85 (lower 12.33), P1 holds; 11 of 16 cells, 220 instances
+  - scale 1.2: n = 5: +47.78 (lower 44.76), P1 holds; 11 of 16 cells, 220 instances
+  - scale 1.4: n = 5: +39.12 (lower 35.81), P1 holds; 9 of 16 cells, 180 instances
+Expectation of A19.1 against the outcome [OPEN]: ADAPT was expected to recover a large part of the gap and P2 to hold; both occurred. The expectation that CLAMP might recover much of the loss at 1.2 and 1.4 was also met (CLAMP regret 9.3 and 10.8 points against 44.1 and 40.4 for NOM), and at scale 0.8 CLAMP is identical to NOM because the abandon rule does not bind there.
+Meaning [OPEN, my reading]: (1) A planner that learns the dwell scale from the kills and survivals it observes recovers essentially the whole gap to the informed rollout planner at n = 5 and 7 (regret 1.3 to 2.3 points against the exact optimum at n = 5, against 17.8 to 44.1 for NOM). (2) Much of the A18 loss at the scales 1.2 and 1.4 is caused by abandoning a threat that survives more than the largest nominal dwell: CLAMP removes about four fifths of it (my arithmetic on the printed regrets); learning adds 3.5 to 15.6 points over CLAMP. (3) ADAPT contains a rollout, which explains why it is above NOM by 1.5 and 1.6 points even at the correct scale; the cheap vote version ADAPT_V (no rollout) is about 3 points (n = 5) and 1 point (n = 7) below NOM at the control and 2 to 12 points above CLAMP at the wrong scales (my arithmetic on the rounded means; no intervals computed). A rollout-matched non-learning baseline (CLAMP with a rollout) was not run, so the part of the ADAPT gain over CLAMP that is due to the rollout is not separated. (4) The design favours the learner: the eight dwell values are all different so one kill shows the scale, the true scale is always in the prior, and the error is one common factor. Decision time was not measured.
+Limits as in A19.9, and: n = 9 not run; the control has no P1 statement (ADAPT is 1.5 and 1.6 points above NOM there, lower bounds 1.1 and 1.3, below the 3-point margin).

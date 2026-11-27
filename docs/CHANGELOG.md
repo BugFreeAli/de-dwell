@@ -94,3 +94,8 @@
 ## 2026-11-27, A18 (survival objective under a wrong dwell scale)
 - Added src/dwell/a18.py, analysis_a18.py, scripts/run_a18.py, analyze_a18.py, a18_gate.py, mutate_a18.py, configs a18_*, tests/test_a18.py, append_a18_plan.py. Plan 85a2a09, code and gate ae60e31.
 - Outcome MOSTLY (main run, 12800 rows). docs/analysis_plan_P0.md and docs/record.md: A18 outcome.
+
+
+## 2026-11-27, A19 (learning the dwell scale during the episode)
+- Added src/dwell/a19.py, analysis_a19.py, scripts/run_a19.py, analyze_a19.py, a19_gate.py, mutate_a19.py, configs a19_main, a19_pilot, a19_audit, tests/test_a19.py, append_a19_plan.py. Plan 896bc1b, code and gate a586f44.
+- Outcome WORKS / LEARNING-ADDS (main run, 7680 rows; pilot GO). docs/analysis_plan_P0.md and docs/record.md: A19 outcome.
