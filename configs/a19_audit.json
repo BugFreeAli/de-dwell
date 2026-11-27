@@ -1,0 +1,49 @@
+{
+ "u_low": 0.35,
+ "D0": [
+  5,
+  10
+ ],
+ "value_set": [
+  1,
+  2,
+  3
+ ],
+ "support": [
+  0.8,
+  1.0,
+  1.2,
+  1.4
+ ],
+ "rho_grid": [
+  1.5
+ ],
+ "s_grid": [
+  2
+ ],
+ "a_grid": [
+  0.5
+ ],
+ "lam_grid": [
+  0.25
+ ],
+ "scales": [
+  1.0,
+  0.8,
+  1.2,
+  1.4
+ ],
+ "sizes": [
+  {
+   "n": 5,
+   "instances": 6
+  },
+  {
+   "n": 7,
+   "instances": 4
+  }
+ ],
+ "name": "a19_audit",
+ "role": "audit",
+ "eval_seed": 3
+}
