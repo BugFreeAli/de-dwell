@@ -176,3 +176,10 @@ Tags: [CODE] produced or checked by code in this repository, [DOC] stated in a d
 - [CODE] Code, 7 tests, 12 of 12 mutations, audit and gate in commit 2913a1f (gate hash 12537126...0065, identical to my sandbox). Deviation: the A17 plan text was not committed before the run (append_a17_plan.py was run before A17_amendment.md was in the repository root); the deciding rules were in committed code and configs before the run (see the plan file).
 - [DOC] Main run: 160 cells, 5280 rows, 0 violations, 4413.7 s. Outcome ROBUST: CEPS minus CEP +4.24 to +6.78 points in all 8 variant statements (lower bounds 3.36 to 5.92); P3 pooled +5.19 (lower 4.54). Cheap-planner class: ADEQUATE in 3 of 8 variant statements, INCONCLUSIVE in 5, never ROLLOUT-WORTH (RU_CEP minus CEPS +0.45 to +3.78).
 - [OPEN] Reading: the mismatch and the planner gain are robust across the families; adequacy of the cheap planner is borderline and seed-sensitive near 3 points. Next: freeze the evidence and write.
+
+
+## A18 (2026-11-26 to 2026-11-27)
+- [CODE] Plan 85a2a09 (frozen before code), code, 20 tests, 27 of 27 mutations, audit and gate ae60e31 (gate hash 1a6aec13...17ff, identical to my sandbox).
+- [DOC] Main run: 192 cells, 12800 rows, 0 violations, 7747.8 s. Outcome MOSTLY: CEPS minus CEP holds in 8 of 9 statements (fails at scale 0.8, n = 5: +1.22, lower bound 0.97); control scale 1.0: +2.87, +5.98, +6.86 points at n = 5, 7, 9.
+- [DOC] A wrong dwell scale costs 12 to 54 points of survival probability (informed minus nominal CEPS, all LARGE); the informed expected-value planner beats the nominal survival-aware planner in all nine statements; the rollout is below CEPS at scales 1.2 and 1.4.
+- [OPEN] Reading: the planner gain survives, but dwell-model accuracy matters far more than the objective; the loss is for a nominal planner that abandons threats beyond the largest nominal dwell. Open: whether to test a planner that learns the scale (A19) or to write with A18 as a sensitivity section.

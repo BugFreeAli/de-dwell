@@ -1195,3 +1195,37 @@ Secondary, reported with intervals and not part of the label: (a) cost of the wr
 **A18.7 Procedure and cost.** Commit this text. Add the code, run tests, mutations, audit and gate, commit. Run configs/a18_main.json once with 4 workers and analyse with scripts/analyze_a18.py --dir results/a18_main. Cost from my sandbox timing on one core, summed over all 64 cells per size at one instance per cell: n = 5 about 12 s, n = 7 about 5 s, n = 9 about 43 s, so about 3100 s in all; hedged for the author's laptop with 4 workers: 40 to 90 minutes [OPEN, not measured there].
 **A18.8 What each label means (not commitments).** ROBUST: the planner claim of A16 and A17 holds for the practical nominal planner at every tested scale error. MOSTLY: the scales or sizes where P1 fails are reported as limits. NOT ROBUST: the claim holds for a correct dwell model only and the paper says so; the secondary classes then show whether knowing the dwell or knowing the objective matters more.
 **A18.9 Limits stated now.** One common multiplicative error for all classes (no class-specific or random error); the error is fixed per instance and unknown to the planner (no learning of the scale during the episode); planners are nominal, with no robust or Bayes-adaptive planner; three scales and the base family only; planners only (no learned scorers); no exact reference at n = 7 and 9; informative cells are selected with the informed planner; the thresholds are those of A16 and A17; the amendments A1 to A18 are post-hoc relative to each other.
+
+
+#### A18 outcome (2026-11-27): MOSTLY
+Main run after commit ae60e31 (gate hash 1a6aec13...17ff), role main, eval seed 20261291, bootstrap seed 20261292. Console output supplied by the author [DOC]; raw files not re-analysed by me. 192 cells, 12800 rows, 0 violations, wall 7747.8 s on 4 workers. The hedged estimate of A18.7 (40 to 90 minutes) was too low: the run took 129 minutes, and the n = 9 cells at rho 1.1, s 2 took up to 1535 s each.
+P1 (CEPS minus CEP, points; one-sided 95% lower bound in brackets; informative cells; instances):
+  - control scale 1.0: n = 5: +2.87 (2.44), 11 of 16 cells, 880 instances; n = 7: +5.98 (5.39), 9 of 16 cells, 720 instances; n = 9: +6.86 (6.00), 7 of 16 cells, 280 instances
+  - scale 0.8: n = 5: +1.22 (0.97), 11 of 16 cells, 880 instances FAILS; n = 7: +3.04 (2.66), 9 of 16 cells, 720 instances; n = 9: +1.74 (1.22), 4 of 16 cells, 160 instances
+  - scale 1.2: n = 5: +3.85 (2.90), 12 of 16 cells, 960 instances; n = 7: +5.00 (3.91), 10 of 16 cells, 800 instances; n = 9: +5.70 (3.94), 6 of 16 cells, 240 instances
+  - scale 1.4: n = 5: +4.18 (3.18), 10 of 16 cells, 800 instances; n = 7: +5.85 (4.62), 9 of 16 cells, 720 instances; n = 9: +4.15 (2.82), 9 of 16 cells, 360 instances
+P1 holds in 8 of the 9 statements and fails at scale 0.8, n = 5 (+1.22, lower bound 0.97, below the 1 point needed). Label (P1 only): MOSTLY.
+Cost of the wrong scale (U_CEPS_T minus U_CEPS, points; upper bound in brackets; class), all LARGE:
+  - scale 1.0: n = 5: +0.00 (0.00) SMALL; n = 7: +0.00 (0.00) SMALL; n = 9: +0.00 (0.00) SMALL
+  - scale 0.8: n = 5: +13.98 (15.21) LARGE; n = 7: +12.31 (13.50) LARGE; n = 9: +20.77 (23.73) LARGE
+  - scale 1.2: n = 5: +39.11 (40.62) LARGE; n = 7: +53.84 (55.46) LARGE; n = 9: +50.13 (53.22) LARGE
+  - scale 1.4: n = 5: +32.65 (34.40) LARGE; n = 7: +40.03 (41.62) LARGE; n = 9: +41.70 (43.88) LARGE
+Awareness against knowledge (U_CEPS minus U_CEP_T, points; lower bound in brackets; class; the class is the printed one, the upper bounds were not printed), KNOWLEDGE-WINS in all nine statements:
+  - scale 1.0: n = 5: +2.87 (2.44) AWARENESS-WINS; n = 7: +5.98 (5.39) AWARENESS-WINS; n = 9: +6.86 (6.00) AWARENESS-WINS
+  - scale 0.8: n = 5: -10.69 (-11.95) KNOWLEDGE-WINS; n = 7: -6.38 (-7.63) KNOWLEDGE-WINS; n = 9: -12.65 (-15.81) KNOWLEDGE-WINS
+  - scale 1.2: n = 5: -37.08 (-38.57) KNOWLEDGE-WINS; n = 7: -49.78 (-51.44) KNOWLEDGE-WINS; n = 9: -45.31 (-48.41) KNOWLEDGE-WINS
+  - scale 1.4: n = 5: -30.29 (-32.10) KNOWLEDGE-WINS; n = 7: -37.47 (-39.10) KNOWLEDGE-WINS; n = 9: -38.79 (-40.95) KNOWLEDGE-WINS
+Cheap planner (U_RU_CEP minus U_CEPS, points; upper bound in brackets; class):
+  - scale 1.0: n = 5: +1.55 (1.91) ADEQUATE; n = 7: +1.24 (1.66) ADEQUATE; n = 9: +1.07 (1.44) ADEQUATE
+  - scale 0.8: n = 5: +2.15 (2.83) ADEQUATE; n = 7: +0.76 (1.51) ADEQUATE; n = 9: +1.49 (3.31) INCONCLUSIVE
+  - scale 1.2: n = 5: -1.72 (-1.08) ADEQUATE; n = 7: -2.34 (-1.44) ADEQUATE; n = 9: -2.55 (-1.39) ADEQUATE
+  - scale 1.4: n = 5: -2.49 (-1.68) ADEQUATE; n = 7: -2.59 (-1.60) ADEQUATE; n = 9: -3.79 (-2.67) ADEQUATE
+Mean survival probability over the informative cells (CEP, CEPS, CEP_T, CEPS_T):
+  - scale 1.0: n = 5: 0.62, 0.65, 0.62, 0.65; n = 7: 0.67, 0.73, 0.67, 0.73; n = 9: 0.66, 0.73, 0.66, 0.73
+  - scale 0.8: n = 5: 0.47, 0.48, 0.58, 0.62; n = 7: 0.64, 0.67, 0.73, 0.79; n = 9: 0.43, 0.45, 0.57, 0.65
+  - scale 1.2: n = 5: 0.14, 0.18, 0.55, 0.57; n = 7: 0.12, 0.17, 0.67, 0.71; n = 9: 0.06, 0.12, 0.57, 0.62
+  - scale 1.4: n = 5: 0.15, 0.19, 0.50, 0.52; n = 7: 0.11, 0.16, 0.54, 0.56; n = 9: 0.09, 0.13, 0.52, 0.55
+Regret against the exact optimum of the true model at n = 5 (points, informative cells; CEP, CEPS, RU_CEP, DPEV, RU_DPEV, CEP_T, CEPS_T): scale 1.0: 6.13, 3.26, 1.71, 2.24, 0.36, 6.13, 3.26; scale 0.8: 19.16, 17.94, 15.79, 15.97, 15.32, 7.25, 3.96; scale 1.2: 46.33, 42.49, 44.2, 44.82, 45.42, 5.41, 3.37; scale 1.4: 42.4, 38.22, 40.71, 42.2, 42.21, 7.94, 5.57.
+Expectation of A18.1 against the outcome [OPEN]: a LARGE cost and MOSTLY or NOT ROBUST were expected and occurred; KNOWLEDGE-WINS was expected at scale 0.8 only and occurred at all three scales, and the cost at scales 1.2 and 1.4 (33 to 54 points) is much larger than at 0.8 (12 to 21 points).
+Meaning [OPEN, my reading]: (1) The gain of CEPS over CEP survives a wrong dwell scale in 8 of 9 statements, but it is smaller at scale 0.8 (+1.2 to +3.0 points) than in the control (+2.9 to +6.9). (2) A wrong scale costs far more than the objective mismatch gains: the informed planners beat the nominal ones by 12 to 54 points, and the informed expected-value planner CEP_T beats the nominal survival-aware planner CEPS in every statement, so in this setup knowing the dwell is worth more than knowing the objective. (3) The size of the loss depends on how the nominal planner reacts to an observation its model rules out: it abandons a threat that survives more dwell than the largest nominal dwell (A18.2). Whether a planner that keeps dwelling, or that learns the scale during the episode, loses less was not tested. (4) With a wrong scale 1.2 or 1.4 the rollout RU_CEP is below CEPS (-1.7 to -3.8 points): a rollout under a wrong model does not help. The class ADEQUATE there only says that the upper bound is at most 0.03; it does not say the two planners are equal. (5) Informative cells are chosen per scale with the informed planner CEPS_T, so the cells and instance counts differ between scales (scale 0.8, n = 9: 4 of 16 cells, 160 instances) and the comparison across scales is not paired.
+Limits as in A18.9, and: one common multiplicative error, fixed and unknown to the planner; the 12 to 54 point losses are for the nominal planner with the abandon rule, not for a robust planner.

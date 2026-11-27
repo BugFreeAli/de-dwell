@@ -89,3 +89,8 @@
 ## 2026-11-25, A17 (planner robustness across instance families)
 - Added src/dwell/analysis_a17.py, scripts/run_a17.py, analyze_a17.py, a17_gate.py, mutate_a17.py, configs a17_*, tests/test_a17.py (reuses src/dwell/a16.py). Code and gate 2913a1f; plan text committed after the run (deviation noted in the plan).
 - Outcome ROBUST (main run, 5280 rows). docs/record.md: A17 entry.
+
+
+## 2026-11-27, A18 (survival objective under a wrong dwell scale)
+- Added src/dwell/a18.py, analysis_a18.py, scripts/run_a18.py, analyze_a18.py, a18_gate.py, mutate_a18.py, configs a18_*, tests/test_a18.py, append_a18_plan.py. Plan 85a2a09, code and gate ae60e31.
+- Outcome MOSTLY (main run, 12800 rows). docs/analysis_plan_P0.md and docs/record.md: A18 outcome.
