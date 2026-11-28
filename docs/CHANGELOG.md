@@ -99,3 +99,8 @@
 ## 2026-11-27, A19 (learning the dwell scale during the episode)
 - Added src/dwell/a19.py, analysis_a19.py, scripts/run_a19.py, analyze_a19.py, a19_gate.py, mutate_a19.py, configs a19_main, a19_pilot, a19_audit, tests/test_a19.py, append_a19_plan.py. Plan 896bc1b, code and gate a586f44.
 - Outcome WORKS / LEARNING-ADDS (main run, 7680 rows; pilot GO). docs/analysis_plan_P0.md and docs/record.md: A19 outcome.
+
+
+## 2026-11-28, A20 (robustness of the scale-learning planner)
+- Added src/dwell/a20.py, analysis_a20.py, scripts/run_a20.py, analyze_a20.py, a20_gate.py, mutate_a20.py, configs a20_main and a20_audit, tests/test_a20.py, append_a20_plan.py. Plan e1ec0e0, code and gate 786d520.
+- Outcome ROBUST-LEARNER / LEARNING-NEEDED (main run, 11520 rows). docs/analysis_plan_P0.md and docs/record.md: A20 outcome.

@@ -1327,3 +1327,55 @@ Expectation stated before the run [OPEN]: ROBUST-LEARNER is not expected; USEFUL
 **A20.7 Procedure and cost.** Commit this text. Add the code, run tests, mutations, audit and gate, commit. Run configs/a20_main.json once with 4 workers and analyse with scripts/analyze_a20.py --dir results/a20_main. Cost, calibrated on the real A19 main run (7680 rows in 2083 s on 4 workers; my hedge for it was too high, my hedge for A18 was too low): 11520 rows with an extra planner and the timing wrapper; hedged wall time on the author's laptop with 4 workers: 45 to 100 minutes [OPEN, not measured]; the gate needs about 15 to 30 minutes (31 mutations).
 **A20.8 What each label means (not commitments).** ROBUST-LEARNER: the learner beats the nominal planner even outside its prior and with class-specific error, and adds to a non-learning rollout planner. USEFUL: it beats the nominal planner in most misspecified conditions; the failing statements are reported as limits. LIMITED or NO GAIN: the learner works only when the true scale is in its prior, and the paper says so. LEARNING-NEEDED against CLAMP-ROLLOUT-ENOUGH says whether learning is needed once a planner does not abandon and uses a rollout.
 **A20.9 Limits stated now.** n = 5 and 7 only and no exact reference at n = 7; the four extra conditions are my choice and not a model of real dwell error; the fallback of the learner when no scale is consistent is the uniform prior, not tuned; no reinforcement learning or Bayes-optimal learner; thresholds are mine; informative cells are selected with the informed planner and differ between conditions; the times are warm per instance and measured while four workers share the laptop, so only the ratios between planners are meaningful; the amendments A1 to A20 are post-hoc relative to each other.
+
+
+#### A20 outcome (2026-11-28): ROBUST-LEARNER / LEARNING-NEEDED
+Main run (role main, eval seed 20261311, bootstrap seed 20261313) after commit 786d520 (gate hash 94b5c91b...c6b7): 256 cells, 11520 rows, 0 violations, 4047.1 s on 4 workers (hedged estimate 45 to 100 minutes). Console output supplied by the author [DOC]; raw files not re-analysed by me.
+Q0 (control, upper bound of U_RU_CLAMP minus U_ADAPT at most 3 points), holds in both statements: n = 5: upper bound of U_RU_CLAMP minus U_ADAPT +0.90, Q0 holds; ADAPT minus RU_CLAMP -0.60 (lower -0.90); n = 7: upper bound of U_RU_CLAMP minus U_ADAPT +0.56, Q0 holds; ADAPT minus RU_CLAMP -0.35 (lower -0.56).
+Q1 (in the prior; ADAPT minus RU_CLAMP, points, lower bound in brackets; lower bound at least 1 point), holds in all 6 statements:
+  - scale 0.8 (4, 8): n = 5: +12.18 (lower 10.80), Q1 holds; 13 of 16 cells, 650 instances; LEARNING-BETTER; n = 7: +18.90 (lower 16.65), Q1 holds; 5 of 16 cells, 200 instances; LEARNING-BETTER
+  - scale 1.2 (6, 12): n = 5: +25.37 (lower 23.48), Q1 holds; 12 of 16 cells, 600 instances; LEARNING-BETTER; n = 7: +27.94 (lower 25.78), Q1 holds; 8 of 16 cells, 320 instances; LEARNING-BETTER
+  - scale 1.4 (7, 14): n = 5: +29.81 (lower 27.62), Q1 holds; 10 of 16 cells, 500 instances; LEARNING-BETTER; n = 7: +30.93 (lower 28.77), Q1 holds; 8 of 16 cells, 320 instances; LEARNING-BETTER
+Q2 (outside the prior or class-specific error; ADAPT minus NOM, points, lower bound in brackets; lower bound at least 3 points), holds in all 8 statements:
+  - 0.6 (3, 6): n = 5: +13.45 (lower 11.56), Q2 holds; 9 of 16 cells, 450 instances; n = 7: +14.78 (lower 11.54), Q2 holds; 4 of 16 cells, 160 instances
+  - 1.6 (8, 16): n = 5: +16.33 (lower 14.30), Q2 holds; 8 of 16 cells, 400 instances; n = 7: +13.53 (lower 11.06), Q2 holds; 8 of 16 cells, 320 instances
+  - SP (4, 12): n = 5: +32.57 (lower 30.92), Q2 holds; 14 of 16 cells, 700 instances; n = 7: +32.17 (lower 29.94), Q2 holds; 8 of 16 cells, 320 instances
+  - CP (6, 8): n = 5: +6.41 (lower 5.18), Q2 holds; 13 of 16 cells, 650 instances; n = 7: +7.46 (lower 5.18), Q2 holds; 6 of 16 cells, 240 instances
+Q3 (ADAPT against RU_CLAMP, outside the prior): LEARNING-BETTER in 7 of 8 statements, MIXED at SP, n = 7:
+  - 0.6 (3, 6): n = 5: ADAPT minus RU_CLAMP +10.69 (lower 8.94) LEARNING-BETTER; n = 7: ADAPT minus RU_CLAMP +16.71 (lower 13.10) LEARNING-BETTER
+  - 1.6 (8, 16): n = 5: ADAPT minus RU_CLAMP +12.63 (lower 10.78) LEARNING-BETTER; n = 7: ADAPT minus RU_CLAMP +11.41 (lower 9.41) LEARNING-BETTER
+  - SP (4, 12): n = 5: ADAPT minus RU_CLAMP +6.78 (lower 5.41) LEARNING-BETTER; n = 7: ADAPT minus RU_CLAMP +2.20 (lower 0.10) MIXED
+  - CP (6, 8): n = 5: ADAPT minus RU_CLAMP +7.70 (lower 6.32) LEARNING-BETTER; n = 7: ADAPT minus RU_CLAMP +10.93 (lower 8.31) LEARNING-BETTER
+ADAPT minus CLAMP (points; printed without intervals), by condition:
+  - 1.0 (5, 10): n = 5: +1.28; n = 7: +1.20
+  - 0.8 (4, 8): n = 5: +12.48; n = 7: +21.13
+  - 1.2 (6, 12): n = 5: +6.85; n = 7: +9.35
+  - 1.4 (7, 14): n = 5: +7.04; n = 7: +3.53
+  - 0.6 (3, 6): n = 5: +13.45; n = 7: +14.78
+  - 1.6 (8, 16): n = 5: -7.67; n = 7: -17.05
+  - SP (4, 12): n = 5: -6.33; n = 7: -12.00
+  - CP (6, 8): n = 5: +6.41; n = 7: +7.46
+Informed rollout planner minus ADAPT (points; no interval printed):
+  - 1.0 (5, 10): n = 5: 0.60; n = 7: 0.35
+  - 0.8 (4, 8): n = 5: 0.74; n = 7: 0.82
+  - 1.2 (6, 12): n = 5: 0.69; n = 7: 0.64
+  - 1.4 (7, 14): n = 5: -0.60; n = 7: 0.21
+  - 0.6 (3, 6): n = 5: 14.75; n = 7: 26.30
+  - 1.6 (8, 16): n = 5: 10.37; n = 7: 20.07
+  - SP (4, 12): n = 5: 9.96; n = 7: 15.53
+  - CP (6, 8): n = 5: 6.93; n = 7: 9.55
+Mean survival probability over the informative cells (NOM, CLAMP, RU_CLAMP, ADAPT, ADAPT_V, CEPS_T, RU_CEP_T):
+  - 1.0 (5, 10): n = 5: 0.64, 0.64, 0.65, 0.65, 0.61, 0.64, 0.65; n = 7: 0.74, 0.74, 0.76, 0.75, 0.74, 0.74, 0.76
+  - 0.8 (4, 8): n = 5: 0.56, 0.56, 0.57, 0.69, 0.62, 0.67, 0.70; n = 7: 0.49, 0.49, 0.51, 0.70, 0.65, 0.68, 0.71
+  - 1.2 (6, 12): n = 5: 0.17, 0.53, 0.35, 0.60, 0.58, 0.59, 0.61; n = 7: 0.14, 0.50, 0.31, 0.59, 0.57, 0.57, 0.60
+  - 1.4 (7, 14): n = 5: 0.19, 0.49, 0.27, 0.56, 0.54, 0.53, 0.56; n = 7: 0.19, 0.54, 0.26, 0.57, 0.56, 0.56, 0.58
+  - 0.6 (3, 6): n = 5: 0.51, 0.51, 0.54, 0.65, 0.53, 0.78, 0.80; n = 7: 0.26, 0.26, 0.24, 0.41, 0.31, 0.66, 0.67
+  - 1.6 (8, 16): n = 5: 0.20, 0.44, 0.24, 0.37, 0.47, 0.44, 0.47; n = 7: 0.20, 0.51, 0.23, 0.34, 0.53, 0.52, 0.54
+  - SP (4, 12): n = 5: 0.19, 0.58, 0.45, 0.52, 0.57, 0.60, 0.62; n = 7: 0.16, 0.60, 0.46, 0.48, 0.57, 0.60, 0.63
+  - CP (6, 8): n = 5: 0.58, 0.58, 0.56, 0.64, 0.60, 0.70, 0.71; n = 7: 0.49, 0.49, 0.46, 0.57, 0.52, 0.64, 0.66
+Regret against the exact optimum of the true model at n = 5 (points, informative cells; NOM, CLAMP, RU_CLAMP, ADAPT, ADAPT_V, CEPS_T, RU_CEP_T): control 1.0: 3.69, 3.69, 1.81, 2.41, 6.05, 3.69, 1.81; 0.8: 14.55, 14.55, 14.25, 2.07, 8.47, 3.74, 1.33; 1.2: 45.74, 9.05, 27.57, 2.2, 4.47, 3.89, 1.51; 1.4: 39.8, 8.98, 31.75, 1.94, 4.26, 5.32, 2.54; 0.6: 29.56, 29.56, 26.8, 16.11, 27.86, 2.82, 1.36; 1.6: 29.51, 5.51, 25.81, 13.18, 2.98, 5.83, 2.81; SP: 44.7, 5.8, 18.9, 12.13, 6.67, 4.61, 2.17; CP: 14.51, 14.51, 15.8, 8.1, 12.55, 2.29, 1.17.
+Time per policy call (ms, memoised within the instance, four workers sharing the laptop) and calls per instance: n = 5: NOM 0.057 (44.9), CLAMP 0.052 (43.7), RU_CLAMP 0.710 (48.0), ADAPT 2.237 (48.5), ADAPT_V 0.173 (44.6); n = 7: NOM 0.150 (103.9), CLAMP 0.172 (94.7), RU_CLAMP 2.977 (105.2), ADAPT 8.856 (108.0), ADAPT_V 0.534 (97.5). Ratios to NOM (my arithmetic): ADAPT 39 times (n = 5) and 59 times (n = 7); ADAPT_V 3.0 and 3.6 times. n = 9 was not measured.
+Label: ROBUST-LEARNER; second label LEARNING-NEEDED.
+Expectation of A20.1 against the outcome [OPEN]: ROBUST-LEARNER was not expected and occurred; Q2 was expected to fail in some statements and held in all eight; Q1 was expected at scale 0.8 and uncertain at 1.2 and 1.4 and held everywhere.
+Meaning [OPEN, my reading]: (1) The learner costs at most 0.9 and 0.6 points against the non-learning rollout planner when the nominal model is right, is 12.2 to 30.9 points above it at the three scales in the prior, and is 6.4 to 32.6 points above the nominal planner outside the prior and with class-specific error (lower bounds 5.2 to 30.9). The in-prior values replicate A19 on a fresh seed (ADAPT minus NOM +12.5, +21.1, +43.5, +45.0, +37.9, +38.8 against +15.6, +14.5, +42.8, +48.3, +38.2, +40.1 in A19). (2) RU_CLAMP is a weak comparison: a rollout on the nominal model hurts when the model is wrong, as RU_CEP did in A18 (mean survival probability of RU_CLAMP below that of CLAMP at the scales 1.2 and 1.4: 0.35 against 0.53, 0.31 against 0.50, 0.27 against 0.49 and 0.26 against 0.54). Q1 therefore shows that learning beats not abandoning plus a rollout, so the part of the ADAPT gain over CLAMP that A19 could not separate from the rollout is not due to a rollout helping. Against CLAMP itself the learner is above by 12.5, 21.1 (0.8, where CLAMP equals NOM), 6.9, 9.4 (1.2) and 7.0, 3.5 (1.4) points; no intervals were printed for this contrast. (3) Outside the prior the learner is not the best simple planner: ADAPT is below CLAMP at 1.6 (-7.7 and -17.1 points) and at SP (-6.3 and -12.0); at n = 5 its regret against the exact optimum is 13.2 and 12.1 points against 5.5 and 5.8 for CLAMP, and the cheap vote version ADAPT_V (no rollout) has 3.0 and 6.7. When the learner is misled the rollout in ADAPT hurts. At 0.6 and CP the abandon rule does not bind (CLAMP equals NOM) and ADAPT is 13.5 and 6.4 points above NOM. The label ROBUST-LEARNER, which compares with NOM and RU_CLAMP, does not mean that ADAPT is the best planner everywhere. (4) Outside the prior ADAPT closes 48% (0.6), 61% (1.6), 77% (SP) and 48% (CP) of the regret gap between NOM and the informed rollout planner at n = 5 (my arithmetic on the printed regrets); the informed planner stays 6.9 to 26.3 points higher in survival probability. (5) ADAPT costs about 39 and 59 times the time per decision of NOM at n = 5 and 7, ADAPT_V about 3 and 3.6 times; the figures are warm, per instance, with four workers sharing one laptop, so only the ratios are meaningful. (6) At n = 7 few cells are informative (4 to 8 of 16; 160 instances at 0.6 and 200 at 0.8), so those intervals are wider.
+Limits as in A20.9, and: the ADAPT-against-CLAMP and the informed contrasts have no printed intervals; n = 9 not run; the true scale and the error structure are my choices and not a model of real dwell error.
